@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试生成二维码</title>
+</head>
+<body>
+
+<div id="logos">
+
+<button onclick="changess()">点击</button>
+
+<img src="" class="qrcode" alt="二维码展示"/>
+
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+function changess()
+{
+
+    var logos = document.getElementById ('logos');
+
+    $.ajax({
+
+        type: "GET",
+
+        url: "http://www.thinkphp5.cn.com/wechat",
+
+        data: '',
+
+        dataType: "json",
+
+        success: function(r){
+
+        	if (r.code==200) { //console.log(r); 
+
+            var path = 'data:image/png;base64,'+r.data; //给img的sec赋值。
+
+            console.log(path);
+
+            $("#logos").html("<img src="+path+">");
+
+            logos.html("<img src="+path+">");
+
+            console.log( logos.html("<img src="+path+">"));
+
+            }else{
+                alert(r.err); 
+            }
+        }
+    
+    });
+
+  }
+</script>
+
+</body>
+</html>

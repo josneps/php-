@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>注册</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div>
+		<form action="/admin/register" method="post">
+			<table>
+				<tr>
+					<td align="right">手机号:</td>
+					<td><input type="text" name="phone" required placeholder="请输入手机号"></td>
+				</tr>
+				<tr>
+					<td align="right">密码:</td>
+					<td><input type="password" name="password" required placeholder="请填写密码"></td>
+				</tr>
+				<tr>
+					<td align="right">昵称:</td>
+					<td><input type="text" name="name" required placeholder="请填写密码"></td>
+				</tr>
+				<tr>
+					<td align="right">性别:</td>
+					<td>
+						<input type="radio" name="sex" value="1" checked> 男
+						<input type="radio" name="sex" value="2"> 女
+					</td>
+				</tr>
+				<tr>
+					<td align="right">年龄:</td>
+					<td><input type="text" name="password" required placeholder="请填写密码"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="3"><button>注册</button></td>
+				</tr>
+			</table>
+		</form>	
+	</div>
+</body>
+</html>
