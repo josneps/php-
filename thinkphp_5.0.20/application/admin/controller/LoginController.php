@@ -4,6 +4,7 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\view;
+use app\admin\service\Loginservice;
 
 
 class LoginController extends Controller
@@ -16,6 +17,9 @@ class LoginController extends Controller
 
 	}
 
+	/**
+	 * 注册
+	 */
 	public function register()
 	{
 		//判断是否是post请求
@@ -23,12 +27,14 @@ class LoginController extends Controller
 			//接值
 			$data = $this->request->only(['phone','password']);
 			//验证
-			$result = $this->validate($data, 'Loginservice.login');
+			$result = $this->validate($data, 'Login.register');
 			if(true !== $result){
-				return error('400', $result);
+				return error('404', $result);
 			}
-			print_r($data);
-			die;
+			//传输数据到service里进行处理
+			$login_service = new Loginservice();
+			$list = $login_service->register($data);
+			print_r($list);
 		} else {
 			return $this->fetch();
 		}

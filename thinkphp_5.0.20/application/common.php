@@ -24,7 +24,7 @@ function success($msg, $arr = [])
 		$data['data'] = $arr;
 	}
 
-	return json_encode($data);
+	return json($data);
 }
 
 /**
@@ -32,12 +32,12 @@ function success($msg, $arr = [])
  * [error description]
  * @return [type] [description]
  */
-function error($code, $msg, $data = [])
+function error($code, $msg, $arr = [])
 {
 	$data = ['code' => $code, 'msg' => $msg];
-	if (!empty($data)) {
+	if (!empty($arr)) {
 		$data['data'] = $arr;
 	}
 
-	return json_encode($data);
+	return json($data);
 }
