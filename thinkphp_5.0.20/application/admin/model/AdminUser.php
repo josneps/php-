@@ -2,7 +2,8 @@
 
 namespace app\admin\model;
 
-user think\Model;
+use think\Model;
+use think\Db;
 
 
 class AdminUser extends Model
@@ -15,14 +16,33 @@ class AdminUser extends Model
 	 * @param  [type] $id    [description]
 	 * @return [type]        [description]
 	 */
-	public function saves($data, $where, $id)
+	public function saves($data = [], $where = [], $id = '')
 	{
 		//检测是否有id，如果有就是修改，没有就是添加
 		if(empty($id)){
 			//添加数据入库
-			$this->save();
+			Db::startTrans();
+			try{
+				//检测手机号是否存在
+				$phone = db('admin_user')->where('user_phone',$data['user_phone'])->find();
+				if(!empty($phone)){
+					return 3;
+				}
+				//检测昵称是否存在
+				$name = db('admin_user')->where('user_name',$data['user_name'])->find();
+				if(!empty($name)){
+					return 4;
+				}
+				db('admin_user')->insert($data);
+				Db::commit();
+				return 1;
+			} catch(\Exception $e) {
+				Db::rollback();
+				return 2;
+			}
 		} else {
 			//更新数据入库
+			echo 456;
 		}
 	}
 }																			

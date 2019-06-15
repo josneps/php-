@@ -20,10 +20,10 @@ class Loginservice
 			'user_phone' => $data['phone'],
 			'user_pwd' => md5(md5($data['password']).$code),
 			'user_code' => $code,
-			'user_name' => '',
-			'user_sex' => '',
-			'user_age' => '',
-			'user_email' => '',
+			'user_name' => $data['name'],
+			'user_sex' => $data['sex'],
+			'user_age' => $data['age'],
+			'user_email' => $data['email'],
 		);
 		//实例化model
 		$admin_user = new AdminUser();
