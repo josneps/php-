@@ -33,10 +33,13 @@ class AdminUser extends Model
 				if(!empty($name)){
 					return 4;
 				}
+				//写入数据库
 				db('admin_user')->insert($data);
+				//提交事务
 				Db::commit();
 				return 1;
 			} catch(\Exception $e) {
+				//回滚事务
 				Db::rollback();
 				return 2;
 			}
