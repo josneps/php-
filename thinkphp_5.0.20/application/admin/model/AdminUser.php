@@ -48,11 +48,13 @@ class AdminUser extends Model
             echo 456;
         }
     }
-<<<<<<< HEAD
-=======
-}                                                                           
->>>>>>> 17f9e1e19cd3f78fc6dd067cb372929fd0cc182f
 
+}
+    /**
+     * 查询方法
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function selects($data)
     {
         $phone=$data['phone'];

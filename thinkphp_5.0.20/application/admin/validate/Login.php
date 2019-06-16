@@ -20,5 +20,6 @@ class Login extends Validate
 	protected $scene = [
 		'register' => ['phone','password','name','sex','age','email'],
 		'login'=>['phone','password'],
+		
 	];
 }

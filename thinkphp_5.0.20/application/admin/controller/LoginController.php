@@ -32,9 +32,10 @@ class LoginController extends Controller
                 case 1:return error('500','账号不存在，请先注册！');break;                
                 case 3:return error('500','密码不正确');break;                
                 default:return success("登录成功");break;
+
             }
         }else{
-            echo "123";
+            return view('/404');
         }
     }
 
