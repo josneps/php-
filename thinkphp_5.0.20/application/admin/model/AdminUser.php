@@ -49,7 +49,6 @@ class AdminUser extends Model
         }
     }
 
-}
     /**
      * 查询方法
      * @param  [type] $data [description]
@@ -58,7 +57,7 @@ class AdminUser extends Model
     public function selects($data)
     {
         $phone=$data['phone'];
-        $phones=db('admin_user')->where('user_phone',$phone)->find();
+        $phones=db('admin_user')->field(['user_id','user_phone','user_pwd','user_code','user_sex','user_age','user_email'])->where('user_phone',$phone)->find();
         if (empty($phones)){
             return 1;
         }

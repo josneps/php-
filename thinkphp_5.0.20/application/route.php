@@ -15,18 +15,14 @@ Route::get('/','wechat/Wechat/code');
 
 Route::get('a','wechat/Wechat/add');
 
-<<<<<<< HEAD
 
-Route::get('admin/register','admin/LoginController/register');
-Route::post('admin/register','admin/LoginController/register');
-Route::get('admin/login','admin/LoginController/login');
-Route::post('admin/login','admin/LoginController/login');
-=======
 /** 登录注册部分 */
-Route::get('admin/login','admin/LoginController/login');
 Route::get('admin/register','admin/LoginController/register');
 Route::post('admin/register','admin/LoginController/register'); /** 注册 */
->>>>>>> 17f9e1e19cd3f78fc6dd067cb372929fd0cc182f
+Route::get('admin/login','admin/LoginController/login');
+Route::post('admin/login','admin/LoginController/login');
+
+Route::post('admin/index','admin/LoginController/index');
 
 Route::get('/404','admin/LoginController/err');
 

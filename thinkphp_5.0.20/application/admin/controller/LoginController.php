@@ -5,6 +5,7 @@ namespace app\admin\controller;
 use think\Controller;
 use think\view;
 use app\admin\service\Loginservice;
+use think\Session;
 
 
 class LoginController extends Controller
@@ -31,7 +32,11 @@ class LoginController extends Controller
             switch ($list){
                 case 1:return error('500','账号不存在，请先注册！');break;                
                 case 3:return error('500','密码不正确');break;                
-                default:return success("登录成功");break;
+                default:
+                    //存session
+                    Session::set('user_info',$list);
+                    return success("登录成功");
+                    break;
 
             }
         }else{
@@ -77,6 +82,11 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * 404错误
+     * [err description]
+     * @return [type] [description]
+     */
     public function err()
     {
         return view('/404');
