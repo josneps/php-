@@ -52,6 +52,8 @@ class LoginController extends Controller
         if ($this->request->isPost()) {
             //接值
             $data = $this->request->only(['phone','password','name','sex','age','email']);
+            // $data = $this->request->param();
+            // print_r($data);die;
             //验证
             $result = $this->validate($data, 'Login.register');
             //判断是否验证成功，如果不成功则进if

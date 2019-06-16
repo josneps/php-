@@ -48,6 +48,10 @@ class AdminUser extends Model
             echo 456;
         }
     }
+<<<<<<< HEAD
+=======
+}                                                                           
+>>>>>>> 17f9e1e19cd3f78fc6dd067cb372929fd0cc182f
 
     public function selects($data)
     {

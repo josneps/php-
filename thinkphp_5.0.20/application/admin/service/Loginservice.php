@@ -30,6 +30,7 @@ class Loginservice
         //调用model进行入库并将结果返回
         return $admin_user->saves($user_info);
     }
+<<<<<<< HEAD
 
     /**
      * 登录
@@ -42,4 +43,6 @@ class Loginservice
         $admin_user=new AdminUser();
         return $admin_user->selects($data);
     }
+=======
+>>>>>>> 17f9e1e19cd3f78fc6dd067cb372929fd0cc182f
 }
