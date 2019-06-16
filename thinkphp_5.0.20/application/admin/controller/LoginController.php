@@ -14,7 +14,28 @@ class LoginController extends Controller
      */
     public function login()
     {
-
+        //判断是否用的是POST请求
+        if ($this->request->isPost()) {
+            //接值
+            $logins=$this->request->only(['phone','password']);
+            //验证
+            $varift=$this->validate($logins,'Login.login');
+            // var_dump($varift);
+            if ($varift !== true){
+                return error('500',$varift);
+            }
+            //将数据传送到Service
+            $login_service= new Loginservice();
+            $list=$login_service->login($logins);
+            // print_r($list);
+            switch ($list){
+                case 1:return error('500','账号不存在，请先注册！');break;                
+                case 3:return error('500','密码不正确');break;                
+                default:return success("登录成功");break;
+            }
+        }else{
+            echo "123";
+        }
     }
 
     /**
