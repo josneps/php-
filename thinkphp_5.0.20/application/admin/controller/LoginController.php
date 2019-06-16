@@ -37,6 +37,7 @@ class LoginController extends Controller
         }else{
             return view('/404');
         }
+        
     }
 
     /**

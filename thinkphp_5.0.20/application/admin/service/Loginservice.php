@@ -42,5 +42,4 @@ class Loginservice
         $admin_user=new AdminUser();
         return $admin_user->selects($data);
     }
-
 }

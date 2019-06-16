@@ -68,7 +68,6 @@ class AdminUser extends Model
         if ($password==$phones['user_pwd']){
             return $phones;
         }else{
-
             return 3;
         }
     }
