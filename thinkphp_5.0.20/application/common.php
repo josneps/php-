@@ -19,7 +19,7 @@
  */
 function success($msg, $arr = [])
 {
-	$data = ['code' => 200, 'msg' => $msg];
+	$data = ['code' => '10200', 'msg' => $msg];
 	if (!empty($arr)) {
 		$data['data'] = $arr;
 	}
@@ -40,4 +40,14 @@ function error($code, $msg, $arr = [])
 	}
 
 	return json($data);
+}
+
+/**
+ * 获取时间：20190101
+ * [getTime description]
+ * @return [type] [description]
+ */
+function getTime()
+{
+	return date('Ymd',time());
 }

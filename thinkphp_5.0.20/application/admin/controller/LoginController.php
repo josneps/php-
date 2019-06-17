@@ -6,6 +6,7 @@ use think\Controller;
 use think\view;
 use app\admin\service\Loginservice;
 use think\Session;
+use app\admin\lib\common\Commonality;
 
 
 class LoginController extends Controller
@@ -30,8 +31,8 @@ class LoginController extends Controller
             $list=$login_service->login($logins);
             // print_r($list);
             switch ($list){
-                case 1:return error('500','账号不存在，请先注册！');break;                
-                case 3:return error('500','密码不正确');break;                
+                case 1:return error('10500','账号不存在，请先注册！');break;                
+                case 3:return error('10500','密码不正确');break;                
                 default:
                     //存session
                     Session::set('user_info',$list);
@@ -65,7 +66,7 @@ class LoginController extends Controller
             $result = $this->validate($data, 'Login.register');
             //判断是否验证成功，如果不成功则进if
             if(true !== $result){
-                return error('404', $result);
+                return error('10404', $result);
             }
             // return success('恭喜你成功了……',$data);
             //传输数据到service里进行处理
@@ -73,9 +74,9 @@ class LoginController extends Controller
             $list = $login_service->register($data);
             switch ($list) {
                 case 1: return success('注册成功'); break;
-                case 2: return error('500','注册失败'); break;
-                case 3: return error('500','该手机号已注册'); break;
-                case 4: return error('500','该昵称已存在'); break;
+                case 2: return error('10500','注册失败'); break;
+                case 3: return error('10500','该手机号已注册'); break;
+                case 4: return error('10500','该昵称已存在'); break;
             }
         } else {
             return $this->fetch();
@@ -90,6 +91,15 @@ class LoginController extends Controller
     public function err()
     {
         return view('/404');
+    }
+
+    public function index()
+    {
+        $file = request()->file('file');
+
+        $url = Commonality::uploads($file);
+
+        print_r($url);
     }
 }
 
