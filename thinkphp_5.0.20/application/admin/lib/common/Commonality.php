@@ -27,7 +27,7 @@ class Commonality
         //判断是否上传成功
         if($info){
             // 成功上传后 获取上传信息
-            $file_path = $info->getSaveName();
+            // $file_path = $info->getSaveName();
             return $url.$info->getSaveName();
         }else{
             // 上传失败获取错误信息

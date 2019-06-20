@@ -24,7 +24,7 @@ class LoginController extends Controller
             $varift=$this->validate($logins,'Login.login');
             // var_dump($varift);
             if ($varift !== true){
-                return error('500',$varift);
+                return error('10500',$varift);
             }
             //将数据传送到Service
             $login_service= new Loginservice();
@@ -36,7 +36,7 @@ class LoginController extends Controller
                 default:
                     //存session
                     Session::set('user_info',$list);
-                    return success("登录成功");
+                    return success("登录成功",['code' => $list['user_code']]);
                     break;
 
             }
@@ -93,6 +93,11 @@ class LoginController extends Controller
         return view('/404');
     }
 
+    /**
+     * 文件上传
+     * [index description]
+     * @return [type] [description]
+     */
     public function index()
     {
         $file = request()->file('file');
