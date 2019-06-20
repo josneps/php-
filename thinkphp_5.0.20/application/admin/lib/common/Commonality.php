@@ -16,7 +16,7 @@ class Commonality
     {
         //检测是否有文件
         if(empty($files)){
-            return error('10500','图片不能为空');
+            return error('10404','图片不能为空');
         }
         //拼接路径
         $url = ROOT_PATH.'public'.DS.'uploads';

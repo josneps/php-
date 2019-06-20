@@ -24,7 +24,7 @@ class LoginController extends Controller
             $varift=$this->validate($logins,'Login.login');
             // var_dump($varift);
             if ($varift !== true){
-                return error('10500',$varift);
+                return error('10404',$varift);
             }
             //将数据传送到Service
             $login_service= new Loginservice();
