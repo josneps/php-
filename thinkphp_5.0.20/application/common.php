@@ -41,3 +41,14 @@ function error($code, $msg, $arr = [])
 
 	return json($data);
 }
+
+
+/**
+ * 获取当天的日期：20190617
+ * [getTime description]
+ * @return [type] [description]
+ */
+function getTime()
+{
+	return date('Ymd',time());
+}

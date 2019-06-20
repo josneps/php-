@@ -6,10 +6,13 @@ use think\Controller;
 use think\view;
 use app\admin\service\Loginservice;
 use think\Session;
+use think\Db;
+use app\admin\lib\common\Uploads;
 
 
 class LoginController extends Controller
 {
+
     /**
      * 登录
      */
@@ -80,6 +83,18 @@ class LoginController extends Controller
         } else {
             return $this->fetch();
         }
+    }
+
+    public function index()
+    {
+        //接收数据
+        $data = $this->request->only(['name']);
+        //接收文件
+        $files = request()->file('file');
+
+        $data['file_url'] = Uploads::upload($files);
+
+        print_r($data);
     }
 
     /**
