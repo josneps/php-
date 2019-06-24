@@ -1,0 +1,27 @@
+[ 2018-09-06T10:10:00+08:00 ] 111.163.120.178 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001221s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001714s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001805s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/share.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+
+[ 2018-09-06T10:10:59+08:00 ] 58.247.212.141 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000104s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000073s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/share.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+
+[ 2018-09-06T11:06:13+08:00 ] 111.163.120.178 /Public/layuiadmin/modules/sample.js
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000080s ]
+ERR: 无法加载控制器:Public
+

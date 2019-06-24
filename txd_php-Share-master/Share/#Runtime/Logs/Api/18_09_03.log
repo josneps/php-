@@ -1,0 +1,9 @@
+[ 2018-09-03T09:45:46+08:00 ] 127.0.0.1 /Api/member/threeLoginBind?openid=2144343454&account=17622818242&verify=834703
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given D:\project\php\Share\Vendor\Txunda\Txunda.Param.php 第 97 行.
+

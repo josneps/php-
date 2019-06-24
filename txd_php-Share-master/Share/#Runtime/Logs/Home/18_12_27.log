@@ -1,0 +1,14 @@
+[ 2018-12-27T20:30:16+08:00 ] 121.28.92.130 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001265s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001976s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002050s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/share.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+
+[ 2018-12-27T20:31:07+08:00 ] 121.28.92.130 /Public/Common/js/layer/theme/default/loading-3.gif
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+

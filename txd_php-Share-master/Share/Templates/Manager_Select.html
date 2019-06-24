@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<include file="Public/head" />
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <!--菜单名称-->
+                <div class="layui-card-header">{$title}</div>
+                <div class="layui-card-body">
+                    <!--顶部按钮-->
+                    <div class="mab10">
+                        <a href="{:U('object_name/editobject_name')}" class="layui-btn layui-btn-normal">添加</a>
+                        <button class="layui-btn layui-btn-danger" onclick="confirmAllAction('{:U('Base/delete',array('model'=>'object_name'))}', '删除')">删除</button>
+                        <!--搜索框也可以放这里-->
+
+                        <form class="mab10 mal20 dinline" action="{:U('object_name/selectobject_name')}" method="GET">
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" placeholder="请输入名称" name="name" value="{$_REQUEST['name']}">
+                            </div>
+                            <div class="layui-input-inline layui-form">
+                                <select name="status" class="layui-input" style="width: 150px">
+                                    <option value="">请选择状态</option>
+                                    <option value="0" <if condition="$_REQUEST['status'] eq '0'">selected=true</if>>已禁用</option>
+                                    <option value="1" <if condition="$_REQUEST['status'] eq 1">selected=true</if>>已启用</option>
+                                </select>
+                            </div>
+                            <button class="layui-btn" type="submit">搜索</button>
+                            <a href="{:U('object_name/selectobject_name')}" class="layui-btn layui-btn-primary">重置</a>
+                        </form>
+                    </div>
+                    <!--列表-->
+                    <table class="layui-table" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                        <tr>
+                            <th width="20"><input type="checkbox" id="checkAllId" class="layui-input"></th>
+                            <th>ID</th>
+                            <th>名称</th>
+                            <th>图片</th>
+                            <th>排序</th>
+                            <th>状态</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <empty name="list">
+                            <tr><td colspan="12" style="text-align: center;">暂无数据</td></tr>
+                        </empty>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td><input type="checkbox" name="ids" value="{$item.id}" class="layui-input"></td>
+                                <td>{$item.id}</td>
+                                <td>{$item.name}</td>
+                                <td><img src="{$item['icon_path']}" /></td>
+                                <td table-edit="true" table-edit-url="{:U('Base/editSort', array('id'=>$item['id'],'model_name'=>'object_name'))}" table-edit-key="sort">{$item.sort}</td>
+                                <td>
+                                    <eq name="item['status']" value="1">
+                                        已启用
+                                        <else/>
+                                        <span style="color: chocolate">已禁用</span>
+                                    </eq>
+                                </td>
+                                <td>{$item['add_time']}</td>
+                                <td>
+                                    <button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jumpUrl('{:U('object_name/editobject_name', array('id'=>$item['id'], 'system'=>0))}')">编辑</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-warm" onclick="confirmOneAction('{:U('Base/editStatus',array('model'=>'object_name','id'=>$item['id']))}', '{$item['status'] == 1 ? '禁用' : '启用'}','{$item.id}')">{$item['status'] == 1 ? '禁用' : '启用'}</button>
+                                    <button class="layui-btn layui-btn-xs layui-btn-danger" onclick="confirmOneAction('{:U('Base/delete',array('model'=>'object_name','ids'=>$item['id']))}', '删除','{$item.id}')">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <!--分页-->
+                    {$page}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 时间选择初始化
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>
+</body>
+</html>

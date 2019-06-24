@@ -1,0 +1,454 @@
+[ 2018-10-24T11:12:44+08:00 ] 111.163.122.113 /manager
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001582s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001591s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001646s ]
+
+[ 2018-10-24T11:12:44+08:00 ] 111.163.122.113 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000110s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012411s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012450s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001015s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001049s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001527s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001566s ]
+
+[ 2018-10-24T11:12:44+08:00 ] 111.163.122.113 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000077s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000050s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000097s ]
+
+[ 2018-10-24T11:12:53+08:00 ] 111.163.122.113 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/share.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0301s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`group_id`,`username`,`password`,`salt`,`status` FROM `db_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0022s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0012s ]
+
+[ 2018-10-24T11:12:55+08:00 ] 111.163.122.113 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000077s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000131s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012176s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012235s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000070s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000125s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000075s ]
+
+[ 2018-10-24T11:12:56+08:00 ] 111.163.122.113 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000076s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000106s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008903s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008944s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000067s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000059s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000110s ]
+
+[ 2018-10-24T11:12:58+08:00 ] 111.163.122.113 /index.php/Manager/Advert/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000127s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000095s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','广告列表','Manager/Advert/index','://share.txunda.com/index.php/Manager/Advert/index.html','POST: 
+Cookie:PHPSESSID=dgfs5po9dpvb7nhiej9mi5e165&ADMUSERNAME=admin','0','1540350778') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_advert` [ RunTime:0.0028s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_advert` WHERE `status` < 9 ORDER BY sort desc , id  desc LIMIT 1   [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_advert` WHERE `status` < 9 ORDER BY sort desc , id  desc LIMIT 0,15   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000174s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.023360s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023433s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000059s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000117s ]
+
+[ 2018-10-24T11:12:58+08:00 ] 111.163.122.113 /index.php/Manager/Advert/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000068s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000088s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','广告列表','Manager/Advert/index','://share.txunda.com/index.php/Manager/Advert/index.html','POST: 
+Cookie:PHPSESSID=dgfs5po9dpvb7nhiej9mi5e165&ADMUSERNAME=admin','0','1540350778') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_advert` [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_advert` WHERE `status` < 9 ORDER BY sort desc , id  desc LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_advert` WHERE `status` < 9 ORDER BY sort desc , id  desc LIMIT 0,15   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000128s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005990s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006031s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000075s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000053s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000088s ]
+
+[ 2018-10-24T11:13:03+08:00 ] 111.163.122.113 /index.php/Manager/Member/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000091s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000083s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','用户列表','Manager/Member/index','://share.txunda.com/index.php/Manager/Member/index.html','POST: 
+Cookie:PHPSESSID=dgfs5po9dpvb7nhiej9mi5e165&ADMUSERNAME=admin','0','1540350783') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_member` WHERE `status` < 9 ORDER BY sort desc , create_time desc LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `status` < 9 ORDER BY sort desc , create_time desc LIMIT 0,15   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000147s ]
+NOTIC: [8] Undefined index: account /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 137 行.
+NOTIC: [8] Undefined index: nickname /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 140 行.
+NOTIC: [8] Undefined index: sex /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 145 行.
+NOTIC: [8] Undefined index: sex /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 146 行.
+NOTIC: [8] Undefined index: start_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 151 行.
+NOTIC: [8] Undefined index: start_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 152 行.
+NOTIC: [8] Undefined index: end_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 156 行.
+NOTIC: [8] Undefined index: end_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 157 行.
+NOTIC: [8] Undefined index: sort_order /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 233 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008096s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008134s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000063s ]
+
+[ 2018-10-24T11:13:03+08:00 ] 111.163.122.113 /index.php/Manager/Member/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000068s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','用户列表','Manager/Member/index','://share.txunda.com/index.php/Manager/Member/index.html','POST: 
+Cookie:PHPSESSID=dgfs5po9dpvb7nhiej9mi5e165&ADMUSERNAME=admin','0','1540350783') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_member` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_member` WHERE `status` < 9 ORDER BY sort desc , create_time desc LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_member` WHERE `status` < 9 ORDER BY sort desc , create_time desc LIMIT 0,15   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000058s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000097s ]
+NOTIC: [8] Undefined index: account /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 137 行.
+NOTIC: [8] Undefined index: nickname /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 140 行.
+NOTIC: [8] Undefined index: sex /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 145 行.
+NOTIC: [8] Undefined index: sex /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 146 行.
+NOTIC: [8] Undefined index: start_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 151 行.
+NOTIC: [8] Undefined index: start_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 152 行.
+NOTIC: [8] Undefined index: end_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 156 行.
+NOTIC: [8] Undefined index: end_time /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 157 行.
+NOTIC: [8] Undefined index: sort_order /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/0c81d401ff07d30607b0f8454a56b8c3.php 第 233 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008006s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008059s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000074s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000041s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000073s ]
+
+[ 2018-10-24T11:13:05+08:00 ] 111.163.122.113 /index.php/Manager/Member/addMember.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','添加用户','Manager/Member/addMember','://share.txunda.com/index.php/Manager/Member/addMember.html','POST: 
+Cookie:PHPSESSID=dgfs5po9dpvb7nhiej9mi5e165&ADMUSERNAME=admin','0','1540350785') [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000083s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000137s ]
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 139 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 139 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 143 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 155 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 161 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 202 行.
+NOTIC: [8] Undefined variable: province /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 213 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 245 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 249 行.
+NOTIC: [8] Undefined variable: row /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/41ec0d8b825f842a12ad09b25f2262e5.php 第 290 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007986s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008038s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000094s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000071s ]
+
+[ 2018-10-24T11:13:09+08:00 ] 111.163.122.113 /index.php/Manager/Index/uploadFile
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000141s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000063s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000140s ]
+NOTIC: [2] call_user_func() expects parameter 1 to be a valid callback, no array or string given /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Upload.class.php 第 171 行.
+SQL: SHOW COLUMNS FROM `db_file` [ RunTime:0.0007s ]
+SQL: INSERT INTO `db_file` (`savepath`,`path`,`size`,`name`,`ext`) VALUES ('/Uploads/Index/2018-10-24/5bcfe345a424e.png','/Uploads/Index/2018-10-24/5bcfe345a424e.png','163337','下载页-装饰.png','png') [ RunTime:0.0028s ]
+
+[ 2018-10-24T11:13:44+08:00 ] 223.166.151.197 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000106s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000076s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000083s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000150s ]
+
+[ 2018-10-24T11:13:44+08:00 ] 223.166.151.197 /manager
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000132s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000111s ]
+
+[ 2018-10-24T11:13:56+08:00 ] 58.246.221.61 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000097s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000121s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006746s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006786s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000047s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000077s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000047s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000082s ]
+
+[ 2018-10-24T11:13:58+08:00 ] 58.247.204.63 /index.php/Manager/Advert/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000091s ]
+
+[ 2018-10-24T11:14:03+08:00 ] 223.166.151.197 /index.php/Manager/Member/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000130s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000112s ]
+
+[ 2018-10-24T11:14:05+08:00 ] 223.167.152.53 /index.php/Manager/Member/addMember.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000076s ]
+
+[ 2018-10-24T11:53:47+08:00 ] 111.163.122.113 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000103s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000087s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008619s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008661s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000053s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000050s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000084s ]
+
+[ 2018-10-24T11:53:47+08:00 ] 111.163.122.113 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000071s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000108s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006848s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006891s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000099s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000073s ]
+
+[ 2018-10-24T11:54:47+08:00 ] 223.166.151.191 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000133s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000123s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007444s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007484s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000070s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000074s ]
+
+[ 2018-10-24T23:09:07+08:00 ] 121.28.92.130 /index.php/Manager/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000201s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000147s ]
+
+[ 2018-10-24T23:09:07+08:00 ] 121.28.92.130 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000092s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000122s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000040s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000078s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.003246s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.003284s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000051s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000081s ]
+
+[ 2018-10-24T23:09:08+08:00 ] 121.28.92.130 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000064s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000128s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000073s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000147s ]
+

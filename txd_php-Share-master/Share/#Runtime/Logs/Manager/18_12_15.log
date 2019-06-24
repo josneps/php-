@@ -1,0 +1,702 @@
+[ 2018-12-15T18:48:57+08:00 ] 121.28.92.130 /Manager
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001575s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001965s ]
+
+[ 2018-12-15T18:48:57+08:00 ] 121.28.92.130 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000071s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000092s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030919s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030972s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001141s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001178s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001721s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001769s ]
+
+[ 2018-12-15T18:48:57+08:00 ] 121.28.92.130 /index.php/Manager/Index/verifyImage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000070s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000065s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000150s ]
+
+[ 2018-12-15T18:49:04+08:00 ] 121.28.92.130 /index.php/Manager/Index/verifyImage.html?v=0.39968458045727884
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000133s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000122s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000074s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000157s ]
+
+[ 2018-12-15T18:49:06+08:00 ] 121.28.92.130 /index.php/Manager/Admin/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000081s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000068s ]
+NOTIC: [2] strpos() expects parameter 1 to be string, array given /home/wwwroot/share.txunda.com/Vendor/Txunda/Txunda.Param.php 第 97 行.
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`group_id`,`username`,`password`,`salt`,`status` FROM `db_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0257s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0014s ]
+
+[ 2018-12-15T18:49:08+08:00 ] 121.28.92.130 /index.php/Manager/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000112s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000058s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000125s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000062s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000104s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017728s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017770s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000070s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000072s ]
+
+[ 2018-12-15T18:49:09+08:00 ] 121.28.92.130 /index.php/Manager/Index/welcome.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000134s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000080s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000084s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009390s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009441s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000072s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000038s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000071s ]
+
+[ 2018-12-15T18:49:13+08:00 ] 121.28.92.130 /index.php/Manager/Admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000065s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000127s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员列表','Manager/Admin/index','://share.txunda.com/index.php/Manager/Admin/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870952') [ RunTime:0.0495s ]
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin` LIMIT 0,15   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0130s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0079s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000094s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010040s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010093s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000089s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000036s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000067s ]
+
+[ 2018-12-15T18:49:13+08:00 ] 121.28.92.130 /index.php/Manager/Admin/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000065s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000048s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000106s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员列表','Manager/Admin/index','://share.txunda.com/index.php/Manager/Admin/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870953') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin` LIMIT 0,15   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 0 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `name` FROM `db_admin_group` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000064s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000126s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004484s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004532s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000102s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000053s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000106s ]
+
+[ 2018-12-15T18:49:16+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000070s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员分组','Manager/AdminGroup/index','://share.txunda.com/index.php/Manager/AdminGroup/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870956') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`sort`,`status` FROM `db_admin_group` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 8 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 9 LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000051s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000090s ]
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007254s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007290s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000089s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000069s ]
+
+[ 2018-12-15T18:49:19+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/editAdminGroup/id/8.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000113s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000073s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','编辑管理员分组信息','Manager/AdminGroup/editAdminGroup','://share.txunda.com/index.php/Manager/AdminGroup/editAdminGroup/id/8.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870959') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_group` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000068s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000112s ]
+NOTIC: [8] Undefined variable: group_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 139 行.
+NOTIC: [8] Undefined variable: key_1 /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 165 行.
+NOTIC: [8] Undefined variable: key_2 /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 178 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.026819s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026893s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000085s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000131s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000036s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000070s ]
+
+[ 2018-12-15T18:49:28+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000071s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员分组','Manager/AdminGroup/index','://share.txunda.com/index.php/Manager/AdminGroup/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870968') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`sort`,`status` FROM `db_admin_group` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 8 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 9 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000056s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000123s ]
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007630s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007667s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000049s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000058s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000110s ]
+
+[ 2018-12-15T18:49:30+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/editAdminGroup/id/9.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000144s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000057s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000137s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','编辑管理员分组信息','Manager/AdminGroup/editAdminGroup','://share.txunda.com/index.php/Manager/AdminGroup/editAdminGroup/id/9.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870970') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_group` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000067s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000110s ]
+NOTIC: [8] Undefined variable: group_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 139 行.
+NOTIC: [8] Undefined variable: key_1 /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 165 行.
+NOTIC: [8] Undefined variable: key_2 /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/014349c5a28499fc2bd1689810edc1ce.php 第 178 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010361s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010400s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000068s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000038s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000072s ]
+
+[ 2018-12-15T18:49:34+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000093s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000093s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员分组','Manager/AdminGroup/index','://share.txunda.com/index.php/Manager/AdminGroup/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870974') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`sort`,`status` FROM `db_admin_group` WHERE `status` <> 9 ORDER BY sort ASC, id ASC  [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `db_admin` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 8 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin` WHERE `group_id` = 9 LIMIT 1   [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000053s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000100s ]
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+NOTIC: [8] Undefined index: sub_list /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/b1f02e3e8297db4922d492aebf666991.php 第 154 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007218s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000067s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000061s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000095s ]
+
+[ 2018-12-15T18:49:35+08:00 ] 121.28.92.130 /index.php/Manager/AdminGroup/addAdminGroup.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000032s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000073s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008934s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008974s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000068s ]
+
+[ 2018-12-15T18:49:43+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000056s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000116s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870983') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 0,15   [ RunTime:0.1880s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000052s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000102s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007662s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007745s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000069s ]
+
+[ 2018-12-15T18:49:43+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000094s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000092s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544870983') [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 0,15   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000081s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.004686s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.004725s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000064s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000037s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000070s ]
+
+[ 2018-12-15T18:50:08+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index/p/263.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000137s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000118s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index/p/263.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871008') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 3930,15   [ RunTime:0.0185s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000142s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007948s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008014s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000071s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000122s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000096s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000153s ]
+
+[ 2018-12-15T18:50:15+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index/p/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index/p/1.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871015') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 0,15   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000046s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000085s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005259s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005323s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000067s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000037s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000070s ]
+
+[ 2018-12-15T18:50:18+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index/p/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000105s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000073s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index/p/2.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871018') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 15,15   [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000117s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005515s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005564s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000068s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000072s ]
+
+[ 2018-12-15T18:50:25+08:00 ] 121.28.92.130 /index.php/Manager/AdminBehavior/index/p/2.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000083s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','管理员行为日志','Manager/AdminBehavior/index','://share.txunda.com/index.php/Manager/AdminBehavior/index/p/2.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871025') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `db_admin_behavior` LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: parameter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 67 行.
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT * FROM `db_admin_behavior` LIMIT 15,15   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000172s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006043s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006097s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000055s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000110s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000061s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000154s ]
+
+[ 2018-12-15T18:50:34+08:00 ] 121.28.92.130 /index.php/Manager/Config/thirdConfig.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000123s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000125s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 45 行.
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','三方配置','Manager/Config/thirdConfig','://share.txunda.com/index.php/Manager/Config/thirdConfig.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871034') [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0057s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+NOTIC: [8] Undefined variable: website /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/7936dc30979e52364b6bbf17a544d63b.php 第 5 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028951s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029058s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000128s ]
+
+[ 2018-12-15T18:50:34+08:00 ] 121.28.92.130 /index.php/Manager/Config/thirdConfig.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000082s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 45 行.
+NOTIC: [2] in_array() expects parameter 2 to be array, null given /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 45 行.
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0009s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','三方配置','Manager/Config/thirdConfig','://share.txunda.com/index.php/Manager/Config/thirdConfig.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871034') [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `db_config` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `key`,`value` FROM `db_config`  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000142s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000202s ]
+NOTIC: [8] Undefined variable: website /home/wwwroot/share.txunda.com/#Runtime/Cache/Manager/7936dc30979e52364b6bbf17a544d63b.php 第 5 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009467s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009507s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000067s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000036s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000071s ]
+
+[ 2018-12-15T18:50:48+08:00 ] 121.28.92.130 /index.php/Manager/AdminMenu/system.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+SQL: SHOW COLUMNS FROM `db_admin_menu` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`router`,`type`,`icon`,`system`,`sort`,`status` FROM `db_admin_menu` WHERE `status` <> 9 AND `system` = 1 ORDER BY sort ASC, id ASC  [ RunTime:0.0056s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000112s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016738s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016796s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000072s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000036s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000068s ]
+
+[ 2018-12-15T18:52:17+08:00 ] 121.28.92.130 /index.php/Manager/Admin/addAdmin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000061s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000100s ]
+NOTIC: [8] Undefined index: REQUEST_SCHEME /home/wwwroot/share.txunda.com/Application/Common/Service/ControllerService.class.php 第 189 行.
+SQL: SHOW COLUMNS FROM `db_admin_behavior` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined index: validate /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /home/wwwroot/share.txunda.com/ThinkPHP/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `db_admin_behavior` (`manager_id`,`username`,`name`,`router`,`url`,`param`,`is_ajax`,`add_time`) VALUES ('1','admin','添加管理员','Manager/Admin/addAdmin','://share.txunda.com/index.php/Manager/Admin/addAdmin.html','POST: 
+Cookie:UM_distinctid=1641aff85e614c-0899c027e11726-b353461-100200-1641aff85e7d7&PHPSESSID=v6t3tvrcnbih7ii29scbaefkv5&ADMUSERNAME=admin','0','1544871137') [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `db_admin_group` [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: field_filter /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 229 行.
+NOTIC: [8] Undefined index: fetchSql /home/wwwroot/share.txunda.com/Application/Common/Service/ModelService.class.php 第 245 行.
+SQL: SELECT `id`,`p_id`,`name`,`status` FROM `db_admin_group` WHERE `p_id` = 0 AND `status` <> 9  [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000084s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000172s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020120s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020174s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000083s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000135s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000065s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000111s ]
+
