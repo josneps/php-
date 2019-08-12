@@ -1,0 +1,42 @@
+
+自增id、 业主id、 业主昵称、 业主头像、问题标题、问题内容、 当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 发布的时间、 当前状态(0表示删除、 1表示未查看、 2表示未解答、 3表示已解答)、 
+
+create table user_questions(
+    id int(11) primary key not null auto_increment comment '自增id',
+    mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '业主的mid',
+    nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
+    pic varchar(256) DEFAULT '' COMMENT '用户头像',
+    title varchar(100) not null comment '问题标题',
+    title_content varchar(255) not null comment '问题内容',
+    access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
+    status tinyint(1) default 1 comment '0表示删除、 1表示未查看、 2表示未解答、 3表示已解答',
+    created_at datetime not null comment '创建时间',
+    updated_at datetime not null comment '修改时间'
+) comment ='用户提的问题'
+
+
+自增id、 问题的id、 设计师的id、 设计师的头像、 设计师的答案、当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 答案被查看的次数、 发布的时间、 当前状态（0表示删除、 1表示未查看、 2表示未采纳、 3表示已采纳）
+
+create table designer_answer(
+    id int(11) primary key not null auto_increment comment '自增id',
+    questions_id int(11) not null comment '问题的id',
+    mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
+    pic varchar(256) DEFAULT '' COMMENT '用户头像',
+    title varchar(255) not null comment '设计师的答案',
+    access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
+    status tinyint(1) default 1 comment '0表示删除、 1表示未查看、 2表示未采纳、 3表示已采纳',
+    created_at datetime not null comment '创建时间',
+    updated_at datetime not null comment '修改时间'
+) comment ='设计师的回答'
+
+
+自增id、 答案id、 业主id、 业主ip， 创建时间
+
+create table look_number(
+    id int(11) primary key not null auto_increment comment '自增id',
+    answer_id int(11) not null comment '答案id',
+    user_id int(11) comment '业主的id',
+    user_ip varchar(15) comment '业主的ip',
+    created_at datetime not null comment '创建时间'
+) comment ='设计师答案被看次数'

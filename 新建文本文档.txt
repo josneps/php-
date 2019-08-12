@@ -1,0 +1,23 @@
+// 判断是否是本地材料商或者全国材料商
+            if ($cityCode == $v['city']){
+                $list[$k]['is_local']  = 1;
+            } else{
+                $list[$k]['is_local']  = 0;
+            }
+
+            // 统计实物样板间的数量
+            $where_good['a.good_no'] = $v['good_no'];
+            $where_good['c.status']  = 6;
+            $assignWinTotal          = M('goods_model_relation')->alias('a')
+                ->join('inner join design_win_goods as b on a.model_no = b.model_no')
+                ->join('inner join design_win as c on c.win_no = b.win_no')
+                ->where($where_good)
+                ->count('DISTINCT c.win_no');
+            $list[$k]['assign_win_total']  = $assignWinTotal;
+        }
+
+        // 默认排序 按照实物样板间的数量
+        $query_condition = $_SERVER['QUERY_STRING'];
+        if(empty($query_condition) && is_array($list)){
+            array_multisort(array_column($list,'assign_win_total'),SORT_DESC,$list);
+        }
