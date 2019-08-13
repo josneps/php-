@@ -35,11 +35,11 @@ create table designer_answer(
 
 create table look_number(
     id int(11) primary key not null auto_increment comment '自增id',
-    answer_id int(11) not null comment '答案id',
-    user_id int(11) comment '业主的id',
-    user_ip varchar(15) comment '业主的ip',
+    a_questions_id int(11) not null comment '问题id',
+    user_id varchar(64) comment '浏览人的id',
+    user_ip varchar(15) comment '浏览人的ip',
     created_at datetime not null comment '创建时间'
-) comment ='设计师答案被看次数'
+) comment ='问题被浏览次数'
 
 
 自增id、 设计师id、 业主id、 业主问题id、 业主问题标题、 积分数量、 分类（解答、 被采纳）、 创建时间
