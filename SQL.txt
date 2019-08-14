@@ -6,8 +6,8 @@ create table user_questions(
     q_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '业主的mid',
     q_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
     q_pic varchar(256) DEFAULT '' COMMENT '用户头像',
-    q_title varchar(100) not null comment '问题标题',
-    q_title_content varchar(255) not null comment '问题内容',
+    q_title varchar(255) not null comment '问题标题',
+    q_title_content varchar(255) comment '问题内容',
     q_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
     q_status tinyint(1) default 1 comment '0表示删除、 1表示未查看、 2表示未解答、 3表示已解答',
     created_at datetime not null comment '创建时间',
@@ -53,3 +53,12 @@ create table designer_integral(
     created_at datetime not null comment '创建时间'
 ) comment ='设计师答题积分表'
 
+
+create table Satisfied(
+    id int(11) primary key not null auto_increment comment '自增id',
+    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    a_questions_id int(11) not null comment '问题的id',
+    answer_id int(10) default 0 not null comment '答案的id',
+    status tinyint(1) comment '1表示满意、 2表示不满意',
+    created_at datetime not null comment '创建时间'
+) comment ='设计师答题满意记录'

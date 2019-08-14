@@ -25,7 +25,7 @@ class IntegralController extends BaseController
     {
         //当前页和每页显示的个数
         $nowPage = I('page',1,'int');
-        $pageSize = 2;
+        $pageSize = 20;
         $where = '';
         if ($userInfo = session('userInfo')){
             $where .= "a_mid = '".$userInfo['mid']."'";

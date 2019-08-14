@@ -34,41 +34,96 @@ class AskDesignerController extends BaseController
     public function index()
     {
 
-        $title = trim(I('title'));
+        $title = trim(I('title', ''));
         //当前页和每页显示的个数
         $nowPage = I('page',1,'int');
         $pageSize = 20;
+        //搜索条件
         $where = '';
         if (!empty($title)){
             $where .= "u.q_title like '%$title%' OR u.q_title_content like '%$title%'";
         }
-        $count = M('user_questions as u')->where($where)->count();
+        //统计总条数
+        $count = M('user_questions as u')->where($where)->buildSql();
 
+        //获取数据
         $subQuery = M('user_questions as u')
             ->join('designer_answer as d on u.q_id = d.a_questions_id', 'left')
-            ->field('u.*, d.a_id, d.a_questions_id, d.a_mid, d.a_nickname, d.a_pic, d.a_answer')
+            ->field('u.*, d.a_id, d.a_questions_id, d.a_mid, d.a_nickname, d.a_pic, d.a_answer, d.a_status')
             ->order('d.created_at desc')
             ->buildSql();
-
         $data = M('user_questions as u')->table($subQuery.'u')->where($where)->group('u.q_mid')->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
-
-        foreach ($data as $key => $v) {
-            $data[$key]['q_title'] = str_replace($title,"<font color='red'>".$title."</font>",$v['q_title']);
-            $data[$key]['q_title_content'] = str_replace($title,"<font color='red'>".$title."</font>",$v['q_title_content']);
+        //循环取出id存入数组
+        foreach ($data as $v) {
+            $ids[] = $v['q_id'];
         }
+        //将数组分割成字符串
+        $ids = implode(",", $ids);
+        //统计解答人数
+        $num = M('designer_answer')->field('count(a_id) as num, a_questions_id')->where('a_questions_id in ('.$ids.')')->group('a_questions_id')->order('created_at desc')->select();
 
+        //搜索内容标红&数据组合
+        foreach ($data as $key => $value) {
+            $data[$key]['look_num'] = 0;
+            foreach ($num as $k => $v) {
+                if($value['q_id'] == $v['a_questions_id']) {
+                    $data[$key]['look_num'] = $v['num'];
+                }
+            }
+            $data[$key]['created_at'] = $this->time_trans($value['created_at']);
+            $data[$key]['q_title'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title']);
+            $data[$key]['q_title_content'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title_content']);
+        }
+        //是否登录
+        if(!empty($this->userInfo)){
+            $userInfo['pic'] = $this->userInfo['pic'];
+            $userInfo['nickname'] = $this->userInfo['nickname'];
+            $userInfo['type'] = $this->userInfo['type'];
+            if($this->userInfo['type'] == 0) {
+                //业主
+                $userInfo['questions_num'] = M('user_questions')->where("q_mid = '".$this->userInfo['mid']."'")->count();  // 提问个数
+                $userInfo['adopt_num'] = M('user_questions as u')->join('designer_answer d on u.q_id = d.a_questions_id')->where("d.a_status = 2 AND u.q_mid = '".$this->userInfo['mid']."'")->count();   // 采纳个数
+            } elseif ($this->userInfo['type'] == 1) {
+                //设计师
+                $userInfo['questions_num'] = M('designer_answer')->where("a_mid = '".$this->userInfo['mid']."'")->count();  // 解答个数
+                $userInfo['adopt_num'] = M('user_questions as u')->join('designer_answer d on u.q_id = d.a_questions_id')->where("d.a_status = 2 AND d.a_mid ='".$this->userInfo['mid']."'")->count();   // 采纳个数
+            }
+        }
+        //分页
         $Page = new \Org\Util\PageNewThd($count,I('get.'),$pageSize,$nowPage);// 实例化分页类 传入总记录数和每页显示的记录数
         // 分页显示输出
         $show = $Page->shownew();
-echo '<pre/>';
-        print_r($data);die;
 
         $this->assign('title', $title);
         $this->assign('total', $count);
         $this->assign('page', $show);
         $this->assign('list', $data);
+        $this->assign('userinfo', $userInfo);
 
         $this->view('askdesigner/index', 2);
+    }
+
+    public function time_trans($dateOrTimeStamp){
+        $time = strtotime($dateOrTimeStamp);
+        if($time==false){
+            $time = $dateOrTimeStamp;
+        }
+        $t=time()-$time;
+        $f=array(
+            '86400'=>'天',
+            '3600'=>'小时',
+            '60'=>'分钟',
+            '1'=>'秒'
+        );
+        foreach ($f as $k=>$v)    {
+            if (0 != $c=floor($t/(int)$k)) {
+                if($c > 30) {
+                    return $dateOrTimeStamp;
+                } else {
+                    return $c.$v.'前';
+                }
+            }
+        }
     }
 
 
@@ -102,6 +157,8 @@ echo '<pre/>';
 
         dump($res);die;
     }
+
+
 
     /**
      * @todo: 更新业主的问题的状态
@@ -141,7 +198,7 @@ echo '<pre/>';
             ->find();
 
         //统计浏览次数
-        if(empty($this->userInfo)){
+        if(!empty($this->userInfo)){
             // 登录记录mid
             $where = array(
                 'a_questions_id' => $id,

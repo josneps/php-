@@ -1,0 +1,441 @@
+
+// 问题所对应的解答的个数
+Array
+(
+    [0] => Array
+        (
+            [num] => 1
+            [a_questions_id] => 2
+        )
+
+    [1] => Array
+        (
+            [num] => 1
+            [a_questions_id] => 3
+        )
+
+    [2] => Array
+        (
+            [num] => 12
+            [a_questions_id] => 1
+        )
+
+)
+
+// 解答的数量
+Array
+(
+    [0] => Array
+        (
+            [a_id] => 27
+            [a_questions_id] => 2
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 2
+            [created_at] => 2019-08-13 16:37:59
+            [updated_at] => 2019-08-13 16:49:24
+        )
+
+    [1] => Array
+        (
+            [a_id] => 26
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:05:18
+            [updated_at] => 2019-08-13 15:05:18
+        )
+
+    [2] => Array
+        (
+            [a_id] => 22
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:48
+            [updated_at] => 2019-08-13 15:04:48
+        )
+
+    [3] => Array
+        (
+            [a_id] => 23
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:48
+            [updated_at] => 2019-08-13 15:04:48
+        )
+
+    [4] => Array
+        (
+            [a_id] => 24
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:48
+            [updated_at] => 2019-08-13 15:04:48
+        )
+
+    [5] => Array
+        (
+            [a_id] => 25
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:48
+            [updated_at] => 2019-08-13 15:04:48
+        )
+
+    [6] => Array
+        (
+            [a_id] => 20
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:47
+            [updated_at] => 2019-08-13 15:04:47
+        )
+
+    [7] => Array
+        (
+            [a_id] => 21
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:47
+            [updated_at] => 2019-08-13 15:04:47
+        )
+
+    [8] => Array
+        (
+            [a_id] => 19
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 15:04:40
+            [updated_at] => 2019-08-13 15:04:40
+        )
+
+    [9] => Array
+        (
+            [a_id] => 18
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 2
+            [created_at] => 2019-08-13 15:03:39
+            [updated_at] => 2019-08-13 16:43:10
+        )
+
+    [10] => Array
+        (
+            [a_id] => 17
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_access_device] => 1
+            [a_status] => 2
+            [created_at] => 2019-08-13 15:03:19
+            [updated_at] => 2019-08-13 15:23:34
+        )
+
+    [11] => Array
+        (
+            [a_id] => 3
+            [a_questions_id] => 1
+            [a_mid] => 56afc1b33187ada6bb67082ad03b1dca
+            [a_nickname] => 程旭辕
+            [a_pic] => 5987d2dfd2b18.png
+            [a_answer] => The house that buys newly in the home unexpectedly leaks, who should seek...
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 10:18:58
+            [updated_at] => 2019-08-13 10:18:58
+        )
+
+    [12] => Array
+        (
+            [a_id] => 2
+            [a_questions_id] => 3
+            [a_mid] => 56afc1b33187ada6bb67082ad03b1dca②
+            [a_nickname] => 大宝
+            [a_pic] => 5987d2dfd2b18.png
+            [a_answer] => The house that buys newly in the home delivers goods unexpectedly even fu jing technology leaks, who should seek...
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 10:16:29
+            [updated_at] => 2019-08-13 10:16:29
+        )
+
+    [13] => Array
+        (
+            [a_id] => 1
+            [a_questions_id] => 1
+            [a_mid] => 56afc1b33187ada6bb67082ad03b1dca①
+            [a_nickname] => 小宝
+            [a_pic] => 5987d2dfd2b18.png
+            [a_answer] => Home to buy a new house brother and identity and who to find...
+
+
+            [a_access_device] => 1
+            [a_status] => 1
+            [created_at] => 2019-08-13 10:16:26
+            [updated_at] => 2019-08-13 10:16:26
+        )
+
+)
+
+// 业主的问题
+Array
+(
+    [0] => Array
+        (
+            [q_id] => 5
+            [q_mid] => 56afc1b33187ada6bb67082ad03b1dca5
+            [q_nickname] => 老七
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水756
+            [q_title_content] => 家里新买的房子居经安徽省覅回单卡Hi好将刊发科技馆个偶见付款即然漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:52
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 
+            [a_questions_id] => 
+            [a_mid] => 
+            [a_nickname] => 
+            [a_pic] => 
+            [a_answer] => 
+        )
+
+    [1] => Array
+        (
+            [q_id] => 4
+            [q_mid] => 56afc1b33187ada6bb67082ad03b1dca4
+            [q_nickname] => 赵六
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水153
+            [q_title_content] => 家里新买的房子居挨个发打飞机微积分我就感觉的漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:51
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 
+            [a_questions_id] => 
+            [a_mid] => 
+            [a_nickname] => 
+            [a_pic] => 
+            [a_answer] => 
+        )
+
+    [2] => Array
+        (
+            [q_id] => 3
+            [q_mid] => 56afc1b33187ada6bb67082ad03b1dca3
+            [q_nickname] => 王五
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水789
+            [q_title_content] => 家里新买的房子居然发货奇偶的福晶科技漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:50
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 2
+            [a_questions_id] => 3
+            [a_mid] => 56afc1b33187ada6bb67082ad03b1dca②
+            [a_nickname] => 大宝
+            [a_pic] => 5987d2dfd2b18.png
+            [a_answer] => The house that buys newly in the home delivers goods unexpectedly even fu jing technology leaks, who should seek...
+        )
+
+    [3] => Array
+        (
+            [q_id] => 2
+            [q_mid] => 56afc1b33187ada6bb67082ad03b1dca2
+            [q_nickname] => 李四
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水456
+            [q_title_content] => 家里新买的房子居按认购的法人兔兔的官方，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:48
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 27
+            [a_questions_id] => 2
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+        )
+
+    [4] => Array
+        (
+            [q_id] => 1
+            [q_mid] => 56afc1b33187ada6bb67082ad03b1dca1
+            [q_nickname] => 张三
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水132
+            [q_title_content] => 家里新买的房子哥哥和认同和该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:47
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 26
+            [a_questions_id] => 1
+            [a_mid] => 0a050cd6c513b864fbd4c611d06472a4
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+        )
+
+)
+
+// 处理后的结果
+Array
+(
+    [0] => Array
+        (
+            [q_id] => 1
+            [q_mid] => 0a050cd6c513b864fbd4c611d06472a4①
+            [q_nickname] => 张三
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水132
+            [q_title_content] => 家里新买的房子哥哥和认同和该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-14 13:51:47
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 26
+            [a_questions_id] => 1
+            [a_mid] => 761eca9862310ba4c9e81d7a77754711
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_status] => 1
+        )
+
+    [1] => Array
+        (
+            [q_id] => 4
+            [q_mid] => 0a050cd6c513b864fbd4c611d06472a4④
+            [q_nickname] => 赵六
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水153
+            [q_title_content] => 家里新买的房子居挨个发打飞机微积分我就感觉的漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:51
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 20
+            [a_questions_id] => 4
+            [a_mid] => 761eca9862310ba4c9e81d7a77754711
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴的凯撒计费GV抵抗力散发的考虑机构个埃尔文加入了规范娟娟
+            [a_status] => 1
+        )
+
+    [2] => Array
+        (
+            [q_id] => 3
+            [q_mid] => 0a050cd6c513b864fbd4c611d06472a4③
+            [q_nickname] => 王五
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水789
+            [q_title_content] => 家里新买的房子居然发货奇偶的福晶科技漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:50
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 2
+            [a_questions_id] => 3
+            [a_mid] => 761eca9862310ba4c9e81d7a77754711②
+            [a_nickname] => 大宝
+            [a_pic] => 5987d2dfd2b18.png
+            [a_answer] => The house that buys newly in the home delivers goods unexpectedly even fu jing technology leaks, who should seek...
+            [a_status] => 1
+        )
+
+    [3] => Array
+        (
+            [q_id] => 2
+            [q_mid] => 0a050cd6c513b864fbd4c611d06472a4②
+            [q_nickname] => 李四
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水456
+            [q_title_content] => 家里新买的房子居按认购的法人兔兔的官方，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-08-13 10:15:48
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 27
+            [a_questions_id] => 2
+            [a_mid] => 761eca9862310ba4c9e81d7a77754711④
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 巴拉巴拉巴贝拉拉不拉了波兰
+            [a_status] => 2
+        )
+
+    [4] => Array
+        (
+            [q_id] => 5
+            [q_mid] => 0a050cd6c513b864fbd4c611d06472a4⑤
+            [q_nickname] => 老七
+            [q_pic] => 5987d2dfd2b18.png
+            [q_title] => 新房漏水756
+            [q_title_content] => 家里新买的房子居经安徽省覅回单卡Hi好将刊发科技馆个偶见付款即然漏水，该找谁……
+            [q_access_device] => 1
+            [q_status] => 1
+            [created_at] => 2019-07-01 10:15:52
+            [updated_at] => 2019-08-13 15:21:34
+            [a_id] => 23
+            [a_questions_id] => 5
+            [a_mid] => 761eca9862310ba4c9e81d7a77754711
+            [a_nickname] => 陈达解决计
+            [a_pic] => 5add85477318e.JPG
+            [a_answer] => 简爱客服将诶今晚发v搞不好金卡，GV
+            [a_status] => 1
+        )
+
+)
