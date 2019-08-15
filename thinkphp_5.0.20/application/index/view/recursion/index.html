@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限极分类</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>服装：</td>
+        </tr>
+        {volist name='data' id='item'}
+        <tr>
+            
+            <td>{$item.name}</td>
+        </tr>
+        {/volist}
+        {$data->render()}        
+    </table>
+</body>
+</html>

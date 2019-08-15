@@ -21,6 +21,11 @@ class ArticleController extends Controller
 			return success($data);
 		}
 	}
+
+	public function index()
+	{
+		return view('/Article/index');
+	}
 }
 
 
