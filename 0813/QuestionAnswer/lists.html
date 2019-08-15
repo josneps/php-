@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+    <title>业主问答后台</title>
+    <include file="Public/page_head"/>
+    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-management.css">
+</head>
+<body>
+
+
+<div class="page_content">
+    <div class="container">
+        <div class="side_nav_bar_mine" style="margin-right: 20px">
+            <include file="Common/side_nav_account_setting_personal"/>
+        </div>
+        <div class="box">
+            <ul class="header">
+                <li>我的问答</li>
+                <li>
+                    <ul class="nav">
+                        <li class="myactive">全部(6)</li>
+                        <li>待解答(6)</li>
+                        <li>已解答(6)</li>
+                        <li>已采纳(6)</li>
+                        <a href="<?php echo U('QuestionAnswer/addQuestions');?>">我要提问</a>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="main-box">
+                <!--循环main-->
+                <li class="main">
+                    <div><p>0</p><p>回答</p></div>
+                    <div>
+                        <a href="">如何改造旧家具呢?旧家具如何翻新?如何改造旧家具呢?如何改造旧家具呢?旧家具如何翻新?如何改造旧家具呢?</a>
+                        <p>2019-7-28  17:14:17&nbsp;&nbsp;&nbsp;&nbsp;0人看过</p>
+                    </div>
+                    <div class="wait">
+                        待解答
+                    </div>
+                    <div class="done">
+                        已解答
+                    </div>
+                    <div class="adopt">
+                        已采纳
+                    </div>
+                    <a href="">修改提问</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<script>
+    $(".nav>li").each(function (i,e) {
+        $(this).click(function () {
+            $(this).addClass("myactive").siblings().removeClass("myactive")
+        })
+    })
+</script>
+</html>

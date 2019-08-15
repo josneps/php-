@@ -90,7 +90,7 @@
         <foreach name="list" key="key" item="val">
             <div class="main-box">
                 <div class="title">
-                    <a href="">{$val.q_title}</a>
+                    <a href="{:U('AskDesigner//details')}?id={$val.q_id}">{$val.q_title}</a>
 
                 </div>
                 <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
@@ -98,7 +98,7 @@
                 <div>
                     <div>
                         <img src="<?php echo $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
-                        <span>{$val.a_nickname}</span>&nbsp;·&nbsp;中策装饰集团
+                        <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
                     </div>
                     <if condition = "$vo.a_status eq 2">
                         <div></div>

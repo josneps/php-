@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+    <title>问设计师详情页面</title>
+    <include file="Public/page_head" />
+    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/details-problem.css">
+</head>
+<body class="details-problem">
+
+<p class="nav">当前位置：&nbsp;
+    <a href="{:U('article/index')}">庭好看</a>&nbsp;＞&nbsp;
+    <a>问答详情</a>
+</p>
+<div class="main">
+    <div class="main-left">
+        <div class="main-box">
+            <div class="main-title">
+                <div class="main-title-top">{$details_data.q_title}</div>
+                <div class="main-title-botton">
+                    提问者： {$details_data.q_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;发布时间：{$details_data.created_at}&nbsp;&nbsp;·&nbsp;&nbsp;{$details_data.look_num}人看过
+                </div>
+            </div>
+            <div class="main-text">
+                {$details_data.q_title_content}
+                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
+                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
+                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
+
+            </div>
+
+            <if condition = "$userinfo['mid'] eq $details_data['q_mid'] && $is_show eq 0">
+
+                <!--仅发布者可见-->
+                <div class="invite">
+                    <div class="invite-title">
+                        没有满意答案？试试向专业人士提问
+                    </div>
+                    <div class="invite-box">
+                        <!--循环invite-main-->
+                        <div class="invite-main">
+                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
+                            <div>
+                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
+                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
+                                <button class="invite-someone">邀请他回答</button>
+                            </div>
+                        </div>
+                        <div class="invite-main">
+                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
+                            <div>
+                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
+                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
+                                <button class="invite-someone">邀请他回答</button>
+                            </div>
+                        </div>
+                        <div class="invite-main">
+                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
+                            <div>
+                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
+                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
+                                <button class="invite-someone">邀请他回答</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </if>
+
+            <if condition = "$userinfo.type eq 1">
+                <!--仅设计师可见-->
+                <button class="answer">解答 <span>+ 2积分</span></button>
+
+                <!--仅设计师可见-->
+                <!-- 加载编辑器的容器 -->
+                <textarea id="container" name="content" type="text/plain" style="width: 840px;overflow: hidden">
+
+                </textarea>
+                <button class="receive-container">收起</button>
+                <button class="submit-to">提交回答</button>
+            </if>
+
+            <!--回答全部可见-->
+            <div class="other-answers">
+                <span>{$is_show}</span>条其他回答
+            </div>
+            <!--循环more-answers-->
+
+            <foreach name="data" key="key" item="val">
+                <div class="more-answers">
+                    <div class="more-answers-top">
+                        <div><img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""><span class="focus">+关注</span></div>
+                        <div>
+                            <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
+                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: 300 <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: 165</p>
+                        </div>
+                    </div>
+                    <div class="more-answers-content">
+                        {$val.a_answer}
+                    </div>
+
+                    <if condition = "empty($userinfo)">
+                        <!--游客可见-->
+                        <div class="more-answers-foo">
+                            <span class="">{$val.satisfied}</span>
+                            <span class="">{$val.no_satisfied}</span>
+                        </div>
+                    </if>
+
+                    <if condition = "$userinfo['mid'] eq $details_data['q_mid']">
+                        <!--提问者本人可见-->
+                        <div class="more-answers-footer">
+                            采纳意见
+                        </div>
+                    </if>
+
+                    <if condition = "$userinfo['mid'] eq $val['a_mid']">
+                        <!--回答本问题的设计师可见-->
+                        <div class="more-answers-res">
+                            修改答案
+                        </div>
+                    </if>
+                </div>
+            </foreach>
+
+        </div>
+
+
+    </div>
+    <div class="main-right">
+        <div class="main-img">
+            <img src="/Public/pc/img/GoodLooking/02APP.png"/>
+            <img src="/Public/pc/img/GoodLooking/03.png"/>
+        </div>
+    </div>
+</div>
+
+</body>
+<!-- qi 编辑器 -->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/qiniu_ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/qiniu_ueditor/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    UE.getEditor('container', {
+        toolbars: [
+            [
+                'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'pasteplain',
+                'removeformat', 'simpleupload', 'link', 'unlink',
+                'emotion', 'map', '|', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify',
+                'forecolor'
+
+            ]
+        ],
+        focus: true,
+        autoFloatEnabled:true,
+        topOffset:20
+    });
+
+</script>
+
+<script>
+    // 关注
+    $(".focus").each(function (i,e) {
+        $(this).click(function () {
+            $(this).addClass("ho").text("已关注")
+        })
+    })
+    // <!--点击解答弹出编辑器-->
+    $(".answer").click(function () {
+        $("#container").show()
+        $(".submit-to").show()
+        $(".receive-container").show()
+
+        $(this).addClass("ho").attr('disabled',"true");
+    })
+    // 收起编辑器
+    $(".receive-container").click(function () {
+        $("#container").hide()
+        $(".submit-to").hide()
+        $(".answer").removeClass("ho").removeAttr("disabled");
+        $(this).hide()
+    })
+    //邀请回答
+    $(".invite-someone").each(function (i,e) {
+        $(this).click(function () {
+            $(this).addClass("ho").attr('disabled',"true");
+        })
+    })
+    //采纳意见
+    $(".more-answers-footer").each(function (i,e) {
+        $(this).click(function () {
+            $(".more-answers").eq(i).addClass("good_")
+            $(".more-answers-footer").hide()
+        })
+        $(this).hover(function () {
+            $(this).addClass("ho")
+        },function () {
+            $(this).removeClass("ho")
+        })
+    })
+    //修改答案
+    $(".more-answers-res").each(function (i,e) {
+        $(this).hover(function () {
+            $(this).addClass("ho")
+        },function () {
+            $(this).removeClass("ho")
+        })
+    })
+    //满意
+    $(".more-answers-foo>span:nth-of-type(1)").each(function (i,e) {
+        $(this).hover(function () {
+            $(this).addClass("likes")
+        },function () {
+            $(this).removeClass("likes")
+        })
+    })
+    //不满意
+    $(".more-answers-foo>span:nth-of-type(2)").each(function (i,e) {
+        $(this).hover(function () {
+            $(this).addClass("no-likes")
+        },function () {
+            $(this).removeClass("no-likes")
+        })
+    })
+</script>
+</html>

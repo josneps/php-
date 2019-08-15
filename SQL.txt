@@ -9,7 +9,7 @@ create table user_questions(
     q_title varchar(255) not null comment '问题标题',
     q_title_content varchar(255) comment '问题内容',
     q_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
-    q_status tinyint(1) default 1 comment '0表示删除、 1表示未查看、 2表示未解答、 3表示已解答',
+    q_status tinyint(1) default 1 comment '1表示未查看、 2表示未解答、 3表示已解答',
     created_at datetime not null comment '创建时间',
     updated_at datetime not null comment '修改时间'
 ) comment ='用户提的问题'
@@ -25,7 +25,7 @@ create table designer_answer(
     a_pic varchar(256) DEFAULT '' COMMENT '用户头像',
     a_answer varchar(255) not null comment '设计师的答案',
     a_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
-    a_status tinyint(1) default 1 comment '0表示删除、 1表示未查看、 2表示未采纳、 3表示已采纳',
+    a_status tinyint(1) default 1 comment '1表示未查看、 2表示未采纳、 3表示已采纳',
     created_at datetime not null comment '创建时间',
     updated_at datetime not null comment '修改时间'
 ) comment ='设计师的回答'
@@ -56,6 +56,7 @@ create table designer_integral(
 
 create table Satisfied(
     id int(11) primary key not null auto_increment comment '自增id',
+    user_ip varchar(15) comment '浏览人的ip',
     a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     a_questions_id int(11) not null comment '问题的id',
     answer_id int(10) default 0 not null comment '答案的id',
