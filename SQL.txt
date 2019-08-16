@@ -1,5 +1,5 @@
 
-自增id、 业主id、 业主昵称、 业主头像、问题标题、问题内容、 当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 发布的时间、 当前状态(0表示删除、 1表示未查看、 2表示未解答、 3表示已解答)、 
+自增id、 业主id、 业主昵称、 业主头像、问题标题、问题内容、 当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 解答人数、 发布的时间、 当前状态( 1表示未查看、 2表示未解答、 3表示已解答)、 
 
 create table user_questions(
     q_id int(11) primary key not null auto_increment comment '自增id',
@@ -9,13 +9,16 @@ create table user_questions(
     q_title varchar(255) not null comment '问题标题',
     q_title_content varchar(255) comment '问题内容',
     q_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
-    q_status tinyint(1) default 1 comment '1表示未查看、 2表示未解答、 3表示已解答',
+    q_answer_num int(6) default 0 not null comment '解答人数',
+    q_look_num int(6) default 0 not null comment '浏览人数',
+    q_status tinyint(1) default 1 comment '1表示未查看、 2表示未解答、 3表示已解答、 4已采纳',
+    q_del tinyint(1) DEFAULT 1 COMMENT '1表示显示、0表示删除',
     created_at datetime not null comment '创建时间',
     updated_at datetime not null comment '修改时间'
 ) comment ='用户提的问题'
 
 
-自增id、 问题的id、 设计师的id、 设计师的头像、 设计师的答案、当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 答案被查看的次数、 发布的时间、 当前状态（0表示删除、 1表示未查看、 2表示未采纳、 3表示已采纳）
+自增id、 问题的id、 设计师的id、 设计师的头像、 设计师的答案、当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 答案被查看的次数、 发布的时间、 当前状态（ 1表示未查看、 2表示未采纳、 3表示已采纳）、 满意数、 不满意数、
 
 create table designer_answer(
     a_id int(11) primary key not null auto_increment comment '自增id',
@@ -26,6 +29,9 @@ create table designer_answer(
     a_answer varchar(255) not null comment '设计师的答案',
     a_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
     a_status tinyint(1) default 1 comment '1表示未查看、 2表示未采纳、 3表示已采纳',
+    satisfied int(6) NOT NULL DEFAULT 0 COMMENT '满意',
+    no_satisfied int(6) NOT NULL DEFAULT 0 COMMENT '不满意',
+    a_del tinyint(1) NOT NULL DEFAULT 1 COMMENT '1表示显示、0表示删除',
     created_at datetime not null comment '创建时间',
     updated_at datetime not null comment '修改时间'
 ) comment ='设计师的回答'
@@ -54,7 +60,7 @@ create table designer_integral(
 ) comment ='设计师答题积分表'
 
 
-create table Satisfied(
+create table satisfied(
     id int(11) primary key not null auto_increment comment '自增id',
     user_ip varchar(15) comment '浏览人的ip',
     a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
@@ -63,3 +69,13 @@ create table Satisfied(
     status tinyint(1) comment '1表示满意、 2表示不满意',
     created_at datetime not null comment '创建时间'
 ) comment ='设计师答题满意记录'
+
+//设计师解答个数 & 被采纳个数
+create table answer_adopt_num(
+    id int(11) primary key not null auto_increment comment '自增id',
+    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    answer int(6) NOT NULL DEFAULT 0 COMMENT '解答',
+    adopt int(6) NOT NULL DEFAULT 0 COMMENT '被采纳',
+    created_at datetime not null comment '创建时间',
+    updated_at datetime not null comment '修改时间'
+) comment ='设计师解答&被采纳个数'
