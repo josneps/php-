@@ -94,23 +94,25 @@
 
                 </div>
                 <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
-                <!--如果0人回答则不显示-->
-                <div>
+                <if condition = "!empty($val['a_answer'])">
+                    <!--如果0人回答则不显示-->
                     <div>
-                        <img src="<?php echo $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
-                        <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
+                        <div>
+                            <img src="<?php echo $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                            <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
+                        </div>
+                        <if condition = "$vo.a_status eq 2">
+                            <div></div>
+                        </if>
                     </div>
-                    <if condition = "$vo.a_status eq 2">
-                        <div></div>
-                    </if>
-                </div>
 
-                <div class="all_">
-                    <a href="">{$val.a_answer}</a>
-                    <div class="add-all"><span>...&nbsp;</span>查看全文</div>
-                </div>
-                <p>500满意</p>
-                <!--如果0人回答则不显示-->
+                    <div class="all_">
+                        <a href="">{$val.a_answer}</a>
+                        <div class="add-all"><span>...&nbsp;</span>查看全文</div>
+                    </div>
+                    <p>{$val.satisfied}满意</p>
+                    <!--如果0人回答则不显示-->
+                </if>
             </div>
         </foreach>
         <div class="loading">

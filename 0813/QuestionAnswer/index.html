@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+    <title>设计师问答后台</title>
+    <include file="Public/page_head" />
+    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/designer-management.css">
+</head>
+<body>
+
+<div class="page_content" >
+    <div class="container">
+        <div class="side_nav_bar_mine">
+            <include file="Common/side_nav_account_setting_personal"/>
+        </div>
+
+        <div class="wrap">
+            <ul class="header">
+                <li><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt=""><p>{$userinfo.nickname}</p></li>
+                <li><p>{$answer_num}</p><p>解答数</p></li>
+                <li><p>{$integral_num}</p><p>采纳数</p></li>
+                <li><p>1022</p><p><a href="">积分值</a></p></li>
+                <li><a href="">积分兑换</a></li>
+            </ul>
+            <div class="main-box">
+                <ul class="nav">
+                    <li class="myactive">我回答的问题</li>
+                    <li>邀请我回答</li>
+                </ul>
+                <p class="rad"><input type="radio">被采纳</p>
+                <!--循环main-->
+                <foreach name="answer_data" key="key" item="val">
+                    <div class="main">
+                        <p>
+                            <a href="">{$val.q_title}</a>
+                            <if condition = "$val.status == 2">
+                                <span class="special">回答被采纳</span>
+                            </if>
+
+                        </p>
+                        <p>
+                            <img src="<?php echo $val['q_pic'] ? C('PIC_URl').'/'.$val['q_pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt="">
+                            {$val.q_nickname}&nbsp;提问&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>{$val.q_answer_num}</span>人回答&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.created_at}
+                        </p>
+                        <!--在指定我的问答不需要时间-->
+                    </div>
+                </foreach>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(".nav>li").each(function (i,e) {
+        $(this).click(function () {
+            $(this).addClass("myactive").siblings().removeClass("myactive")
+        })
+        $(".nav>li:nth-of-type(2)").click(function () {
+            $(".rad").hide()
+            $(".main>p:nth-of-type(1)>span").removeClass("special").text("待解决")
+        })
+        $(".nav>li:nth-of-type(1)").click(function () {
+            $(".rad").show()
+            $(".main>p:nth-of-type(1)>span").addClass("special").text("回答被采纳")
+        })
+    })
+</script>
+</html>

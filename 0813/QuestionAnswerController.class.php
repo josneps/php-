@@ -3,7 +3,9 @@
 namespace Home\Controller;
 
 use think\Db;
-use Org\Util\PageThd;
+//use Org\Util\PageThd;
+
+header("content-type:text/html;charset=utf8");
 
 /**
  * 设计师 & 业主 个人中心-问答模块
@@ -38,6 +40,60 @@ class QuestionAnswerController extends BaseController
      */
 	public function index()
     {
+        //根据解答的id获取问题
+        //设计师mid
+        $user_where = "a.a_mid = '".$this->userInfo['mid']."'";
+        //接收状态
+        $status = trim(I('status', '', int));
+
+        //解答的提的个数
+        $answer_num = M('designer_answer as a')
+            ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
+            ->join("designer_integral i on a.a_questions_id = i.a_questions_id", 'left')
+            ->where($user_where)
+            ->order("a.created_at desc")
+            ->count();
+
+//        echo $answer_num;die;
+
+        //被采纳的个数
+        $integral_num = M('designer_answer as a')
+            ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
+            ->join("designer_integral i on a.a_questions_id = i.a_questions_id", 'left')
+            ->where($user_where)
+            ->where("i.status = 2")
+            ->order("a.created_at desc")
+            ->count();
+
+        //判断是否获取被采纳的
+        if($status == '') {
+            //没有被采纳的
+            $answer_data = M('designer_answer as a')
+                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
+                ->join("designer_integral i on a.a_questions_id = i.a_questions_id", 'left')
+                ->where($user_where)
+                ->order("a.created_at desc")
+                ->select();
+
+        } else {
+            //已被采纳的
+            $answer_data = M('designer_answer as a')
+                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
+                ->join("designer_integral i on a.a_questions_id = i.a_questions_id", 'left')
+                ->where($user_where)
+                ->where("i.status = 2")
+                ->order("a.created_at desc")
+                ->select();
+
+        }
+
+        $this->assign('integral_num', $integral_num);
+        $this->assign("answer_num", $answer_num);
+        $this->assign("answer_data", $answer_data);
+        $this->assign("status", $status);
+        $this->assign('userinfo', $this->userInfo);
+
+
         $this->view('QuestionAnswer/index', 2);
     }
 
@@ -104,7 +160,7 @@ class QuestionAnswerController extends BaseController
             'a_status' => 2,
             'updated_at' => date('Y-m-d H:i:s', time())
         );
-        $res = $this->answer->statusUpdate($data, $where);
+        $this->answer->statusUpdate($data, $where);
 
         $this->ajaxReturn(array('state' => 1100, 'message' => '更新成功'));
     }
@@ -145,7 +201,52 @@ class QuestionAnswerController extends BaseController
      */
     public function lists()
     {
-        $status = trim(I('status', 0, 'int'));
+        //根据问题获取答案
+        //接收状态
+        $status = trim(I('status', 0, int));
+        //当前页和每页显示的个数
+        $nowPage = I('page',1,'int');
+        $pageSize = 40;
+
+        $user_where = "q_mid = '".$this->userInfo['mid']."'";
+
+
+        if($status == 0) {
+            //搜索全部
+            $data = $this->questions->where($user_where)->order('created_at desc')->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            $count = $this->questions->where($user_where)->order('created_at desc')->select();
+        } else {
+            //按照不同的状态进行搜索
+            switch ($status){
+                case 1 :
+                    //待解答
+                    $where = "q_status = 1 or q_status = 2";
+                    break;
+                case 2:
+                    //已解答
+                    $where = "q_status = 3";
+                    break;
+                case 3:
+                    //已采纳
+                    $where = "q_status = 4";
+                    break;
+            }
+            //获取数据
+            $data = $this->questions->where($user_where)->where($where)->order('created_at desc')->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            $count = $this->questions->where($user_where)->where($where)->order('created_at desc')->select();
+
+        }
+
+        //分页
+        $Page = new \Org\Util\PageNewThd($count,I('get.'),$pageSize,$nowPage);// 实例化分页类 传入总记录数和每页显示的记录数
+
+        // 分页显示输出
+        $show = $Page->shownew();
+
+        $this->assign('status',$status);
+        $this->assign('data', $data);
+        $this->assign('page', $show);
+
 
         $this->view('QuestionAnswer/lists', 2);
     }
@@ -160,11 +261,13 @@ class QuestionAnswerController extends BaseController
      */
     public function addQuestions()
     {
-        $id = $this->userInfo['mid'];
+        $id = trim(I('id', '', int));
         if (IS_POST) {
             $title = trim(I('title'));
             $content = trim(I('content'));
-            $mid = trim(I('id'));
+            $mid = $this->userInfo['mid'];
+//            $file = I('file[]');
+//            $this->ajaxReturn($file);die;
             $data = array(
                 'q_mid' => $mid,
                 'q_nickname' => $this->userInfo['nickname'],
@@ -212,7 +315,7 @@ class QuestionAnswerController extends BaseController
             'q_status' => 2,
             'updated_at' => date('Y-m-d H:i:s', time())
         );
-        $res = $this->questions->statusUpdate($data, $where);
+        $this->questions->statusUpdate($data, $where);
 
         $this->ajaxReturn(array('state' => 1100, 'message' => '更新成功'));
 

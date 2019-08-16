@@ -49,7 +49,7 @@ class AskDesignerController extends BaseController
         //获取数据
         $subQuery = M('user_questions as u')
             ->join('designer_answer as d on u.q_id = d.a_questions_id', 'left')
-            ->field('u.*, d.a_id, d.a_questions_id, d.a_mid, d.a_nickname, d.a_pic, d.a_answer, d.a_status')
+            ->field('u.*, d.a_id, d.a_questions_id, d.a_mid, d.a_nickname, d.a_pic, d.a_answer, d.a_status, d.satisfied ')
             ->order('d.created_at desc')
             ->buildSql();
         $data = M('user_questions as u')->table($subQuery.'u')->where($where)->group('u.q_mid')->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
@@ -152,6 +152,7 @@ class AskDesignerController extends BaseController
         //获取问题
         $detail_data = $this->questions->where($where)->find();
 
+
         //获取答案
         if($this->answer->where("a_questions_id = $id AND a_status = 3")->count()) {
             //判断是否有采纳的使用count统计
@@ -168,8 +169,13 @@ class AskDesignerController extends BaseController
             $mids .= implode("','", $ids);
             $mids .= "'";
 
-            $designer = M('user_designer')->field('agencies_name')->where("mid in (".$mids.")")->select();
+            //设计师属于哪个公司机构
+            $designer = M('user_designer')->field('mid, agencies_name')->where("mid in (".$mids.")")->select();
 
+            //设计师的解答 & 被采纳个数
+            $answerAdopt = M('answer_adopt_num')->field('a_mid mid, answer, adopt')->where("a_mid in (".$mids.")")->select();
+
+            //组合数据
             foreach ($res as $key => $val) {
                 $data[$key+1] = $val;
             }
@@ -178,6 +184,12 @@ class AskDesignerController extends BaseController
                 foreach ($designer as $k => $v) {
                     if($val['a_mid'] == $v['mid']) {
                         $data[$key]['agencies_name'] = $v['agencies_name'];
+                    }
+                }
+                foreach ($answerAdopt as $k => $v) {
+                    if($val['a_mid'] == $v['mid']) {
+                        $data[$key]['answer'] = $v['answer'];
+                        $data[$key]['adopt'] = $v['adopt'];
                     }
                 }
             }
@@ -195,12 +207,23 @@ class AskDesignerController extends BaseController
             $mids .= implode("','", $ids);
             $mids .= "'";
 
+            //设计师属于哪个公司机构
             $designer = M('user_designer')->field('mid, agencies_name')->where("mid in (".$mids.")")->select();
+
+            //设计师的解答 & 被采纳个数
+            $answerAdopt = M('answer_adopt_num')->field('a_mid mid, answer, adopt')->where("a_mid in (".$mids.")")->select();
+
 
             foreach ($data as $key => $val) {
                 foreach ($designer as $k => $v) {
                     if($val['a_mid'] == $v['mid']) {
                         $data[$key]['agencies_name'] = $v['agencies_name'];
+                    }
+                }
+                foreach ($answerAdopt as $k => $v) {
+                    if($val['a_mid'] == $v['mid']) {
+                        $data[$key]['answer'] = $v['answer'];
+                        $data[$key]['adopt'] = $v['adopt'];
                     }
                 }
             }
@@ -224,25 +247,25 @@ class AskDesignerController extends BaseController
             );
         }
 
+        //查看浏览日志表
         if(!M('look_number')->where($where)->find()){
+
             $where['created_at'] = date('Y-m-d H:i:s', time());
             M('look_number')->add($where);
+
+            //记录多少人看过
+            $detail_data['q_look_num'] += 1;
+            M('user_questions')->where("q_id = $id")->save($detail_data);
         }
 
-        //统计多少人看过
-        $detail_data['look_num'] = M('look_number')->where("a_questions_id = $id")->count();
 
         $this->assign("details_data", $detail_data);
         $this->assign("userinfo", $this->userInfo);
         $this->assign("data", $data);
         $this->assign("is_show", $is_show);
 
-
         $this->view('askdesigner/details', 2);
     }
-
-
-
 
 
 }
