@@ -24,6 +24,7 @@ class AskDesignerController extends BaseController
         $this->answer = D('Answer');
         $this->userInfo = session('userInfo');
     }
+
     /**
      * @todo: 问答列表 & 搜索+分页
      * @author： friker
@@ -33,7 +34,6 @@ class AskDesignerController extends BaseController
      */
     public function index()
     {
-
         $title = trim(I('title', ''));
         //当前页和每页显示的个数
         $nowPage = I('page',1,'int');
@@ -44,7 +44,7 @@ class AskDesignerController extends BaseController
             $where .= "u.q_title like '%$title%' OR u.q_title_content like '%$title%'";
         }
         //统计总条数
-        $count = M('user_questions as u')->where($where)->buildSql();
+        $count = M('user_questions as u')->where($where)->count();
 
         //获取数据
         $subQuery = M('user_questions as u')
@@ -85,10 +85,12 @@ class AskDesignerController extends BaseController
                 $userInfo['adopt_num'] = M('user_questions as u')->join('designer_answer d on u.q_id = d.a_questions_id')->where("d.a_status = 2 AND u.q_mid = '".$this->userInfo['mid']."'")->count();   // 采纳个数
             } elseif ($this->userInfo['type'] == 1) {
                 //设计师
+                $userInfo['agencies_name'] = M('user_designer')->field('agencies_name')->where("mid = '".$this->userInfo['mid']."'")->find();
                 $userInfo['questions_num'] = M('designer_answer')->where("a_mid = '".$this->userInfo['mid']."'")->count();  // 解答个数
                 $userInfo['adopt_num'] = M('user_questions as u')->join('designer_answer d on u.q_id = d.a_questions_id')->where("d.a_status = 2 AND d.a_mid ='".$this->userInfo['mid']."'")->count();   // 采纳个数
             }
         }
+
         //分页
         $Page = new \Org\Util\PageNewThd($count,I('get.'),$pageSize,$nowPage);// 实例化分页类 传入总记录数和每页显示的记录数
         // 分页显示输出
@@ -98,9 +100,18 @@ class AskDesignerController extends BaseController
         $this->assign('total', $count);
         $this->assign('page', $show);
         $this->assign('list', $data);
+        $this->assign('count', $count);
         $this->assign('userinfo', $userInfo);
 
-        $this->view('askdesigner/index', 2);
+        if(empty($title)) {
+            //列表页
+            $this->view('askdesigner/index', 2);
+        } else {
+            //搜索后的列表页
+            $this->view('askdesigner/searchDesigner', 2);
+
+        }
+
     }
 
     public function time_trans($dateOrTimeStamp){
@@ -126,76 +137,76 @@ class AskDesignerController extends BaseController
         }
     }
 
-
-    /********************** 业主部分 ***********************/
-
     /**
-     * @todo: 业主提的问题
+     * @todo: 问题&解答  详情 & 记录浏览人数
      * @author： friker
      * User: Administrator
-     * Date: 2019/8/12
-     * Time: 17:55
+     * Date: 2019/8/15
+     * Time: 13:46
      */
-    public function addQuestions()
-    {
-
-        $title = trim(I('title'));
-        $content = trim(I('content'));
-        $data = array(
-            'q_mid' => $this->userInfo['mid'],
-            'q_nickname' => $this->userInfo['nickname'],
-            'q_pic' => $this->userInfo['pic'],
-            'q_title' => $title,
-            'q_title_content' => $content,
-            'q_access_device' => 1,
-            'q_status' => 1,
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
-        );
-
-        $res = $this->questions->creates($data);
-
-        dump($res);die;
-    }
-
-
-
-    /**
-     * @todo: 更新业主的问题的状态
-     * @author： friker
-     * User: Administrator
-     * Date: 2019/8/12
-     * Time: 17:55
-     */
-    public function userStatusUpdate()
-    {
-        // 判断是否是ajax请求
-        if (!IS_AJAX) {
-            $this->ajaxReturn(array('state' => 1102, 'message' => '非法请求！'));
-        }
-
-        $id = trim(I('id'));
-        $where = array('q_id' => $id);
-        $data = array(
-            'q_status' => 2,
-            'updated_at' => date('Y-m-d H:i:s', time())
-        );
-        $res = $this->questions->statusUpdate($data, $where);
-
-        $this->ajaxReturn($res, '更新成功');
-
-    }
-
     public function details()
     {
+        //接收id
         $id = trim(I('id'));
-        $where = "u.q_id = $id";
-        $detail_data = M('user_questions as u')
-            ->join('designer_answer as d on u.q_id = d.a_questions_id', 'left')
-            ->field('u.*, d.a_id, d.a_questions_id, d.a_mid, d.a_nickname, d.a_pic, d.a_answer')
-            ->where($where)
-            ->order('d.created_at desc')
-            ->find();
+        $where = "q_id = $id";
+        //获取问题
+        $detail_data = $this->questions->where($where)->find();
+
+        //获取答案
+        if($this->answer->where("a_questions_id = $id AND a_status = 3")->count()) {
+            //判断是否有采纳的使用count统计
+            $data[] = $this->answer->where("a_questions_id = $id AND a_status = 3")->order("created_at desc")->find();
+            $res = $this->answer->where("a_questions_id = $id AND a_id != ".$data[0]['a_id'])->order("created_at desc")->select();
+
+            //循环取出设计师mid存入数组
+            foreach ($data as $v) {
+                $ids[] = $v['a_mid'];
+            }
+            //将数组分割成字符串
+            $mids = "'";
+            //将数组分割成字符串
+            $mids .= implode("','", $ids);
+            $mids .= "'";
+
+            $designer = M('user_designer')->field('agencies_name')->where("mid in (".$mids.")")->select();
+
+            foreach ($res as $key => $val) {
+                $data[$key+1] = $val;
+            }
+
+            foreach ($data as $key => $val) {
+                foreach ($designer as $k => $v) {
+                    if($val['a_mid'] == $v['mid']) {
+                        $data[$key]['agencies_name'] = $v['agencies_name'];
+                    }
+                }
+            }
+        } else {
+            //没有采纳的
+            $data = $this->answer->where("a_questions_id = $id ")->order("created_at desc")->select();
+
+            //循环取出设计师mid存入数组
+            foreach ($data as $v) {
+                $ids[] = $v['a_mid'];
+            }
+
+            $mids = "'";
+            //将数组分割成字符串
+            $mids .= implode("','", $ids);
+            $mids .= "'";
+
+            $designer = M('user_designer')->field('mid, agencies_name')->where("mid in (".$mids.")")->select();
+
+            foreach ($data as $key => $val) {
+                foreach ($designer as $k => $v) {
+                    if($val['a_mid'] == $v['mid']) {
+                        $data[$key]['agencies_name'] = $v['agencies_name'];
+                    }
+                }
+            }
+        }
+
+        $is_show = count($data);
 
         //统计浏览次数
         if(!empty($this->userInfo)){
@@ -218,64 +229,20 @@ class AskDesignerController extends BaseController
             M('look_number')->add($where);
         }
 
+        //统计多少人看过
         $detail_data['look_num'] = M('look_number')->where("a_questions_id = $id")->count();
 
+        $this->assign("details_data", $detail_data);
+        $this->assign("userinfo", $this->userInfo);
+        $this->assign("data", $data);
+        $this->assign("is_show", $is_show);
 
-        print_r($detail_data);die;
+
+        $this->view('askdesigner/details', 2);
     }
 
 
 
-    /********************** 设计师部分 ***********************/
 
-    /**
-     * @todo: 设计师的回答 & 解答问题可以获得积分
-     * @author： friker
-     * User: Administrator
-     * Date: 2019/8/13
-     * Time: 9:01
-     */
-    public function addAnswer()
-    {
-//        $questions_id = trim(I('questions_id'));
-//        $content = trim(I('content'));
-        $questions_id = 2;
-        $content = '巴拉巴拉巴贝拉拉不拉了波兰';
-        $data = array(
-            'a_questions_id' => $questions_id,
-            'a_mid' => $this->userInfo['mid'],
-            'a_nickname' => $this->userInfo['nickname'],
-            'a_pic' => $this->userInfo['pic'],
-            'a_answer' => $content,
-            'a_access_device' => 1,
-            'a_status' => 1,
-            'created_at' => date('Y-m-d H:i:s', time()),
-            'updated_at' => date('Y-m-d H:i:s', time())
-        );
-
-        $res = $this->answer->creates($data);
-
-        dump($res);die;
-    }
-
-
-    public function designerStatusUpdate()
-    {
-        // 判断是否是ajax请求
-        if (!IS_AJAX) {
-            $this->ajaxReturn(array('state' => 1102, 'message' => '非法请求！'));
-        }
-
-        $id = trim(I('id'));
-        $a_questions_id = 2;
-        $where = array('a_id' => $id, 'a_questions_id' => $a_questions_id);
-        $data = array(
-            'a_status' => 2,
-            'updated_at' => date('Y-m-d H:i:s', time())
-        );
-        $res = $this->answer->statusUpdate($data, $where);
-
-        $this->ajaxReturn($res, '更新成功');
-    }
 
 }

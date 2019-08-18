@@ -1,0 +1,280 @@
+<!-- <link href="__PUBLIC__/css/lib/chosen_v2.css" rel="stylesheet" />
+<link rel="stylesheet" href="__PUBLIC__/css/sitelog_imagetext_list.css">
+<link href="__PUBLIC__/css/pagination.css" rel="stylesheet" />
+<link href="__PUBLIC__/css/dialog/dialog_sitelogdidi_publish.css" rel="stylesheet" /> -->
+
+<!-- <div class="goodlooking-banner">
+    <div class="container">
+        <div class="link_buttons">
+            <a href="javascript:;" class="pic_publish">
+                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">晒图晒家
+            </a>
+            <a href="javascript:;" class="article_publish">
+                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">发布图文
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="nav">
+    <ul>
+        <li><a href="{:U('article/menuIndex')}">推荐</a><b></b></li>
+        <li><a href="{:U('article/index',array('cate_id'=>1))}">图文攻略</a><b></b></li>
+        <li><a href="{:U('decorateSelect/index')}">优选方案</a><b></b></li>
+        <li><a href="{:U('designview/new_index')}">晒图晒家</a><b></b></li>
+        <li><a href="{:U('DecorationDiary/index')}">装修日记</a><b></b></li>
+        <li class="active"><a href="{:U('AskDesigner/index')}">问设计师</a><b></b></li>
+    </ul>
+</div -->
+
+<link rel="stylesheet" href="/Public/pc/css/lib/bootstrap.css">
+<link rel="stylesheet" href="/Public/pc/css/lib/thdsite.css">
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/ask_designer.css">
+<script src="/Public/pc/layui/layui.js"></script>
+<link rel="stylesheet" href="/Public/pc/layui/css/layui.css">
+<link href="__PUBLIC__/css/lib/common.css" rel="stylesheet"/>
+<link href="__PUBLIC__/css/thdfont/style.css" rel="stylesheet"/>
+
+<link href="__PUBLIC__/css/GoodLooking/goodlooking_banner.css" rel="stylesheet"/>
+<body>
+<!-- <include file="Public/page_header_personal"/> -->
+
+<!--头部结束-->
+<!--轮播图-->
+<div class="goodlooking-banner">
+    <div class="container">
+        <div class="link_buttons">
+            <a href="javascript:;" class="pic_publish">
+                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">晒图晒家
+            </a>
+            <a href="javascript:;" class="article_publish">
+                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">发布图文
+            </a>
+        </div>
+    </div>
+</div>
+<!--导航-->
+<div class="nav">
+    <ul>
+        <li class="">
+            <!--li类名动态加上active-->
+            <a href="{:U('article/menuIndex')}">推荐</a>
+            <b></b>
+        </li>
+        <li class="">
+            <a href="{:U('article/index')}">图文攻略</a>
+            <b></b>
+        </li>
+        <li class="">
+            <a href="{:U('decorateSelect/index')}">优选方案</a>
+            <b></b>
+        </li>
+        <li class="">
+            <a href="{:U('designview/new_index')}">晒图晒家</a>
+            <b></b>
+        </li>
+        <li>
+            <a href="{:U('DecorationDiary/index')}">装修日记</a>
+            <b></b>
+        </li>
+        <li class="active">
+            <a href="{:U('AskDesigner/index')}">问设计师</a>
+            <b></b>
+        </li>
+    </ul>
+</div>
+
+<div class="main">
+    <div class="main-left" style="width: 880px;margin-right: 34px">
+        <!--循环main-box-->
+        <foreach name="list" key="key" item="val">
+            <div class="main-box">
+                <div class="title">
+                    <a href="{:U('AskDesigner//details')}?id={$val.q_id}">{$val.q_title}</a>
+
+                </div>
+                <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
+                <!--如果0人回答则不显示-->
+                <div>
+                    <div>
+                        <img src="<?php echo $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                        <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
+                    </div>
+                    <if condition = "$vo.a_status eq 2">
+                        <div></div>
+                    </if>
+                </div>
+
+                <div class="all_">
+                    <a href="">{$val.a_answer}</a>
+                    <div class="add-all"><span>...&nbsp;</span>查看全文</div>
+                </div>
+                <p>500满意</p>
+                <!--如果0人回答则不显示-->
+            </div>
+        </foreach>
+        <div class="loading">
+            加载中
+        </div>
+    </div>
+    <div class="main-right">
+        <div class="searchbox" style="padding-bottom: 15px;">
+            <div class="search-wrap clearfix">
+                <input type="text" id="keyword" value="{$title}" placeholder="请输入关键字搜索">
+                <a href="javascript:;" class="search">
+                    <i class="icon icon-search"></i>
+                </a>
+            </div>
+        </div>
+
+        <if condition = "$userinfo.type eq 1">
+            <!--设计师登录-->
+            <div class="designer">
+                <img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                <span>{$userinfo.nickname}</span>
+                <ul>
+                    <li>回答:{$userinfo.questions_num}</li>
+                    <li>采纳:{$userinfo.adopt_num}</li>
+                </ul>
+            </div>
+        <elseif condition = "$userinfo.type eq 0"/>
+            <!--业主-->
+            <div class="owner">
+                <img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                <span>{$nickname}</span>
+                <ul>
+                    <li>提问:{$userinfo.questions_num}</li>
+                    <li>采纳:{$userinfo.adopt_num}</li>
+                </ul>
+            </div>
+             <!--跳转到提问界面 -->
+            <a href="" class="quiz">我要提问</a>
+        <else/>
+            <!--未登录-->
+            <div class="no-login">
+                <div></div>
+                <span>点击登录</span>
+            </div>
+        </if>
+
+
+        <div class="main-img">
+            <img src="/Public/pc/img/GoodLooking/02APP.png"/>
+            <img src="/Public/pc/img/GoodLooking/03.png"/>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    //发布图文
+    $(".article_publish").click(function () {
+        if (USERINFO.MID) {
+            if (USERINFO.USER_TYPE == 0 || USERINFO.USER_TYPE == 1) {
+                window.open("{:U('publish/edit')}")
+            } else {
+                alert('您没有此功能权限 !');
+                return false;
+            }
+        } else {
+            $("#dialog_login_owner").modal('show');
+            return;
+        }
+    });
+    //搜索
+    $(".search").click(function () {
+        var keyword = $.trim($("#keyword").val());
+        if (keyword !== '') {
+            window.open("{:U('AskDesigner/index')}" + '?title=' + keyword);
+        } else {
+            alert('输入搜索内容！');
+        }
+    });
+    //发布晒图晒家
+    $(".pic_publish").click(function () {
+        if (USERINFO.MID) {
+            if (USERINFO.USER_TYPE == 1 || USERINFO.USER_TYPE == 8) {
+                window.open("{:U('content/sun_edit')}")
+            } else {
+                alert('您没有此功能权限 !');
+                return false;
+            }
+        } else {
+            $("#dialog_login_owner").modal('show');
+            return;
+        }
+    });
+
+</script>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            var scrollPos = $(window).scrollTop();
+            if (scrollPos >= 160) {
+                $(".nav").addClass("stick");
+                $(".main").addClass("asd");
+            } else {
+                $(".nav").removeClass("stick");
+                $(".main").removeClass("asd");
+            }
+            if (scrollPos >= 200) {
+                $(".main").addClass("asd");
+            } else {
+                $(".main").removeClass("asd");
+            }
+        });
+
+    });
+
+    // <!--查看全部-->
+    $(".add-all").each(function (i, e) {
+        if ($(".all_").eq(i).height() >106) {
+            $(".add-all").eq(i).show()
+        }
+        $(this).click(function () {
+            $(this).parent().removeClass("all_")
+            $(this).hide()
+        })
+    })
+
+    //文档高度
+    function getDocumentTop() {
+        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+        if (document.body) {
+            bodyScrollTop = document.body.scrollTop;
+        }
+        if (document.documentElement) {
+            documentScrollTop = document.documentElement.scrollTop;
+        }
+        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+        return scrollTop;
+    }
+    //可视窗口高度
+    function getWindowHeight() {
+        var windowHeight = 0;
+        if (document.compatMode == "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            windowHeight = document.body.clientHeight;
+        }
+        return windowHeight;
+    }
+    //滚动条滚动高度
+    function getScrollHeight() {
+        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+        if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+        }
+        if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+        }
+        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+        return scrollHeight;
+    }
+    window.onscroll = function () {
+        if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
+            //数据加载完毕后
+            $(".loading").show().text("已经到底了")
+        }
+    }
+</script>

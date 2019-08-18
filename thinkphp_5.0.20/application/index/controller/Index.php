@@ -9,7 +9,7 @@ class Index
     }
 
 
-    public function list()
+    public function lists()
     {
     	echo "你中奖了";
     }

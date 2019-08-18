@@ -11,7 +11,7 @@
 
 use think\Route;
 
-Route::get('/','wechat/Wechat/code');
+// Route::get('/','wechat/Wechat/code');
 
 Route::get('a','wechat/Wechat/add');
 

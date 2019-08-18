@@ -739,11 +739,17 @@ return array(
         '/^package\/other\/((\w|-)+)$/'                      => 'package/other?key=:1',       //套餐装企其他案例
         '/^decorate\/other\/((\w|-)+)$/'                      => 'decorate/other?key=:1',       //个性装企其他案例
 
+
         //20190812
-        '/^AskDesigner\/addQuestions\/((\w|-)+)$/'                      => 'AskDesigner/addQuestions?key=:1',       //业主提的问题
-        '/^AskDesigner\/userStatusUpdate\/((\w|-)+)$/'                      => 'AskDesigner/userStatusUpdate?key=:1',       //更新业主的问题的状态
-        '/^AskDesigner\/details\/((\w|-)+)$/'                      => 'AskDesigner/details?key=:1',       //更新业主的问题的状态
-        '/^AskDesigner\/addAnswer\/((\w|-)+)$/'                      => 'AskDesigner/addAnswer?key=:1',       //设计师的回答
+        '/^AskDesigner\/details\/((\w|-)+)$/'                      => 'AskDesigner/details?key=:1',       //业主提问详情
         '/^Integral\/index\/((\w|-)+)$/'                      => 'Integral/index?key=:1',       //设计师的积分列表
+
+        '/^QuestionAnswer\/index\/((\w|-)+)$/'                      => 'QuestionAnswer/index?key=:1',       //设计师的问答中心
+        '/^QuestionAnswer\/addAnswer\/((\w|-)+)$/'                      => 'QuestionAnswer/addAnswer?key=:1',       //设计师的回答
+
+        '/^QuestionAnswer\/lists\/((\w|-)+)$/'                      => 'QuestionAnswer/lists?key=:1',       //业主的问答中心
+        '/^QuestionAnswer\/addQuestions\/((\w|-)+)$/'                      => 'QuestionAnswer/addQuestions?key=:1',       //业主提的问题
+        '/^QuestionAnswer\/userStatusUpdate\/((\w|-)+)$/'                      => 'QuestionAnswer/userStatusUpdate?key=:1',       //更新业主的问题的状态
+
     ),
 );
