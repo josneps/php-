@@ -52,7 +52,7 @@
                 </div>
                 <span class="layui-upload-ts">最多上传5张图片</span>
             </div>
-            <input type="hidden" id="id" value="{$id}">
+            <!--<input type="hidden" id="id" value="{$id}">-->
 
             <!--关联小区-->
             <div class="association">
@@ -181,6 +181,7 @@
         form.append("building_no", building_no);
         form.append("id", id);
         form.append("last_src", last_src);
+
         $(".publish").attr('disabled',true);
 
         // return false;

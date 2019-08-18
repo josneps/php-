@@ -21,33 +21,61 @@
                 <li>我的问答</li>
                 <li>
                     <ul class="nav">
-                        <li class="myactive">全部(6)</li>
-                        <li>待解答(6)</li>
-                        <li>已解答(6)</li>
-                        <li>已采纳(6)</li>
+                        <?php if($status == 0) { ?>
+                        <li status="0" class="myactive">全部</li>
+                        <?php } else { ?>
+                        <li status="0">全部</li>
+                        <?php }?>
+                        <?php if($status == 1) { ?>
+                        <li status="1" class="myactive">待解答</li>
+                        <?php } else { ?>
+                        <li status="1">待解答</li>
+                        <?php }?>
+                        <?php if($status == 2) { ?>
+                        <li status="2" class="myactive">已解答</li>
+                        <?php } else { ?>
+                        <li status="2">已解答</li>
+                        <?php }?>
+                        <?php if($status == 3) { ?>
+                        <li status="3" class="myactive">已采纳</li>
+                        <?php } else { ?>
+                        <li status="3">已采纳</li>
+                        <?php }?>
                         <a href="<?php echo U('QuestionAnswer/addQuestions');?>">我要提问</a>
                     </ul>
                 </li>
             </ul>
             <ul class="main-box">
                 <!--循环main-->
-                <li class="main">
-                    <div><p>0</p><p>回答</p></div>
-                    <div>
-                        <a href="">如何改造旧家具呢?旧家具如何翻新?如何改造旧家具呢?如何改造旧家具呢?旧家具如何翻新?如何改造旧家具呢?</a>
-                        <p>2019-7-28  17:14:17&nbsp;&nbsp;&nbsp;&nbsp;0人看过</p>
-                    </div>
-                    <div class="wait">
-                        待解答
-                    </div>
-                    <div class="done">
-                        已解答
-                    </div>
-                    <div class="adopt">
-                        已采纳
-                    </div>
-                    <a href="">修改提问</a>
-                </li>
+                <foreach name="data" key="key" item="val">
+                    <li class="main">
+                        <div><p>{$val.q_answer_num}</p><p>回答</p></div>
+                        <div>
+                            <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过</p>
+                        </div>
+
+                        <div class="wait">
+                            <if condition = "$val.q_status == 1 or $val.q_status == 2">
+                                待解答
+                                <elseif condition = "$val.q_status == 3"/>
+                                    已解答
+                                <elseif condition = "$val.q_status == 4"/>
+                                    已采纳
+                            </if>
+                        </div>
+                        <!--<div class="done">-->
+
+                        <!--</div>-->
+                        <!--<div class="adopt">-->
+
+                        <!--</div>-->
+                        <if condition = "$val.q_status == 1 or $val.q_status == 2">
+                            <a href="">修改提问</a>
+                        </if>
+
+                    </li>
+                </foreach>
             </ul>
         </div>
 
@@ -56,10 +84,15 @@
 
 </body>
 <script>
-    $(".nav>li").each(function (i,e) {
-        $(this).click(function () {
-            $(this).addClass("myactive").siblings().removeClass("myactive")
-        })
-    })
+    $(".nav>li").click(function () {
+        var status = $(this).attr('status');
+
+        window.location.href="{:U('QuestionAnswer/lists')}?status="+status;
+    });
+    // $(".nav>li").each(function (i,e) {
+    //     $(this).click(function () {
+    //         $(this).addClass("myactive").siblings().removeClass("myactive")
+    //     })
+    // })
 </script>
 </html>

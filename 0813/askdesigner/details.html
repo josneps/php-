@@ -20,7 +20,7 @@
             <div class="main-title">
                 <div class="main-title-top">{$details_data.q_title}</div>
                 <div class="main-title-botton">
-                    提问者： {$details_data.q_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;发布时间：{$details_data.created_at}&nbsp;&nbsp;·&nbsp;&nbsp;{$details_data.look_num}人看过
+                    提问者： {$details_data.q_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;发布时间：{$details_data.created_at}&nbsp;&nbsp;·&nbsp;&nbsp;{$details_data.q_look_num}人看过
                 </div>
             </div>
             <div class="main-text">
@@ -94,7 +94,7 @@
                         <div><img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""><span class="focus">+关注</span></div>
                         <div>
                             <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
-                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: 300 <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: 165</p>
+                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: {$val.adopt}</p>
                         </div>
                     </div>
                     <div class="more-answers-content">
