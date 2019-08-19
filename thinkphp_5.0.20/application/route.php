@@ -33,5 +33,8 @@ Route::get('/404','admin/LoginController/err');
 
 Route::get('index/recursion','index/Recursion/index');
 
+Route::get('index/index','admin/Index/index');
+Route::post('index/index','admin/Index/index');
+
 Route::get('upload','index/Recursion/upload');
 Route::post('upload','index/Recursion/upload');
