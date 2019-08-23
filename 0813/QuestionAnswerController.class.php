@@ -109,6 +109,9 @@ class QuestionAnswerController extends BaseController
     {
         $id = $this->userInfo['mid'];
         if (IS_POST) {
+
+            //添加解答表
+            
             $questions_id = trim(I('questions_id'));
             $content = trim(I('content'));
             $id = trim(I('id'));
@@ -124,7 +127,10 @@ class QuestionAnswerController extends BaseController
                 'updated_at' => date('Y-m-d H:i:s', time())
             );
 
+
             $res = $this->answer->creates($data);
+
+            //修改解答数量的记录表
 
             if($res) {
                 $this->ajaxReturn(array('state' => 1100, 'message' => '添加成功'));

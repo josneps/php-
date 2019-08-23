@@ -60,6 +60,8 @@ $url = "如果有一天，你要离开我，
 
         $data = array( 'code'=>200, 'data'=>$imageString ); 
 
+        print_r($data);die;
+
         return json($data);
     }
 

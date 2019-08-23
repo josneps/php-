@@ -1,0 +1,567 @@
+[ 2019-08-15T20:27:18+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000547s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000077s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000191s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035136s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035256s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000378s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000464s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000692s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000748s ]
+
+[ 2019-08-15T20:32:19+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000577s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000669s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000735s ]
+
+[ 2019-08-15T20:32:57+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000251s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000319s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000356s ]
+
+[ 2019-08-15T20:32:59+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000407s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000527s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000590s ]
+
+[ 2019-08-15T20:34:12+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000559s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000529s ]
+
+[ 2019-08-15T20:36:46+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000399s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000589s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+
+[ 2019-08-15T20:36:55+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000488s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000668s ]
+
+[ 2019-08-15T20:41:43+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000396s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000432s ]
+ERR: 1146:Table 'thd.tp_user_questions' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tp_user_questions`
+ERR: 1146:Table 'thd.tp_user_questions' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `tp_user_questions`
+
+[ 2019-08-15T20:43:17+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000362s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000469s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000535s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0190s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0156s ]
+NOTIC: [8] Undefined variable: nowPage F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T20:43:36+08:00 ] 127.0.0.1 /home/AskDesigner/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000286s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000364s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000409s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0157s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0156s ]
+NOTIC: [8] Undefined variable: nowPage F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\AskDesignerController.class.php 第 57 行.
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T20:56:03+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000279s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000430s ]
+
+[ 2019-08-15T20:56:18+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000546s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000716s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000786s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0166s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0159s ]
+
+[ 2019-08-15T20:56:47+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000276s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000319s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000355s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0145s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0151s ]
+NOTIC: [8] Undefined variable: nowPage F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\IndexController.class.php 第 29 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\IndexController.class.php 第 29 行.
+NOTIC: [8] Undefined variable: pageSize F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\IndexController.class.php 第 29 行.
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T20:57:12+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000604s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000681s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0155s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0153s ]
+
+[ 2019-08-15T20:57:49+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000476s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000561s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000635s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0166s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0160s ]
+
+[ 2019-08-15T20:57:51+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000461s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000316s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000353s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0157s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0187s ]
+
+[ 2019-08-15T20:57:59+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000322s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000358s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0163s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0183s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T20:59:39+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000401s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000701s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000774s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0158s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0114s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:03:53+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000664s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0156s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0179s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY u.created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY u.created_at desc 
+
+[ 2019-08-15T21:04:40+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000277s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000330s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000367s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0173s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0152s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0183s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:04:56+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001307s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001377s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0156s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0149s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:04:59+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000247s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000331s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000367s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0164s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0152s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:10:05+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000620s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0168s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0191s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'thd.u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM user_questions as u GROUP BY u.q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'thd.u.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM user_questions as u GROUP BY u.q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:10:25+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000457s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000900s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000972s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0157s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0160s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0202s ]
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'thd.user_questions.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM `user_questions` GROUP BY q_mid ORDER BY created_at desc 
+ERR: 1055:Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'thd.user_questions.q_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ [ SQL语句 ] : SELECT * FROM `user_questions` GROUP BY q_mid ORDER BY created_at desc 
+
+[ 2019-08-15T21:20:19+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000295s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0575s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0436s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0058s ]
+SQL: SELECT * FROM `user_questions` GROUP BY q_mid ORDER BY created_at desc  [ RunTime:0.0005s ]
+
+[ 2019-08-15T21:20:35+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000774s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0179s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0015s ]
+
+[ 2019-08-15T21:21:32+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000421s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000536s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000611s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0203s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0009s ]
+
+[ 2019-08-15T21:21:43+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000661s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000773s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0285s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0014s ]
+
+[ 2019-08-15T21:22:29+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000536s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000487s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0171s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0160s ]
+SQL: SELECT count(a_id) as num,`a_questions_id` FROM `designer_answer` WHERE ( a_questions_id in (5,4,3,2,1) ) GROUP BY a_questions_id ORDER BY created_at desc  [ RunTime:0.0007s ]
+ERR: Think\Controller:time_trans方法不存在！
+
+[ 2019-08-15T21:22:33+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000294s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000320s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000357s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0155s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0107s ]
+SQL: SELECT count(a_id) as num,`a_questions_id` FROM `designer_answer` WHERE ( a_questions_id in (5,4,3,2,1) ) GROUP BY a_questions_id ORDER BY created_at desc  [ RunTime:0.0006s ]
+ERR: Think\Controller:time_trans方法不存在！
+
+[ 2019-08-15T21:22:54+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000697s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000757s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0182s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0086s ]
+SQL: SELECT count(a_id) as num,`a_questions_id` FROM `designer_answer` WHERE ( a_questions_id in (5,4,3,2,1) ) GROUP BY a_questions_id ORDER BY created_at desc  [ RunTime:0.0005s ]
+
+[ 2019-08-15T21:22:56+08:00 ] 127.0.0.1 /home/index/lists
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000385s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000612s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0186s ]
+SQL: SELECT COUNT(*) AS tp_count FROM user_questions as u LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM ( SELECT u.*,d.a_id,d.a_questions_id,d.a_mid,d.a_nickname,d.a_pic,d.a_answer,d.a_status FROM user_questions as u left JOIN designer_answer as d on u.q_id = d.a_questions_id  ORDER BY d.created_at desc  )u GROUP BY u.q_mid ORDER BY created_at desc  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0127s ]
+SQL: SELECT count(a_id) as num,`a_questions_id` FROM `designer_answer` WHERE ( a_questions_id in (5,4,3,2,1) ) GROUP BY a_questions_id ORDER BY created_at desc  [ RunTime:0.0005s ]
+
+[ 2019-08-15T21:30:51+08:00 ] 127.0.0.1 /home/index/sessions
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000464s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000664s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000730s ]
+
+[ 2019-08-15T21:31:18+08:00 ] 127.0.0.1 /home/index/sessions
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000980s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000440s ]
+
+[ 2019-08-15T21:31:32+08:00 ] 127.0.0.1 /home/index/sessions
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000398s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000433s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000482s ]
+
+[ 2019-08-15T21:31:49+08:00 ] 127.0.0.1 /home/index/sessions
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000397s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000446s ]
+
+[ 2019-08-15T21:32:17+08:00 ] 127.0.0.1 /home/index/setsession
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000605s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000664s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000626s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000688s ]
+
+[ 2019-08-15T21:33:19+08:00 ] 127.0.0.1 /home/index/details
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000267s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000435s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000471s ]
+
+[ 2019-08-15T21:34:01+08:00 ] 127.0.0.1 /home/index/details
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000447s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000536s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000606s ]
+
+[ 2019-08-15T21:36:03+08:00 ] 127.0.0.1 /home/index/details
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000613s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000677s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0185s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `user_questions` WHERE ( q_id =  ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT * FROM `user_questions` WHERE ( q_id =  ) LIMIT 1  
+
+[ 2019-08-15T21:36:17+08:00 ] 127.0.0.1 /home/index/details?id=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000467s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000662s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0191s ]
+SQL: SELECT * FROM `user_questions` WHERE ( q_id = 1 ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `designer_answer` WHERE ( a_questions_id = 1 AND a_status = 3 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `designer_answer` WHERE ( a_questions_id = 1  ) ORDER BY created_at desc  [ RunTime:0.0005s ]
+ERR: 1146:Table 'thd.user_designer' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `user_designer`
+ERR: 1146:Table 'thd.user_designer' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `user_designer`
+
+[ 2019-08-15T21:36:54+08:00 ] 127.0.0.1 /home/index/details?id=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000514s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000616s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000704s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0163s ]
+SQL: SELECT * FROM `user_questions` WHERE ( q_id = 1 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: details_data F:\project\php-\thinkphp_3.2.3\Application\Home\Controller\IndexController.class.php 第 103 行.
+
+[ 2019-08-15T21:37:17+08:00 ] 127.0.0.1 /home/index/details?id=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000422s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0152s ]
+SQL: SELECT * FROM `user_questions` WHERE ( q_id = 1 ) LIMIT 1   [ RunTime:0.0004s ]
+
+[ 2019-08-15T21:37:34+08:00 ] 127.0.0.1 /home/index/details?id=1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000092s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000672s ]
+SQL: SHOW COLUMNS FROM `user_questions` [ RunTime:0.0201s ]
+SQL: SELECT * FROM `user_questions` WHERE ( q_id = 1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `designer_answer` [ RunTime:0.0101s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `designer_answer` WHERE ( a_questions_id = 1 AND a_status = 3 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `designer_answer` WHERE ( a_questions_id = 1  ) ORDER BY created_at desc  [ RunTime:0.0005s ]
+ERR: 1146:Table 'thd.user_designer' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `user_designer`
+ERR: 1146:Table 'thd.user_designer' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `user_designer`
+
+[ 2019-08-15T23:56:45+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000013s ]
+INFO: [ app_init ] --END-- [ RunTime:0.010651s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.015000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.015051s ]
+
+[ 2019-08-15T23:57:41+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000289s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000401s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+
+[ 2019-08-15T23:58:09+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000461s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000516s ]
+
+[ 2019-08-15T23:58:17+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000390s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001111s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001273s ]
+
+[ 2019-08-15T23:59:19+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000675s ]
+
+[ 2019-08-15T23:59:36+08:00 ] 127.0.0.1 /home/index/arr
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000416s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000434s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000485s ]
+

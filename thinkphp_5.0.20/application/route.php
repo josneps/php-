@@ -11,7 +11,7 @@
 
 use think\Route;
 
-Route::get('/','wechat/Wechat/code');
+// Route::get('/','wechat/Wechat/code');
 
 Route::get('a','wechat/Wechat/add');
 
@@ -27,6 +27,14 @@ Route::post('admin/curl','admin/LoginController/curl'); /** 测试 */
 
 Route::post('admin/article/list', 'admin/ArticleController/lists'); /** 文章列表 */
 
+Route::get('actr/index', 'admin/ArticleController/index'); /** 文章列表 */
 
 Route::get('/404','admin/LoginController/err');
 
+Route::get('index/recursion','index/Recursion/index');
+
+Route::get('index/index','admin/Index/index');
+Route::post('index/index','admin/Index/index');
+
+Route::get('upload','index/Recursion/upload');
+Route::post('upload','index/Recursion/upload');
