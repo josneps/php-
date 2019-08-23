@@ -8,6 +8,7 @@ create table user_questions(
     q_pic varchar(256) DEFAULT '' COMMENT '用户头像',
     q_title varchar(255) not null comment '问题标题',
     q_title_content varchar(255) comment '问题内容',
+    q_img varchar(255) comment '问题图片',
     q_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
     q_answer_num int(6) default 0 not null comment '解答人数',
     q_look_num int(6) default 0 not null comment '浏览人数',
@@ -27,6 +28,7 @@ create table designer_answer(
     a_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
     a_pic varchar(256) DEFAULT '' COMMENT '用户头像',
     a_answer varchar(255) not null comment '设计师的答案',
+    a_img varchar(255) comment '设计师的图片',
     a_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
     a_status tinyint(1) default 1 comment '1表示未查看、 2表示未采纳、 3表示已采纳',
     satisfied int(6) NOT NULL DEFAULT 0 COMMENT '满意',
@@ -76,6 +78,16 @@ create table answer_adopt_num(
     a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     answer int(6) NOT NULL DEFAULT 0 COMMENT '解答',
     adopt int(6) NOT NULL DEFAULT 0 COMMENT '被采纳',
+    integral int(6) NOT NULL DEFAULT 0 COMMENT '积分总额',
+    consumption_integral int(6) NOT NULL DEFAULT 0 COMMENT '消费积分',
     created_at datetime not null comment '创建时间',
     updated_at datetime not null comment '修改时间'
 ) comment ='设计师解答&被采纳个数'
+
+
+问题表：user_questions
+解答表：designer_answer
+浏览日志表：look_number
+设计师积分表：designer_integral
+满意&不满意日志表：satisfied
+设计师解答数&总积分表：answer_adopt_num
