@@ -2,86 +2,90 @@
 自增id、 业主id、 业主昵称、 业主头像、问题标题、问题内容、 当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 解答人数、 发布的时间、 当前状态( 1表示未查看、 2表示未解答、 3表示已解答)、 
 
 create table user_questions(
-    q_id int(11) primary key not null auto_increment comment '自增id',
-    q_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '业主的mid',
+    q_id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    q_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '业主的mid',
     q_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
     q_pic varchar(256) DEFAULT '' COMMENT '用户头像',
-    q_title varchar(255) not null comment '问题标题',
-    q_title_content varchar(255) comment '问题内容',
-    q_img varchar(255) comment '问题图片',
+    q_title varchar(255) NOT NULL COMMENT '问题标题',
+    q_title_content text COMMENT '问题内容',
+    q_img text COMMENT '业主提问的图片素材',
+    village varchar(155) DEFAULT NULL COMMENT '关联小区',
     q_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
-    q_answer_num int(6) default 0 not null comment '解答人数',
-    q_look_num int(6) default 0 not null comment '浏览人数',
-    q_status tinyint(1) default 1 comment '1表示未查看、 2表示未解答、 3表示已解答、 4已采纳',
-    q_del tinyint(1) DEFAULT 1 COMMENT '1表示显示、0表示删除',
-    created_at datetime not null comment '创建时间',
-    updated_at datetime not null comment '修改时间'
+    q_answer_num int(6) NOT NULL DEFAULT '0' COMMENT '解答人数',
+    q_look_num int(6) NOT NULL DEFAULT '0' COMMENT '浏览人数',
+    q_status tinyint(1) DEFAULT '1' COMMENT '1表示未查看、 2表示未解答、 3表示已解答、 4已采纳',
+    q_del tinyint(1) DEFAULT '1' COMMENT '1表示显示、0表示删除',
+    created_at datetime NOT NULL COMMENT '创建时间',
+    updated_at datetime NOT NULL COMMENT '修改时间',
 ) comment ='用户提的问题'
 
 
 自增id、 问题的id、 设计师的id、 设计师的头像、 设计师的答案、当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 答案被查看的次数、 发布的时间、 当前状态（ 1表示未查看、 2表示未采纳、 3表示已采纳）、 满意数、 不满意数、
 
 create table designer_answer(
-    a_id int(11) primary key not null auto_increment comment '自增id',
-    a_questions_id int(11) not null comment '问题的id',
-    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    a_id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    a_questions_id int(11) NOT NULL COMMENT '问题的id',
+    a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     a_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
     a_pic varchar(256) DEFAULT '' COMMENT '用户头像',
-    a_answer varchar(255) not null comment '设计师的答案',
-    a_img varchar(255) comment '设计师的图片',
+    a_answer text NOT NULL COMMENT '设计师的答案',
+    a_img text COMMENT '图片素材',
     a_access_device tinyint(2) NOT NULL DEFAULT '1' COMMENT '访问设备 1 PC 2 安卓 3 IOS 4 其他',
-    a_status tinyint(1) default 1 comment '1表示未查看、 2表示未采纳、 3表示已采纳',
-    satisfied int(6) NOT NULL DEFAULT 0 COMMENT '满意',
-    no_satisfied int(6) NOT NULL DEFAULT 0 COMMENT '不满意',
-    a_del tinyint(1) NOT NULL DEFAULT 1 COMMENT '1表示显示、0表示删除',
-    created_at datetime not null comment '创建时间',
-    updated_at datetime not null comment '修改时间'
+    a_status tinyint(1) DEFAULT '1' COMMENT ' 1表示未查看、 2表示未采纳、 3表示已采纳',
+    upd_num tinyint(1) DEFAULT '0' COMMENT '修改次数',
+    satisfied int(6) NOT NULL DEFAULT '0' COMMENT '满意',
+    no_satisfied int(6) NOT NULL DEFAULT '0' COMMENT '不满意',
+    a_del tinyint(1) NOT NULL DEFAULT '1' COMMENT '1表示显示、0表示删除',
+    created_at datetime NOT NULL COMMENT '创建时间',
+    updated_at datetime NOT NULL COMMENT '修改时间',
 ) comment ='设计师的回答'
 
 
 自增id、 答案id、 业主id、 业主ip， 创建时间
 
 create table look_number(
-    id int(11) primary key not null auto_increment comment '自增id',
-    a_questions_id int(11) not null comment '问题id',
-    user_id varchar(64) comment '浏览人的id',
-    user_ip varchar(15) comment '浏览人的ip',
-    created_at datetime not null comment '创建时间'
+    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    a_questions_id int(11) NOT NULL COMMENT '问题id',
+    user_id varchar(64) DEFAULT NULL COMMENT '浏览人的id',
+    user_ip varchar(15) DEFAULT NULL COMMENT '浏览人的ip',
+    created_at datetime NOT NULL COMMENT '创建时间',
 ) comment ='问题被浏览次数'
 
 
 自增id、 设计师id、 业主id、 业主问题id、 业主问题标题、 积分数量、 分类（解答、 被采纳）、 创建时间
 
 create table designer_integral(
-    id int(11) primary key not null auto_increment comment '自增id',
-    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
-    a_questions_id int(11) not null comment '问题的id',
-    number int(10) default 0 not null comment '设计师积分',
-    status tinyint(1) comment '1表示解答、 2表示被采纳',
-    created_at datetime not null comment '创建时间'
+    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    a_questions_id int(11) DEFAULT NULL COMMENT '问题id',
+    details varchar(255) DEFAULT NULL COMMENT '记录积分详情',
+    number int(10) NOT NULL DEFAULT '0' COMMENT '设计师积分',
+    status tinyint(1) DEFAULT NULL COMMENT '1表示解答、 2表示被采纳、 3表示消费',
+    created_at datetime NOT NULL COMMENT '创建时间',
 ) comment ='设计师答题积分表'
 
 
 create table satisfied(
-    id int(11) primary key not null auto_increment comment '自增id',
-    user_ip varchar(15) comment '浏览人的ip',
-    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
-    a_questions_id int(11) not null comment '问题的id',
-    answer_id int(10) default 0 not null comment '答案的id',
-    status tinyint(1) comment '1表示满意、 2表示不满意',
-    created_at datetime not null comment '创建时间'
+    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    user_ip varchar(15) DEFAULT NULL COMMENT '浏览人的ip',
+    a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    a_questions_id int(11) NOT NULL COMMENT '问题的id',
+    answer_id int(10) NOT NULL DEFAULT '0' COMMENT '答案的id',
+    status tinyint(1) DEFAULT NULL COMMENT '1表示满意、 2表示不满意',
+    created_at datetime NOT NULL COMMENT '创建时间',
 ) comment ='设计师答题满意记录'
+
 
 //设计师解答个数 & 被采纳个数
 create table answer_adopt_num(
-    id int(11) primary key not null auto_increment comment '自增id',
-    a_mid varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
-    answer int(6) NOT NULL DEFAULT 0 COMMENT '解答',
-    adopt int(6) NOT NULL DEFAULT 0 COMMENT '被采纳',
-    integral int(6) NOT NULL DEFAULT 0 COMMENT '积分总额',
-    consumption_integral int(6) NOT NULL DEFAULT 0 COMMENT '消费积分',
-    created_at datetime not null comment '创建时间',
-    updated_at datetime not null comment '修改时间'
+    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    answer int(6) NOT NULL DEFAULT '0' COMMENT '解答',
+    adopt int(6) NOT NULL DEFAULT '0' COMMENT '被采纳',
+    integral int(6) DEFAULT '0' COMMENT '设计师总积分',
+    consumption_integral int(6) DEFAULT '0' COMMENT '积分消费记录',
+    created_at datetime NOT NULL COMMENT '创建时间',
+    updated_at datetime NOT NULL COMMENT '修改时间',
 ) comment ='设计师解答&被采纳个数'
 
 

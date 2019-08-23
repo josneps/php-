@@ -1,31 +1,3 @@
-<!-- <link href="__PUBLIC__/css/lib/chosen_v2.css" rel="stylesheet" />
-<link rel="stylesheet" href="__PUBLIC__/css/sitelog_imagetext_list.css">
-<link href="__PUBLIC__/css/pagination.css" rel="stylesheet" />
-<link href="__PUBLIC__/css/dialog/dialog_sitelogdidi_publish.css" rel="stylesheet" /> -->
-
-<!-- <div class="goodlooking-banner">
-    <div class="container">
-        <div class="link_buttons">
-            <a href="javascript:;" class="pic_publish">
-                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">晒图晒家
-            </a>
-            <a href="javascript:;" class="article_publish">
-                <img src="__PUBLIC__/img/GoodLooking/fbtw.png">发布图文
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="nav">
-    <ul>
-        <li><a href="{:U('article/menuIndex')}">推荐</a><b></b></li>
-        <li><a href="{:U('article/index',array('cate_id'=>1))}">图文攻略</a><b></b></li>
-        <li><a href="{:U('decorateSelect/index')}">优选方案</a><b></b></li>
-        <li><a href="{:U('designview/new_index')}">晒图晒家</a><b></b></li>
-        <li><a href="{:U('DecorationDiary/index')}">装修日记</a><b></b></li>
-        <li class="active"><a href="{:U('AskDesigner/index')}">问设计师</a><b></b></li>
-    </ul>
-</div -->
 
 <link rel="stylesheet" href="/Public/pc/css/lib/bootstrap.css">
 <link rel="stylesheet" href="/Public/pc/css/lib/thdsite.css">
@@ -37,7 +9,6 @@
 
 <link href="__PUBLIC__/css/GoodLooking/goodlooking_banner.css" rel="stylesheet"/>
 <body>
-<!-- <include file="Public/page_header_personal"/> -->
 
 <!--头部结束-->
 <!--轮播图-->
@@ -86,39 +57,52 @@
 
 <div class="main">
     <div class="main-left" style="width: 880px;margin-right: 34px">
-        <!--循环main-box-->
-        <foreach name="list" key="key" item="val">
-            <div class="main-box">
-                <div class="title">
-                    <a href="{:U('AskDesigner//details')}?id={$val.q_id}">{$val.q_title}</a>
+        <if condition="$count eq 0">
+            <!--占位图-->
+            <include file="Public/nolist_tips" />
+
+            <else/>
+
+            <!--循环main-box-->
+            <foreach name="list" key="key" item="val">
+                <div class="main-box">
+                    <div class="title">
+                        <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+
+                    </div>
+                    <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
+                    <if condition = "$val.look_num gt 0">
+                        <!--如果0人回答则不显示-->
+                        <div>
+                            <div>
+                                <img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                                <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
+                            </div>
+                            <!--<if condition = "$vo.a_status eq 2">-->
+                                <!--<div></div>-->
+                            <!--</if>-->
+                        </div>
+
+                        <div class="all_">
+                            <a href="">{$val.a_answer}</a>
+                            <div class="add-all"><span>...&nbsp;</span>查看全文</div>
+                        </div>
+                        <p>{$val.satisfied}满意</p>
+                        <!--如果0人回答则不显示-->
+                    </if>
 
                 </div>
-                <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
-                <if condition = "!empty($val['a_answer'])">
-                    <!--如果0人回答则不显示-->
-                    <div>
-                        <div>
-                            <img src="<?php echo $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
-                            <span>{$val.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}
-                        </div>
-                        <if condition = "$vo.a_status eq 2">
-                            <div></div>
-                        </if>
-                    </div>
+            </foreach>
+        </if>
 
-                    <div class="all_">
-                        <a href="">{$val.a_answer}</a>
-                        <div class="add-all"><span>...&nbsp;</span>查看全文</div>
-                    </div>
-                    <p>{$val.satisfied}满意</p>
-                    <!--如果0人回答则不显示-->
-                </if>
-            </div>
-        </foreach>
         <div class="loading">
-            加载中
+            加载中...
         </div>
+        <!--<div class="thd-pager thd-pager-2">-->
+            <!--{$page}-->
+        <!--</div>-->
     </div>
+
     <div class="main-right">
         <div class="searchbox" style="padding-bottom: 15px;">
             <div class="search-wrap clearfix">
@@ -129,20 +113,20 @@
             </div>
         </div>
 
-        <if condition = "$userinfo.type eq 1">
+        <if condition = "$type eq 1 || $userinfo['type'] eq 1">
             <!--设计师登录-->
             <div class="designer">
-                <img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                <a href="{:U('QuestionAnswer/index')}"><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""></a>
                 <span>{$userinfo.nickname}</span>
                 <ul>
                     <li>回答:{$userinfo.questions_num}</li>
                     <li>采纳:{$userinfo.adopt_num}</li>
                 </ul>
             </div>
-        <elseif condition = "$userinfo.type eq 0"/>
+        <elseif condition = "$type eq 2 || $userinfo['type'] eq 0"/>
             <!--业主-->
             <div class="owner">
-                <img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                <a href="{:U('QuestionAnswer/lists')}"><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""></a>
                 <span>{$nickname}</span>
                 <ul>
                     <li>提问:{$userinfo.questions_num}</li>
@@ -150,7 +134,7 @@
                 </ul>
             </div>
              <!--跳转到提问界面 -->
-            <a href="" class="quiz">我要提问</a>
+            <a href="<?php echo U('QuestionAnswer/addQuestions');?>" class="quiz">我要提问</a>
         <else/>
             <!--未登录-->
             <div class="no-login">
@@ -167,7 +151,7 @@
     </div>
 </div>
 
-
+<script src="/Public/pc/layer/layer.js"></script>
 <script>
     //发布图文
     $(".article_publish").click(function () {
@@ -175,7 +159,7 @@
             if (USERINFO.USER_TYPE == 0 || USERINFO.USER_TYPE == 1) {
                 window.open("{:U('publish/edit')}")
             } else {
-                alert('您没有此功能权限 !');
+                layer.msg('您没有此功能权限 !');
                 return false;
             }
         } else {
@@ -189,7 +173,7 @@
         if (keyword !== '') {
             window.open("{:U('AskDesigner/index')}" + '?title=' + keyword);
         } else {
-            alert('输入搜索内容！');
+            layer.msg('输入搜索内容！');
         }
     });
     //发布晒图晒家
@@ -198,7 +182,7 @@
             if (USERINFO.USER_TYPE == 1 || USERINFO.USER_TYPE == 8) {
                 window.open("{:U('content/sun_edit')}")
             } else {
-                alert('您没有此功能权限 !');
+                layer.msg('您没有此功能权限 !');
                 return false;
             }
         } else {
@@ -206,7 +190,10 @@
             return;
         }
     });
-
+    //未登录
+    $(".no-login>span").click(function () {
+        
+    })
 </script>
 <script>
     $(document).ready(function () {
@@ -276,7 +263,54 @@
     window.onscroll = function () {
         if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
             //数据加载完毕后
-            $(".loading").show().text("已经到底了")
+            let num = $(".main-box").length
+            let page = (num/20)+1
+
+            $.ajax({
+                type: "post",
+                url: "{:U('AskDesigner/index')}",
+                data: {page: page},
+                dataType: "json",
+                success: function (result) {
+                    if(result.state == 1100) {
+                        // console.log(result.message);
+                        var str_res = "";
+                        $(result.message).each(function(i, e) {
+                            console.log(e);
+                            str_res += "<div className=\"main-box\">";
+                            str_res += "<div className=\"title\">";
+                            str_res += "<a href=\"{:U('AskDesigner/details')}?id={e.q_id}\">{e.q_title}</a>";
+                            str_res += "</div>";
+                            str_res += "<p><span>{e.look_num}</span> 人回答 · {e.created_at}发布</p>";
+                            if (e.look_num == 0) {
+                                str_res += "<!--如果0人回答则不显示-->"
+                                str_res += "<div>"
+                                str_res += "<div>"
+                                str_res += "<img"
+                                str_res += "<img src=\"<?php echo e.['a_pic'] ? C('PIC_URl').'/'.e.['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>\" alt=\"\">"
+                                str_res += "<span>{e.a_nickname}</span>&nbsp;·&nbsp;{$userinfo.agencies_name.agencies_name}"
+                                str_res += "</div>"
+                                // str_res += "<if condition=\"$vo.a_status == 2\">"
+                                // if () {
+                                //     str_res += "<div></div>"
+                                // }
+                                str_res += "</div>"
+                                str_res += "<div className=\"all_\">"
+                                str_res += "<a href=\"\">{e.a_answer}</a>"
+                                str_res += "<div className=\"add-all\"><span>...&nbsp;</span>查看全文</div>"
+                                str_res += "</div>"
+                                str_res += "<p>{e.satisfied}满意</p>"
+                                str_res += "<!--如果0人回答则不显示-->"
+                            }
+                            str_res += "</div>"
+                        })
+                        layer.msg(str_res);
+                    } else {
+                        $(".loading").show().text("已经到底了")
+                    }
+                }
+            });
+            // $(".loading").show().text("已经到底了")
         }
     }
 </script>

@@ -1,34 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
-    <title>业主问答后台</title>
-    <include file="Public/page_head"/>
     <link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-quiz.css">
-    <script src="/Public/pc/js/jquery-3.3.1.js"></script>
     <script src="/Public/pc/layui/layui.js"></script>
     <link rel="stylesheet" href="/Public/pc/layui/css/layui.css">
-</head>
-<body>
-
-<div class="page_content">
+<div class="page_content"  style="padding-top: 20px">
     <div class="container">
-        <div class="side_nav_bar_mine" style="margin-right: 20px">
-            <include file="Common/side_nav_account_setting_personal"/>
-        </div>
+        <include file="Common/side_nav_account_setting_personal"/>
         <div class="box">
             <div class="nav">
                 我要提问
             </div>
-            <input type="text" id="title" value="" placeholder="一句话完整的描述你的问题（最多50字）">
+            <input type="text" id="title" value="{$questions_data.q_title}" placeholder="一句话完整的描述你的问题（最多50字）">
             <p class="title">问题补充</p>
             <div class="summary">
             <textarea id="brief" class="tex" rows="5" placeholder="选填，请输入20-1000个字的问题补充" maxlength="1000"
                       onchange="this.value=this.value.substring(0, 1000)"
                       onkeydown="this.value=this.value.substring(0, 1000)"
-                      onkeyup="this.value=this.value.substring(0, 1000)"></textarea>
+                      onkeyup="this.value=this.value.substring(0, 1000)">{$questions_data.q_title_content}</textarea>
                 <p class="num"><span class="written">0</span>/<span class="surplus">1000</span></p>
             </div>
             <!--上传图片-->
@@ -40,7 +26,10 @@
                         <notempty name="img">
                             <foreach name="img" key="key" item="vo">
                                 <div style="position: relative" id="upload-{$key}">
-                                    <img src="{:C('PIC_URl')}/{$vo}" class="layui-upload-img last-pic">
+                                    <foreach name="img" key="k" item="v">
+                                        <img src="{$v}" class="layui-upload-img last-pic">
+                                    </foreach>
+
                                     <div class="del demo-delete">
                                         <img src="/Public/pc/img/GoodLooking/sc.png">
                                     </div>
@@ -52,7 +41,7 @@
                 </div>
                 <span class="layui-upload-ts">最多上传5张图片</span>
             </div>
-            <!--<input type="hidden" id="id" value="{$id}">-->
+            <input type="hidden" id="id" value="{$id}">
 
             <!--关联小区-->
             <div class="association">
@@ -67,8 +56,15 @@
 
     </div>
 </div>
+    <script type="text/javascript">
+        $(".side_nav_bar>ul>li>ul>li").each(function (i, elem) {
+            var menuname = $(elem).find('>a').text();
+            if ($.trim(menuname) == '我的问答') {
+                $(elem).addClass("on");
+            }
+        });
+    </script>
 
-</body>
 <script>
     // <!--关联小区提示-->
     $(".prompt").hover(function () {
@@ -135,7 +131,7 @@
             , done: function (res, index, upload) {
                 if (res.state == 1100) {
                 }
-                //console.log(res, index, upload)
+
             }
         });
     });
@@ -168,9 +164,17 @@
         var id = $.trim($("#id").val());
         var title = $.trim($("#title").val());
         if (title == '') {
-            layer.msg('问题不能为空');
+                layer.msg('问题不能为空');
+                return false;
+        }
+        //问题补充
+       let briefNum =  $("#brief").val().length
+        if(briefNum<=20&&briefNum>=1){
+            layer.msg('内容补充必须超过20个字哦');
             return false;
         }
+        var brief = $.trim($("#brief").val());
+
         // 小区
         var building_no = $.trim($("input[name='building_no']").val());
         var form = new FormData();
@@ -181,11 +185,8 @@
         form.append("building_no", building_no);
         form.append("id", id);
         form.append("last_src", last_src);
-
+        form.append("content", brief);
         $(".publish").attr('disabled',true);
-
-        // return false;
-
         $.ajax({
             type: "POST",
             url: "{:U('QuestionAnswer/addQuestions')}",
@@ -196,6 +197,7 @@
             dataType: "json",
             success: function (result) {
                 if (result.state == 1100) {
+                    layer.msg('发布成功！');
                     location.href = "{:U('QuestionAnswer/lists')}";
                 } else {
                     toastAdvice({
@@ -209,4 +211,3 @@
     }
 </script>
 
-</html>

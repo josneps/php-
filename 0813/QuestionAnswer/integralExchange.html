@@ -1,0 +1,91 @@
+    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/designer-management.css">
+    <link rel="stylesheet" href="/Public/pc/css/lib/font-awesome.min.css">
+    <script src="/Public/pc/layer/layer.js"></script>
+
+<div class="page_content" >
+    <div class="container">
+        <div class="side_nav_bar_mine" style="margin-right: 20px">
+            <include file="Common/side_nav_account_setting_personal"/>
+        </div>
+        <div class="box">
+            <ul class="box-nav">
+                <li class="exchange">积分记录</li>
+            </ul>
+            <div class="img-box">
+                <a href="" class="download">下载设计软件</a>
+                <img src="/Public/pc/img/GoodLooking/design_system.png" alt="">
+                <img src="/Public/pc/img/GoodLooking/designer_app.png" alt="">
+            </div>
+            <p class="exchange-tit"><span>兑换渲染点</span><span>渲染点是？</span></p>
+            <p class="total-points">我的积分 <span>{$sum.integral}</span></p>
+            <ul class="integration">
+                <!--循环li-->
+                <foreach name="arr" key="key" item="val">
+                    <li ids="{$key}"><p><span>{$val.dian}</span><span>渲染点</span></p><span>{$val.fen}积分</span></li>
+                </foreach>
+            </ul>
+            <button class="confirm">确认兑换</button>
+            <div class="prompt-wrap">
+                <div class="prompt">
+                    <div class="prompt-tit">渲染点是？</div>
+                    <ul>
+                        <li><p>1.渲染点概念？</p>
+                            <p>答：渲染点是仅在庭好的极速设计系统 <a href="http://d.thd99.com/">http://d.thd99.com/</a> 的交易货币。</p></li>
+                        <li><p>2.渲染点作用？</p>
+                            <p>答：设计软件中生成VR全景和效果图时，会消耗渲相应染点。</p></li>
+                        <li><p>3.渲染点使用规则？</p>
+                            <p>答：每次在设计软件中渲染一个空间成功时则消耗一点渲染点。</p></li>
+                        <li><p>4.如何获取渲染点</p>
+                            <p>答：①在设计软件“体验区”中可以直接购买，1点渲染点等于4.9元；</p>
+                            <p style="padding-left: 28px">②在问答中通过解答业主提问或被采纳时，会获取到相应的积分，积分用于兑换渲染点。</p></li>
+                    </ul>
+                    <button>我知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".integration>li").each(function (i,e) {
+        $(this).click(function () {
+            $(this).addClass("myactive").siblings().removeClass("myactive")
+        })
+    })
+    $(".exchange-tit>span").each(function (i,e) {
+        $(".exchange-tit>span").eq(1).click(function () {
+            $(".prompt-wrap").show()
+        })
+    })
+    $(".prompt>button").click(function () {
+        $(".prompt-wrap").hide()
+    })
+</script>
+
+<script>
+    //兑换积分
+    $('.confirm').click(function () {
+        var key = $('.myactive').attr('ids');
+        if(key != undefined){
+
+            $.ajax({
+                type: "POST",
+                url: "{:U('QuestionAnswer/integralExchange')}",
+                data: {key: key},
+                dataType: "json",
+                success: function (result) {
+                    if (result.start == 1100) {
+                        layer.msg(result.message);
+                        location.href='';
+                    } else {
+                        layer.msg(result.message);
+
+                    }
+                }
+            });
+
+            return false;
+        }
+        layer.msg('请选择要兑换的积分');
+    });
+</script>
