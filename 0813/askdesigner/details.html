@@ -97,61 +97,67 @@
             <!--0条的时候不可见-->
             <!--回答全部可见-->
             <div class="other-answers">
-                <span>{$is_show}</span>条其他回答
+                <span>{$count}</span>条其他回答
             </div>
             <!--循环more-answers-->
+<div class="wrap-s">
+    <foreach name="data" key="key" item="val">
+        <if condition="$val['a_status'] eq 3">
+            <div class="more-answers good_">
+                <else/>
+                <div class="more-answers more-ans">
+        </if>
 
-            <foreach name="data" key="key" item="val">
-                <if condition="$val['a_status'] eq 3">
-                    <div class="more-answers good_">
-                        <else/>
-                        <div class="more-answers">
-                </if>
-
-                <div class="more-answers-top">
-                    <div>
-                        <img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>"
-                             alt="">
-                        <if condition="$userinfo['type'] eq 0">
-                            <span class="focus">+关注</span>
-                        </if>
-
-                    </div>
-                    <div>
-                        <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
-                        <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
-                            {$val.adopt}</p>
-                    </div>
-                </div>
-                <div class="more-answers-content">
-                    {$val.a_answer}
-                    <p class="expansion-s"><span>展开内容</span></p>
-                </div>
-
+        <div class="more-answers-top">
+            <div>
+                <img src="<?php echo $val['a_pic'];?>"
+                     alt="">
                 <if condition="$userinfo['type'] eq 0">
-                    <!--游客可见-->
-                    <div class="more-answers-foo">
-                        <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
-                        <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
-                    </div>
+                    <span class="focus">+关注</span>
                 </if>
 
-                <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
-                    <!--提问者本人可见-->
-                    <div class="more-answers-footer" aid="{$val.a_id}">
-                        采纳意见
-                    </div>
-                </if>
-
-                <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
-                    <!--回答本问题的设计师可见-->
-                    <div class="more-answers-res" a_id="{$val.a_id}">
-                        修改答案
-                    </div>
-                </if>
+            </div>
+            <div>
+                <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
+                <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
+                    {$val.adopt}</p>
+            </div>
+        </div>
+        <div class="more-answers-content">
+            {$val.a_answer}
+            <p class="expansion-s"><span>展开内容</span></p>
         </div>
 
-        </foreach>
+        <if condition="$userinfo['type'] eq 0">
+            <!--游客可见-->
+            <div class="more-answers-foo">
+                <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
+                <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
+            </div>
+        </if>
+
+        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
+            <!--提问者本人可见-->
+            <div class="more-answers-footer" aid="{$val.a_id}">
+                采纳意见
+            </div>
+        </if>
+
+        <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
+            <!--回答本问题的设计师可见-->
+            <div class="more-answers-res" a_id="{$val.a_id}">
+                修改答案
+            </div>
+        </if>
+</div>
+
+            </foreach>
+            <div class="loading">
+                加载中...
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -451,4 +457,119 @@
         $(".good-wrap .expansion-s").hide()
         $(".good-wrap .more-answers-content").removeClass("content-h")
     })
+    //文档高度
+    function getDocumentTop() {
+        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+        if (document.body) {
+            bodyScrollTop = document.body.scrollTop;
+        }
+        if (document.documentElement) {
+            documentScrollTop = document.documentElement.scrollTop;
+        }
+        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+        return scrollTop;
+    }
+    //可视窗口高度
+    function getWindowHeight() {
+        var windowHeight = 0;
+        if (document.compatMode == "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            windowHeight = document.body.clientHeight;
+        }
+        return windowHeight;
+    }
+    //滚动条滚动高度
+    function getScrollHeight() {
+        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+        if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+        }
+        if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+        }
+        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+        return scrollHeight;
+    }
+    window.onscroll = function () {
+        if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
+            //数据加载完毕后
+            let num = $(".wrap-s>.more-ans").length
+            if(num<5){
+                console.log("小于5")
+                return false;
+            }
+            let page = (num/5)+1;
+            let id = 51;
+            console.log(page,"page",num,"num")
+            $.ajax({
+                type: "post",
+                url: "{:U('AskDesigner/details')}",
+                data: {page: page, id: id},
+                dataType: "json",
+                success: function (result) {
+                    if(result.state == 1100) {
+                        console.log(result)
+                        console.log("总条数",result.count)
+                        if(num<result.count){
+                            console.log("加载")
+                            var str_res = "";
+                            $(result.message).each(function(i,e) {
+                                str_res += `            <div class="more-answers more-ans">
+                <div class="more-answers-top">
+                    <div>`
+                    if(e.a_pic){
+                                    str_res+=`<img src="${e.a_pic}">`
+
+                                }else{
+                                    str_res+=`<img src="/Public/pc/img/GoodLooking/mr.png">`
+                    }
+                                    str_res+=`
+                                    <span class="focus">+关注</span></div>
+                    <div>
+                        <p>${e.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>${e.agencies_name}</span></p>
+                        <p>${e.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: ${e.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: ${e.adopt}</p>
+                    </div>
+                </div>
+                <div class="more-answers-content">
+                ${e.a_answer}
+                </div>`
+                                        if(result.type == 0){
+                                            str_res+=`
+                                            <!--可见-->
+                                        <div class="more-answers-foo">
+                                                <span class="">${e.satisfied}</span>
+                                                <span class="">${e.no_satisfied}</span>
+                                                </div>`
+                                        }
+if(e.a_mid == result.mid&&result.caina==2){
+    str_res+=`
+<!--提问者本人可见-->
+                <div class="more-answers-footer">
+                    采纳意见
+                </div>`
+}
+
+                                if(e.a_mid==result.mid&&e.str_res!=3&&e.upd_num==0){
+                                    str_res +=`
+
+                <!--回答本问题的设计师可见-->
+                <div class="more-answers-res">
+                    修改答案
+                </div>
+            `
+                            }
+                                str_res+=`</div>`
+                            })
+                            $('.wrap-s').append(str_res);
+
+                        }else{
+                            $(".loading").css("paddingTop","0").text("已经到底了")
+                        }
+
+                    }
+                }
+            });
+        }
+    }
 </script>

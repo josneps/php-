@@ -74,6 +74,7 @@ class QuestionAnswerController extends BaseController
             $answer_data = M('designer_answer as a')
                 ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
                 ->where($user_where)
+                ->group("a.a_questions_id")
                 ->order("a.created_at desc")
                 ->limit(($nowPage-1)*$pageSize,$pageSize)
                 ->select();
@@ -89,6 +90,7 @@ class QuestionAnswerController extends BaseController
                 ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
                 ->where($user_where)
                 ->where("a.a_status = 3")
+                ->group("a.a_questions_id")
                 ->order("a.created_at desc")
                 ->limit(($nowPage-1)*$pageSize,$pageSize)
                 ->select();
@@ -158,8 +160,37 @@ class QuestionAnswerController extends BaseController
                     'updated_at' => date('Y-m-d H:i:s', time())
                 );
 
+                //检查是否解答过这道题
+                $is = M('designer_answer')->where("a_questions_id = $questions_id AND a_mid = '".$this->userInfo['mid']."'")->find();
+
                 //添加解答表
                 M('designer_answer')->add($data);
+
+                //获取解答个数
+                $q_answer_num = M('user_questions')->where("q_id = $questions_id")->find();
+                $q_num = $q_answer_num['q_answer_num'] + 1;
+
+                //修改业主提问的状态（已解答）
+                M('user_questions')->where("q_id = $questions_id")->save(['q_status' => 3]);
+                M('user_questions')->where("q_id = $questions_id")->save(['q_answer_num' => $q_num]);
+
+                //不是第一次解答这道题，可以解答，但是没积分
+                if($is) {
+                    $integral_data = array(
+                        'a_mid' => $data['a_mid'],
+                        'a_questions_id' => $data['a_questions_id'],
+                        'status' => 1
+                    );
+                    $num_data = M('answer_adopt_num')->where("a_mid = '$id'")->find();
+                    $arr = array(
+                        'answer' => $num_data['answer'] + 1,
+                        'updated_at' => date('Y-m-d H:i:s', time())
+                    );
+                    M('answer_adopt_num')->where("a_mid = '$id'")->save($arr);
+                    Db::commit();
+                    $this->ajaxReturn(array('state' => 1100, 'message' => '解答成功'));
+                }
+
                 // 获得一定的积分
                 $integral_data = array(
                     'a_mid' => $data['a_mid'],
@@ -216,14 +247,6 @@ class QuestionAnswerController extends BaseController
                     M('evaluate_msg')->add($evaluate_data);
                 }
 
-                //获取解答个数
-                $q_answer_num = M('user_questions')->where("q_id = $questions_id")->find();
-                $q_num = $q_answer_num['q_answer_num'] + 1;
-
-                //修改业主提问的状态（已解答）
-                M('user_questions')->where("q_id = $questions_id")->save(['q_status' => 3]);
-                M('user_questions')->where("q_id = $questions_id")->save(['q_answer_num' => $q_num]);
-
                 Db::commit();
                 $this->ajaxReturn(array('state' => 1100, 'message' => '解答成功'));
             } catch(\Exception $e) {
@@ -241,7 +264,7 @@ class QuestionAnswerController extends BaseController
 
 
     /**
-     * @todo: 更新设计师的解答的状态 & 采纳
+     * @todo: 更新设计师的解答的状态 & 业主采纳了设计师的解答
      * @author： friker
      * User: Administrator
      * Date: 2019/8/15
@@ -358,6 +381,9 @@ class QuestionAnswerController extends BaseController
             $this->ajaxReturn(array('state' => 1102, 'message' => '非法请求！'));
         }
 
+        if(!$this->userInfo['mid']) {
+            $this->ajaxReturn(array('state' => 1102, 'message' => '亲，要先登录哦…'));
+        }
         //接值
         $a_id = trim(I('id'));    //解答自增id
         //获取一条解答的数据
@@ -384,8 +410,8 @@ class QuestionAnswerController extends BaseController
 
             $data                 = [];
             $ip                   = get_client_ip();
-            $data['mid']          = 'thd99';
-            $data['user_no']      = $questions_data['q_mid'] ? $questions_data['q_mid'] : 'thd99';
+            $data['mid']          = $questions_data['q_mid'];
+            $data['user_no']      = '';
             $data['user_type']    = 0;
             $data['creat_time']   = date("Y-m-d H:i:s", time());
             $data['uptype']       = 5;
@@ -480,7 +506,7 @@ class QuestionAnswerController extends BaseController
         $this->assign('sum', $sum);
         $this->assign('data', $data);
         $this->assign('page', $show);
-//print_r($data);die;
+
         $this->view('QuestionAnswer/integral', 3);
     }
 
@@ -528,6 +554,17 @@ class QuestionAnswerController extends BaseController
                 );
 
                 M('designer_integral')->add($arr);
+
+//                //获取设计师编号
+//                $designer_no = M('user_designer')->where("mid = '".$this->userInfo['mid']."'")->getField('designer_no');
+//
+//
+//                $farmcard_data = M('win_farmcard_info')->where("designer_no = '".$designer_no."'")->find();
+//                if(!$farmcard_data){
+//                    $this->ajaxReturn(array('state' => 1102, 'message' => '您还没有渲染卡'));
+//                }
+//
+//                M('win_farmcard_info')->where("")->save();
 
                 Db::commit();
                 $this->ajaxReturn(array('state' => 1100, 'message' => '兑换成功'));

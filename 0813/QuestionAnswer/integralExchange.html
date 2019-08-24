@@ -75,6 +75,7 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.start == 1100) {
+                        alert(result.message);
                         layer.msg(result.message);
                         location.href='';
                     } else {

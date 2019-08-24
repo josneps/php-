@@ -34,6 +34,9 @@ class AskDesignerController extends BaseController
      */
     public function index()
     {
+        //设置路由:普通模式
+        $this->initSearchTop(7);
+
         $title = trim(I('title', ''));
         //当前页和每页显示的个数
         $nowPage = I('page',1,'int');
@@ -64,17 +67,33 @@ class AskDesignerController extends BaseController
             //获取解答
             $answer_data = M('designer_answer')->where('a_questions_id in ('.$ids.')')->order('created_at desc')->select();
 
+            foreach ($answer_data as $key => $val) {
+                $mid[] = $val['a_mid'];
+            }
+
+            //将数组分割成字符串
+            $mids = "'";
+            //将数组分割成字符串
+            $mids .= implode("','", $mid);
+            $mids .= "'";
+
+            //设计师属于哪个公司机构
+            $designer = M('user_designer')->field('mid, agencies_name')->where("mid in (".$mids.")")->select();
+
             //统计解答人数
             $num = M('designer_answer')->field('count(a_id) as num, a_questions_id')->where('a_questions_id in ('.$ids.')')->group('a_questions_id')->order('created_at desc')->select();
 
             //搜索内容标红&数据组合
             foreach ($data as $key => $value) {
+                //初始化浏览次数0
                 $data[$key]['look_num'] = 0;
+                //浏览数量
                 foreach ($num as $k => $v) {
                     if($value['q_id'] == $v['a_questions_id']) {
                         $data[$key]['look_num'] = $v['num'];
                     }
                 }
+
                 if ($answer_data){
                     foreach ($answer_data as $k => $v) {
                         if($value['q_id'] == $v['a_questions_id']) {
@@ -82,7 +101,7 @@ class AskDesignerController extends BaseController
                             $data[$key]['a_questions_id'] = $v['a_questions_id'];
                             $data[$key]['a_mid'] = $v['a_mid'];
                             $data[$key]['a_nickname'] = $v['a_nickname'];
-                            $data[$key]['a_pic'] = $v['a_pic'];
+                            $data[$key]['a_pic'] = $v['a_pic'] ? C('PIC_URl').'/'.$v['a_pic'] : '__PUBLIC__/img/avatar.png' ;
                             $data[$key]['a_answer'] = $v['a_answer'];
                             $data[$key]['a_img'] = $v['a_img'];
                             $data[$key]['a_access_device'] = $v['a_access_device'];
@@ -100,6 +119,8 @@ class AskDesignerController extends BaseController
                 $data[$key]['q_title'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title']);
                 $data[$key]['q_title_content'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title_content']);
             }
+
+            $type = 3;
             //是否登录
             if(!empty($this->userInfo)){
                 $userInfo['pic'] = $this->userInfo['pic'];
@@ -114,8 +135,19 @@ class AskDesignerController extends BaseController
                     //设计师
                     $type = 1;
                     $userInfo['agencies_name'] = M('user_designer')->field('agencies_name')->where("mid = '".$this->userInfo['mid']."'")->find();
-                    $userInfo['questions_num'] = M('designer_answer')->where("a_mid = '".$this->userInfo['mid']."'")->count();  // 解答个数
-                    $userInfo['adopt_num'] = M('user_questions as u')->join('designer_answer d on u.q_id = d.a_questions_id')->where("d.a_status = 3 AND d.a_mid ='".$this->userInfo['mid']."'")->count();   // 采纳个数
+                    //设计师的解答 & 被采纳个数
+//                    $answerAdopt = M('answer_adopt_num')->field('a_mid mid, answer, adopt')->where("a_mid in (".$mids.")")->select();
+                    $userInfo['questions_num'] = M('answer_adopt_num')->where("a_mid = '".$this->userInfo['mid']."'")->getField('answer');  // 解答个数
+                    $userInfo['adopt_num'] = M('answer_adopt_num')->where("a_mid ='".$this->userInfo['mid']."'")->getField('adopt');   // 采纳个数
+                }
+            }
+
+            foreach ($data as $key => $val) {
+                //设计师所属机构
+                foreach ($designer as $k => $v) {
+                    if($val['a_mid'] == $v['mid']) {
+                        $data[$key]['agencies_name'] = $v['agencies_name'];
+                    }
                 }
             }
 
@@ -123,7 +155,6 @@ class AskDesignerController extends BaseController
             $Page = new \Org\Util\PageNewThd($count,I('get.'),$pageSize,$nowPage);// 实例化分页类 传入总记录数和每页显示的记录数
             // 分页显示输出
             $show = $Page->shownew();
-
 
             $this->assign('page', $show);
             $this->assign('list', $data);
@@ -134,9 +165,7 @@ class AskDesignerController extends BaseController
         $this->assign('total', $count);
         $this->assign('count', $count);
         $this->assign('userinfo', $userInfo);
-        $this->assign('type', $type);
-
-//        print_r($type);die;
+        $this->assign('type', $type);               //判断是否登录
 
         if (IS_AJAX) {
             $this->ajaxReturn(array('state' => 1100, 'message' => $data, 'count' => $count));
@@ -146,7 +175,6 @@ class AskDesignerController extends BaseController
         } else {
             //搜索后的列表页
             $this->view('askdesigner/searchDesigner', 2);
-
         }
 
     }
@@ -183,11 +211,18 @@ class AskDesignerController extends BaseController
      */
     public function details()
     {
+        //设置路由:普通模式
+        $this->initSearchTop(7);
+
         //接收id
         $id = trim(I('id'));
         $where = "q_id = $id";
         //获取问题
         $detail_data = $this->questions->where($where)->find();
+
+        //当前页和每页显示的个数
+        $nowPage = I('page',1,'int');
+        $pageSize = 5;
 
         $img = json_decode(base64_decode($detail_data['q_img']),true);
 
@@ -201,10 +236,13 @@ class AskDesignerController extends BaseController
         if($this->answer->where("a_questions_id = $id AND a_status = 3")->count()) {
             //判断是否有采纳的使用count统计
             $data[] = $this->answer->where("a_questions_id = $id AND a_status = 3")->order("created_at desc")->find();
-            $res = $this->answer->where("a_questions_id = $id AND a_id != ".$data[0]['a_id'])->order("created_at desc")->select();
+            //获取其他答案
+            $res = $this->answer->where("a_questions_id = $id AND a_id != ".$data[0]['a_id'])->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            //统计其他回答条数
+            $count = $this->answer->where("a_questions_id = $id AND a_id != ".$data[0]['a_id'])->order("created_at desc")->count();
 
             //循环取出设计师mid存入数组
-            foreach ($data as $v) {
+            foreach ($res as $v) {
                 $ids[] = $v['a_mid'];
             }
             //将数组分割成字符串
@@ -225,6 +263,7 @@ class AskDesignerController extends BaseController
             }
 
             foreach ($data as $key => $val) {
+                $data[$key]['a_pic'] = $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png' ;
                 foreach ($designer as $k => $v) {
                     if($val['a_mid'] == $v['mid']) {
                         $data[$key]['agencies_name'] = $v['agencies_name'];
@@ -237,10 +276,13 @@ class AskDesignerController extends BaseController
                     }
                 }
             }
+
             $caina = 1;
         } else {
+
             //没有采纳的
-            $data = $this->answer->where("a_questions_id = $id ")->order("created_at desc")->select();
+            $data = $this->answer->where("a_questions_id = $id ")->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            $count = $this->answer->where("a_questions_id = $id ")->order("created_at desc")->count();
 
             //循环取出设计师mid存入数组
             foreach ($data as $v) {
@@ -260,11 +302,15 @@ class AskDesignerController extends BaseController
 
 
             foreach ($data as $key => $val) {
+                $data[$key]['a_pic'] = $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png' ;
                 foreach ($designer as $k => $v) {
                     if($val['a_mid'] == $v['mid']) {
                         $data[$key]['agencies_name'] = $v['agencies_name'];
                     }
                 }
+                //初始化为0次
+                $data[$key]['answer'] = 0;
+                $data[$key]['adopt'] = 0;
                 foreach ($answerAdopt as $k => $v) {
                     if($val['a_mid'] == $v['mid']) {
                         $data[$key]['answer'] = $v['answer'];
@@ -274,8 +320,6 @@ class AskDesignerController extends BaseController
             }
             $caina = 2;
         }
-
-        $is_show = count($data);
 
         //统计浏览次数
         if(!empty($this->userInfo)){
@@ -307,13 +351,19 @@ class AskDesignerController extends BaseController
         $this->assign("details_data", $detail_data);
         $this->assign("userinfo", $this->userInfo);
         $this->assign("data", $data);
-        $this->assign("is_show", $is_show);
         $this->assign('caina', $caina);
         $this->assign('img', $img);
+        $this->assign('count', $count);
 
-//        print_r($this->userInfo);die;
+//        print_r($data);die;
 
-        $this->view('askdesigner/details', 2);
+        if(IS_AJAX) {
+            $this->ajaxReturn(array('state' => 1100, 'message' => $data, 'count' => $count, 'mid' => $this->userInfo['mid'], 'caina' => $caina, 'type' => $this->userInfo['type']));
+        } else {
+            $this->view('askdesigner/details', 2);
+        }
+
+
     }
 
     /**

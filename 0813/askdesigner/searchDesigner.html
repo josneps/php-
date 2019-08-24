@@ -35,7 +35,7 @@
                         <!--如果0人回答则不显示-->
                         <div>
                             <div>
-                                <img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt="">
+                                <img src="<?php echo $val['a_pic'] ;?>" alt="">
                                 <span>{$val.a_nickname}</span>
                             </div>
                             <if condition = "$vo.a_status eq 2">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="all_">
-                            <a href="">{$val.a_answer}</a>
+                            <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.a_answer}</a>
                             <div class="add-all"><span>...&nbsp;</span>查看全文</div>
                         </div>
                         <p>{$val.satisfied}满意</p>
