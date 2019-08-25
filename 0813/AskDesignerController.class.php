@@ -80,6 +80,11 @@ class AskDesignerController extends BaseController
             //设计师属于哪个公司机构
             $designer = M('user_designer')->field('mid, agencies_name')->where("mid in (".$mids.")")->select();
 
+            //获取设计师编号
+            $designer_data = M('user_designer')->where("mid in (".$mids.")")->getField('mid, designer_no');
+
+
+
             //统计解答人数
             $num = M('designer_answer')->field('count(a_id) as num, a_questions_id')->where('a_questions_id in ('.$ids.')')->group('a_questions_id')->order('created_at desc')->select();
 
@@ -108,6 +113,7 @@ class AskDesignerController extends BaseController
                             $data[$key]['a_status'] = $v['a_status'];
                             $data[$key]['satisfied'] = $v['satisfied'];
                             $data[$key]['no_satisfied'] = $v['no_satisfied'];
+                            $data[$key]['designer_no'] = $designer_data[$v['a_mid']];
                             $data[$key]['a_del'] = $v['a_del'];
                             $data[$key]['created_at'] = $v['created_at'];
                             $data[$key]['updated_at'] = $v['updated_at'];
@@ -119,6 +125,8 @@ class AskDesignerController extends BaseController
                 $data[$key]['q_title'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title']);
                 $data[$key]['q_title_content'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title_content']);
             }
+
+//            print_r($data);die;
 
             $type = 3;
             //是否登录
