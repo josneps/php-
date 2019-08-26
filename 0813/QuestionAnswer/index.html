@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
-    <title>设计师问答后台</title>
-    <include file="Public/page_head" />
-    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/designer-management.css">
-</head>
-<body>
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/designer-management.css">
 
 <div class="page_content" >
     <div class="container">
         <div class="side_nav_bar_mine">
-            <include file="Common/side_nav_account_setting_personal"/>
+            <include file="Common/side_nav_personal" />
         </div>
 
         <div class="wrap">
@@ -21,53 +11,95 @@
                 <li><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt=""><p>{$userinfo.nickname}</p></li>
                 <li><p>{$answer_num}</p><p>解答数</p></li>
                 <li><p>{$integral_num}</p><p>采纳数</p></li>
-                <li><p>1022</p><p><a href="">积分值</a></p></li>
-                <li><a href="">积分兑换</a></li>
+                <li><p>{$sun.integral}</p><p><a href="{:U('QuestionAnswer/integral')}">积分值</a></p></li>
+                <li><a href="{:U('QuestionAnswer/integralExchange')}">积分兑换</a></li>
             </ul>
             <div class="main-box">
                 <ul class="nav">
                     <li class="myactive">我回答的问题</li>
                     <li>邀请我回答</li>
+                    <li>
+                        <if condition = "$status eq 3">
+                            <p class="rad" id="cainas"><input type="checkbox" checked value="123">被采纳</p>
+                        <else/>
+                            <p class="rad" id="caina"><input type="checkbox" value="123">被采纳</p>
+                        </if>
+                    </li>
                 </ul>
-                <p class="rad"><input type="radio">被采纳</p>
-                <!--循环main-->
-                <foreach name="answer_data" key="key" item="val">
-                    <div class="main">
-                        <p>
-                            <a href="">{$val.q_title}</a>
-                            <if condition = "$val.status == 2">
-                                <span class="special">回答被采纳</span>
-                            </if>
 
-                        </p>
-                        <p>
-                            <img src="<?php echo $val['q_pic'] ? C('PIC_URl').'/'.$val['q_pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt="">
-                            {$val.q_nickname}&nbsp;提问&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>{$val.q_answer_num}</span>人回答&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.created_at}
-                        </p>
-                        <!--在指定我的问答不需要时间-->
-                    </div>
-                </foreach>
+                <if condition="$answer_num eq 0">
+                    <!--占位图-->
+                    <include file="Public/nolist_tips" />
 
+                    <else/>
+
+                    <!--循环main-->
+                    <foreach name="answer_data" key="key" item="val">
+                        <div class="main">
+                            <p>
+                                <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+                                <if condition = "$val.a_status == 3">
+                                    <span class="special">回答被采纳</span>
+                                </if>
+                            </p>
+                            <p>
+                                <img src="<?php echo $val['q_pic'] ? C('PIC_URl').'/'.$val['q_pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt="">
+                                {$val.q_nickname}&nbsp;提问&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>{$val.q_answer_num}</span>人回答&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.created_at}
+                            </p>
+                            <!--在指定我的问答不需要时间-->
+                        </div>
+                    </foreach>
+                </if>
+
+                <div class="thd-pager thd-pager-2">
+                    {$page}
+                </div>
             </div>
+
         </div>
     </div>
 </div>
-
-</body>
+<script type="text/javascript">
+    (function ($) {
+        $("ul.side_nav>li>ul>li").each(function (i, elem) {
+            var menuname = $(elem).find('>a').text();
+            if (menuname == '我的问答') {
+                $(this).addClass('on');
+                $(this).parents('li').addClass('on active');
+                return;
+            }
+        });
+    })(jQuery);
+</script>
 <script>
+    $("[type='checkbox']").click(function() {
+        if ($(this).attr("checked")) {
+            console.log("取消选中")
+            $(this).removeAttr("checked");
+        } else {
+            console.log("选中了")
+            $(this).attr("checked", 'true');
+        }
+    })
     $(".nav>li").each(function (i,e) {
-        $(this).click(function () {
+
+        $(".nav>li:nth-of-type(1)").click(function () {
+            $(".rad").show()
+            $(".main>p:nth-of-type(1)>span").addClass("special").text("回答被采纳")
             $(this).addClass("myactive").siblings().removeClass("myactive")
         })
         $(".nav>li:nth-of-type(2)").click(function () {
             $(".rad").hide()
             $(".main>p:nth-of-type(1)>span").removeClass("special").text("待解决")
-        })
-        $(".nav>li:nth-of-type(1)").click(function () {
-            $(".rad").show()
-            $(".main>p:nth-of-type(1)>span").addClass("special").text("回答被采纳")
+            $(this).addClass("myactive").siblings().removeClass("myactive")
         })
     })
+    $('#caina').click(function () {
+        window.location.href="{:U('QuestionAnswer/index')}?status=3"
+    })
+    $('#cainas').click(function () {
+        window.location.href="{:U('QuestionAnswer/index')}"
+    })
 </script>
-</html>
+

@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
-    <title>业主问答后台</title>
-    <include file="Public/page_head"/>
-    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-management.css">
-</head>
-<body>
-
-
-<div class="page_content">
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-management.css">
+<div class="page_content" style="padding-top: 20px">
     <div class="container">
-        <div class="side_nav_bar_mine" style="margin-right: 20px">
-            <include file="Common/side_nav_account_setting_personal"/>
-        </div>
+        <include file="Common/side_nav_account_setting_personal"/>
         <div class="box">
             <ul class="header">
                 <li>我的问答</li>
@@ -49,45 +35,62 @@
                 <!--循环main-->
                 <foreach name="data" key="key" item="val">
                     <li class="main">
-                        <div><p>{$val.q_answer_num}</p><p>回答</p></div>
+                        <div><p>{$val.q_answer_num}</p>
+                            <p>回答</p></div>
                         <div>
                             <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
                             <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过</p>
                         </div>
 
-                        <div class="wait">
-                            <if condition = "$val.q_status == 1 or $val.q_status == 2">
+                        <if condition="$val.q_status == 1 or $val.q_status == 2">
+                            <div class="wait">
                                 待解答
-                                <elseif condition = "$val.q_status == 3"/>
-                                    已解答
-                                <elseif condition = "$val.q_status == 4"/>
-                                    已采纳
-                            </if>
-                        </div>
-                        <!--<div class="done">-->
+                            </div>
+                                <elseif condition="$val.q_status == 3"/>
+                            <div class="done">
+                                已解答
+                            </div>
+                                <elseif condition="$val.q_status == 4"/>
+                            <div class="adopt">
+                                已采纳
+                            </div>
+                        </if>
 
-                        <!--</div>-->
-                        <!--<div class="adopt">-->
-
-                        <!--</div>-->
-                        <if condition = "$val.q_status == 1 or $val.q_status == 2">
-                            <a href="">修改提问</a>
+                        <if condition="$val.q_status == 1 or $val.q_status == 2">
+                            <a href="{:U('QuestionAnswer/addQuestions')}?id={$val.q_id}">修改提问</a>
                         </if>
 
                     </li>
                 </foreach>
+
+                <div class="thd-pager thd-pager-2">
+                    {$page}
+                </div>
+
+                <!--占位图-->
+                <if condition = "$is_show">
+                    <include file="Public/nolist_tips" />
+                </if>
+
             </ul>
         </div>
 
     </div>
 </div>
+<script type="text/javascript">
+    $(".side_nav_bar>ul>li>ul>li").each(function (i, elem) {
+        var menuname = $(elem).find('>a').text();
+        if ($.trim(menuname) == '我的问答') {
+            $(elem).addClass("on");
+        }
+    });
+</script>
 
-</body>
 <script>
     $(".nav>li").click(function () {
         var status = $(this).attr('status');
 
-        window.location.href="{:U('QuestionAnswer/lists')}?status="+status;
+        window.location.href = "{:U('QuestionAnswer/lists')}?status=" + status;
     });
     // $(".nav>li").each(function (i,e) {
     //     $(this).click(function () {
@@ -95,4 +98,3 @@
     //     })
     // })
 </script>
-</html>

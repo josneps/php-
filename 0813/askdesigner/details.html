@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
-    <title>问设计师详情页面</title>
-    <include file="Public/page_head" />
-    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/details-problem.css">
-</head>
+<link href="__PUBLIC__/css/lib/baguetteBox.css" rel="stylesheet"/>
+<script src='__PUBLIC__/js/lib/baguetteBox.js'></script>
+
+<script src="/Public/pc/layer/layer.js"></script>
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/details-problem.css">
 <body class="details-problem">
 
 <p class="nav">当前位置：&nbsp;
-    <a href="{:U('article/index')}">庭好看</a>&nbsp;＞&nbsp;
+    <a href="{:U('article/menuIndex')}">庭好看</a>&nbsp;＞&nbsp;
+    <a href="{:U('AskDesigner/index')}">问设计师</a>&nbsp;＞&nbsp;
     <a>问答详情</a>
 </p>
 <div class="main">
@@ -23,118 +19,165 @@
                     提问者： {$details_data.q_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;发布时间：{$details_data.created_at}&nbsp;&nbsp;·&nbsp;&nbsp;{$details_data.q_look_num}人看过
                 </div>
             </div>
-            <div class="main-text">
+            <div class="main-text buildchoose-wrapper">
                 {$details_data.q_title_content}
-                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
-                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
-                <img src="/Public/pc/img/GoodLooking/fabj.png" alt="">
-
+                <br>
+                <foreach name="img" key="k" item="v">
+                    <a href="{$v}"><img src="{$v}" alt="暂无"></a>
+                </foreach>
+                <p class="expansion"><span>展开内容</span></p>
             </div>
+            <div class="good-wrap"></div>
+            <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $is_show eq 0">
 
-            <if condition = "$userinfo['mid'] eq $details_data['q_mid'] && $is_show eq 0">
-
-                <!--仅发布者可见-->
-                <div class="invite">
-                    <div class="invite-title">
-                        没有满意答案？试试向专业人士提问
-                    </div>
-                    <div class="invite-box">
-                        <!--循环invite-main-->
-                        <div class="invite-main">
-                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
-                            <div>
-                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
-                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
-                                <button class="invite-someone">邀请他回答</button>
-                            </div>
-                        </div>
-                        <div class="invite-main">
-                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
-                            <div>
-                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
-                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
-                                <button class="invite-someone">邀请他回答</button>
-                            </div>
-                        </div>
-                        <div class="invite-main">
-                            <img src="/Public/pc/img/GoodLooking/mr.png" alt="">
-                            <div>
-                                <p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>
-                                <p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>
-                                <button class="invite-someone">邀请他回答</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--&lt;!&ndash;仅发布者可见&ndash;&gt;-->
+                <!--<div class="invite">-->
+                <!--<div class="invite-title">-->
+                <!--没有满意答案？试试向专业人士提问-->
+                <!--</div>-->
+                <!--<div class="invite-box">-->
+                <!--&lt;!&ndash;循环invite-main&ndash;&gt;-->
+                <!--<div class="invite-main">-->
+                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
+                <!--<div>-->
+                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
+                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
+                <!--<button class="invite-someone">邀请他回答</button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="invite-main">-->
+                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
+                <!--<div>-->
+                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
+                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
+                <!--<button class="invite-someone">邀请他回答</button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="invite-main">-->
+                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
+                <!--<div>-->
+                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
+                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
+                <!--<button class="invite-someone">邀请他回答</button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
 
             </if>
 
-            <if condition = "$userinfo.type eq 1">
+            <if condition="$userinfo.type eq 1">
                 <!--仅设计师可见-->
-                <button class="answer">解答 <span>+ 2积分</span></button>
+                <button class="answer" id="answer">解答 <span>+ 3积分</span></button>
 
                 <!--仅设计师可见-->
                 <!-- 加载编辑器的容器 -->
-                <textarea id="container" name="content" type="text/plain" style="width: 840px;overflow: hidden">
-
+                <div style="position: relative">
+                    <textarea id="container" name="content" type="text/plain" style="width: 840px;overflow: hidden">
                 </textarea>
+                    <!--原样输出 勿动！！-->
+                    <pre style="font-size: 14px;line-height: 12px;color: #ccc;background: #FFF;position: absolute;top: 35px;;z-index: 1000;display: none;left: 21px;width: 838px;height: 360px;border: none">
+
+您的答案不能少于20字哦！
+
+这样回答更容易被采纳：
+
+· 围绕核心问题回答
+
+· 突出解决方案，态度友好
+
+· 加入自身经验见解，或知识扩充
+                    </pre>
+                </div>
+
                 <button class="receive-container">收起</button>
-                <button class="submit-to">提交回答</button>
+                <button id="{$details_data.q_id}" class="submit-to">提交回答</button>
             </if>
 
+            <!--0条的时候不可见-->
             <!--回答全部可见-->
             <div class="other-answers">
-                <span>{$is_show}</span>条其他回答
+                <span>{$count}</span>条其他回答
             </div>
             <!--循环more-answers-->
+<div class="wrap-s">
+    <foreach name="data" key="key" item="val">
+        <if condition="$val['a_status'] eq 3">
+            <div class="more-answers good_">
+                <else/>
+                <div class="more-answers more-ans">
+        </if>
 
-            <foreach name="data" key="key" item="val">
-                <div class="more-answers">
-                    <div class="more-answers-top">
-                        <div><img src="<?php echo $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""><span class="focus">+关注</span></div>
-                        <div>
-                            <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
-                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: {$val.adopt}</p>
-                        </div>
-                    </div>
-                    <div class="more-answers-content">
-                        {$val.a_answer}
-                    </div>
+        <div class="more-answers-top">
+            <div>
+                <img src="<?php echo $val['a_pic'];?>"
+                     alt="">
+                <if condition="$userinfo['type'] eq 0">
+                    <span class="focus">+关注</span>
+                </if>
 
-                    <if condition = "empty($userinfo)">
-                        <!--游客可见-->
-                        <div class="more-answers-foo">
-                            <span class="">{$val.satisfied}</span>
-                            <span class="">{$val.no_satisfied}</span>
-                        </div>
-                    </if>
+            </div>
+            <div>
+                <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
+                <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
+                    {$val.adopt}</p>
+            </div>
+        </div>
+        <div class="more-answers-content">
+            {$val.a_answer}
+            <p class="expansion-s"><span>展开内容</span></p>
+        </div>
 
-                    <if condition = "$userinfo['mid'] eq $details_data['q_mid']">
-                        <!--提问者本人可见-->
-                        <div class="more-answers-footer">
-                            采纳意见
-                        </div>
-                    </if>
+        <if condition="$userinfo['type'] eq 0">
+            <!--游客可见-->
+            <div class="more-answers-foo">
+                <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
+                <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
+            </div>
+        </if>
 
-                    <if condition = "$userinfo['mid'] eq $val['a_mid']">
-                        <!--回答本问题的设计师可见-->
-                        <div class="more-answers-res">
-                            修改答案
-                        </div>
-                    </if>
-                </div>
+        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
+            <!--提问者本人可见-->
+            <div class="more-answers-footer" aid="{$val.a_id}">
+                采纳意见
+            </div>
+        </if>
+
+        <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
+            <!--回答本问题的设计师可见-->
+            <div class="more-answers-res" a_id="{$val.a_id}">
+                修改答案
+            </div>
+        </if>
+</div>
+
             </foreach>
+            <div class="loading">
+                加载中...
+            </div>
 
         </div>
 
 
     </div>
-    <div class="main-right">
-        <div class="main-img">
-            <img src="/Public/pc/img/GoodLooking/02APP.png"/>
-            <img src="/Public/pc/img/GoodLooking/03.png"/>
-        </div>
+
+
+</div>
+<div class="main-right">
+    <div class="main-img">
+        <img src="/Public/pc/img/GoodLooking/02APP.png"/>
+        <img src="/Public/pc/img/GoodLooking/03.png"/>
     </div>
+</div>
+<div class="prompt-wrap">
+    <div class="prompt">
+        <div class="prompt-tit">修改提示</div>
+        <p>您只有一次修改答案的机会，是否确认修改？</p>
+        <button class="modify"><a href="#answer">确定</a></button>
+        <button class="cancel">取消</button>
+    </div>
+</div>
+
 </div>
 
 </body>
@@ -147,33 +190,49 @@
         toolbars: [
             [
                 'undo', 'redo', 'bold', 'italic', 'underline', 'strikethrough', 'pasteplain',
-                'removeformat', 'simpleupload', 'link', 'unlink',
-                'emotion', 'map', '|', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify',
-                'forecolor'
+                'removeformat', 'simpleupload', 'link', 'unlink'
 
             ]
         ],
         focus: true,
-        autoFloatEnabled:true,
-        topOffset:20
+        autoFloatEnabled: true,
+        topOffset: 20,
+        maximumWords: 2000,
+        initialFrameHeight: 400
     });
 
 </script>
 
 <script>
+    baguetteBox.run('.buildchoose-wrapper');
     // 关注
-    $(".focus").each(function (i,e) {
+    $(".focus").each(function (i, e) {
         $(this).click(function () {
-            $(this).addClass("ho").text("已关注")
+            let tex = $(this).text()
+            if (tex == "+关注") {
+                $(this).addClass("ho").text("已关注")
+                layer.msg('关注成功');
+            }
+            if (tex == "已关注") {
+                $(this).removeClass("ho").text("+关注")
+                layer.msg('取消成功');
+            }
         })
+
     })
     // <!--点击解答弹出编辑器-->
     $(".answer").click(function () {
         $("#container").show()
         $(".submit-to").show()
         $(".receive-container").show()
+        $("pre").show()
+        $(this).addClass("ho").attr('disabled', "true");
+    })
+    $("pre").click(function () {
+        $(this).hide()
+        UE.getEditor('container').focus()
+        // UE.getEditor('container').execCommand('cleardoc')
 
-        $(this).addClass("ho").attr('disabled',"true");
     })
     // 收起编辑器
     $(".receive-container").click(function () {
@@ -181,48 +240,336 @@
         $(".submit-to").hide()
         $(".answer").removeClass("ho").removeAttr("disabled");
         $(this).hide()
+        $("pre").hide()
     })
     //邀请回答
-    $(".invite-someone").each(function (i,e) {
+    $(".invite-someone").each(function (i, e) {
         $(this).click(function () {
-            $(this).addClass("ho").attr('disabled',"true");
+            $(this).addClass("ho").attr('disabled', "true");
+            layer.msg('已将答案发送至设计师，请耐心等待解答');
+
         })
     })
     //采纳意见
-    $(".more-answers-footer").each(function (i,e) {
+    $(".more-answers-footer").each(function (i, e) {
+        var a_id = $(this).attr('aid');
         $(this).click(function () {
-            $(".more-answers").eq(i).addClass("good_")
-            $(".more-answers-footer").hide()
+            $.ajax({
+                type: "POST",
+                url: "{:U('QuestionAnswer/designerStatusUpdate')}",
+                data: {a_id: a_id},
+                dataType: "json",
+                success: function (result) {
+                    if (result.state == 1100) {
+                        $(".more-answers").eq(i).addClass("good_")
+                        $(".more-answers-footer").hide()
+
+                        $(".good_").each(function (i, e) {
+                            let arr = []
+                            arr.push(e)
+                            if (arr.length > 0) {
+                                $(".more-answers.good_").hide()
+                                $(".good-wrap").html($(".more-answers.good_").html()).addClass("good_").addClass("more-answers").show()
+                                $(".good-wrap .expansion-s").hide()
+                                $(".good-wrap .more-answers-content").removeClass("content-h")
+                                $(".good-wrap .focus").click(function () {
+                                    let tex = $(this).text()
+                                    if (tex == "+关注") {
+                                        $(this).addClass("ho").text("已关注")
+                                        layer.msg('关注成功');
+                                    }
+                                    if (tex == "已关注") {
+                                        $(this).removeClass("ho").text("+关注")
+                                        layer.msg('取消成功');
+                                    }
+                                })
+                            }
+                        })
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+
         })
         $(this).hover(function () {
             $(this).addClass("ho")
-        },function () {
+            console.log(i, e)
+        }, function () {
             $(this).removeClass("ho")
         })
+    })
+    //答案置顶
+    $(".good_").each(function (i, e) {
+        let arr = []
+        arr.push(e)
+        if (arr.length > 0) {
+            $("good-wrap.good_.more-answers .more-answers-content").removeClass("content-h")
+            $(".more-answers.good_").hide()
+            $(".good-wrap").html($(".more-answers.good_").html()).addClass("good_").addClass("more-answers").show()
+            $(".good-wrap .focus").click(function () {
+                let tex = $(this).text()
+                if (tex == "+关注") {
+                    $(this).addClass("ho").text("已关注")
+                    layer.msg('关注成功');
+                }
+                if (tex == "已关注") {
+                    $(this).removeClass("ho").text("+关注")
+                    layer.msg('取消成功');
+                }
+            })
+        }
     })
     //修改答案
-    $(".more-answers-res").each(function (i,e) {
+    $(".more-answers-res").each(function (i, e) {
         $(this).hover(function () {
             $(this).addClass("ho")
-        },function () {
+        }, function () {
             $(this).removeClass("ho")
         })
+        $(this).click(function () {
+            var a_id = $(this).attr('a_id');
+            $('.modify').attr('a_id', a_id);
+            $(".prompt-wrap").show()
+        })
+    })
+    //取消修改答案
+    $(".cancel").click(function () {
+        $(".prompt-wrap").hide()
+    })
+    //确认修改答案
+    $(".modify").click(function () {
+        var a_id = $(this).attr('a_id');
+        $("pre").hide()
+        $(".prompt-wrap").hide();
+        $("#container").show();
+        $(".submit-to").show().attr('ids', a_id);
+        $(".receive-container").show();
+        $(".answer").addClass("ho").attr('disabled', "true");
+        $.ajax({
+            type: "POST",
+            url: "{:U('AskDesigner/updAnswer')}",
+            data: {a_id: a_id},
+            dataType: "json",
+            success: function (result) {
+                UE.getEditor('container').setContent(result.message);
+            }
+        });
+
     })
     //满意
-    $(".more-answers-foo>span:nth-of-type(1)").each(function (i,e) {
+    $(".more-answers-foo>span:nth-of-type(1)").each(function (i, e) {
         $(this).hover(function () {
             $(this).addClass("likes")
-        },function () {
+        }, function () {
             $(this).removeClass("likes")
         })
     })
     //不满意
-    $(".more-answers-foo>span:nth-of-type(2)").each(function (i,e) {
+    $(".more-answers-foo>span:nth-of-type(2)").each(function (i, e) {
         $(this).hover(function () {
             $(this).addClass("no-likes")
-        },function () {
+        }, function () {
             $(this).removeClass("no-likes")
         })
     })
+
+    $(".more-answers-foo>span").click(function () {
+        var status = $(this).attr('status');
+        var id = $(this).attr('id');
+        if (status == 1) {
+            //满意
+            $.ajax({
+                type: "POST",
+                url: "{:U('QuestionAnswer/satisfied')}",
+                data: {id: id},
+                dataType: "json",
+                success: function (result) {
+                    if (result.state == 1100) {
+                        layer.msg(result.message);
+                        window.location.reload();
+                    } else {
+                        layer.msg(result.message);
+                    }
+                }
+            });
+        } else {
+            //不满意
+            $.ajax({
+                type: "POST",
+                url: "{:U('QuestionAnswer/noSatisfied')}",
+                data: {id: id},
+                dataType: "json",
+                success: function (result) {
+                    if (result.state == 1100) {
+                        layer.msg(result.message);
+                        window.location.reload();
+                    } else {
+                        layer.msg(result.message);
+                    }
+                }
+            });
+        }
+    })
+    //提交业主的解答
+    $(".submit-to").click(function () {
+        let str = UE.getEditor('container').getContentTxt();
+        if (str.length < 20) {
+            layer.msg("提交答案必须超过20个字");
+            return false;
+        }
+        var content = $.trim(UE.getEditor('container').getContent());
+        var questions_id = $(this).attr('id');
+        var ids = $(this).attr('ids');
+        $.ajax({
+            type: "POST",
+            url: "{:U('QuestionAnswer/addAnswer')}",
+            data: {questions_id: questions_id, content: content, ids: ids},
+            dataType: "json",
+            success: function (result) {
+                if (result.state == 1100) {
+                    window.location.reload();
+                } else {
+                    layer.msg(result.message);
+                }
+            }
+        });
+    })
+    //展开内容
+    $(document).ready(function () {
+        let num = $(".main-text").height();
+        if (num >= 310) {
+            $(".main-text").addClass("max-h");
+            $(".expansion").show().click(function () {
+                $(".main-text").removeClass("max-h");
+                $(this).hide()
+            })
+        }
+        $(".more-answers-content").each(function (i, e) {
+            if ($(this).height() >= 156) {
+                $(this).addClass("content-h")
+                $(".expansion-s").eq(i).show().click(function () {
+                    $(".more-answers-content").eq(i).removeClass("content-h");
+                    $(".expansion-s").eq(i).hide()
+                })
+            }
+        })
+        $(".good-wrap .expansion-s").hide()
+        $(".good-wrap .more-answers-content").removeClass("content-h")
+    })
+    //文档高度
+    function getDocumentTop() {
+        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+        if (document.body) {
+            bodyScrollTop = document.body.scrollTop;
+        }
+        if (document.documentElement) {
+            documentScrollTop = document.documentElement.scrollTop;
+        }
+        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+        return scrollTop;
+    }
+    //可视窗口高度
+    function getWindowHeight() {
+        var windowHeight = 0;
+        if (document.compatMode == "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            windowHeight = document.body.clientHeight;
+        }
+        return windowHeight;
+    }
+    //滚动条滚动高度
+    function getScrollHeight() {
+        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+        if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+        }
+        if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+        }
+        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+        return scrollHeight;
+    }
+    window.onscroll = function () {
+        if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
+            //数据加载完毕后
+            let num = $(".wrap-s>.more-ans").length
+            if(num<5){
+                console.log("小于5")
+                return false;
+            }
+            let page = (num/5)+1;
+            let id = 51;
+            console.log(page,"page",num,"num")
+            $.ajax({
+                type: "post",
+                url: "{:U('AskDesigner/details')}",
+                data: {page: page, id: id},
+                dataType: "json",
+                success: function (result) {
+                    if(result.state == 1100) {
+                        console.log(result)
+                        console.log("总条数",result.count)
+                        if(num<result.count){
+                            console.log("加载")
+                            var str_res = "";
+                            $(result.message).each(function(i,e) {
+                                str_res += `            <div class="more-answers more-ans">
+                <div class="more-answers-top">
+                    <div>`
+                    if(e.a_pic){
+                                    str_res+=`<img src="${e.a_pic}">`
+
+                                }else{
+                                    str_res+=`<img src="/Public/pc/img/GoodLooking/mr.png">`
+                    }
+                                    str_res+=`
+                                    <span class="focus">+关注</span></div>
+                    <div>
+                        <p>${e.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>${e.agencies_name}</span></p>
+                        <p>${e.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: ${e.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: ${e.adopt}</p>
+                    </div>
+                </div>
+                <div class="more-answers-content">
+                ${e.a_answer}
+                </div>`
+                                        if(result.type == 0){
+                                            str_res+=`
+                                            <!--可见-->
+                                        <div class="more-answers-foo">
+                                                <span class="">${e.satisfied}</span>
+                                                <span class="">${e.no_satisfied}</span>
+                                                </div>`
+                                        }
+if(e.a_mid == result.mid&&result.caina==2){
+    str_res+=`
+<!--提问者本人可见-->
+                <div class="more-answers-footer">
+                    采纳意见
+                </div>`
+}
+
+                                if(e.a_mid==result.mid&&e.str_res!=3&&e.upd_num==0){
+                                    str_res +=`
+
+                <!--回答本问题的设计师可见-->
+                <div class="more-answers-res">
+                    修改答案
+                </div>
+            `
+                            }
+                                str_res+=`</div>`
+                            })
+                            $('.wrap-s').append(str_res);
+
+                        }else{
+                            $(".loading").css("paddingTop","0").text("已经到底了")
+                        }
+
+                    }
+                }
+            });
+        }
+    }
 </script>
-</html>
