@@ -38,3 +38,6 @@ Route::post('index/index','admin/Index/index');
 
 Route::get('upload','index/Recursion/upload');
 Route::post('upload','index/Recursion/upload');
+
+Route::get('index/lists','admin/Index/datas');
+Route::post('index/lists','admin/Index/datas');
