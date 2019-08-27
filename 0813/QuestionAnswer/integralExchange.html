@@ -74,17 +74,14 @@
                 data: {key: key},
                 dataType: "json",
                 success: function (result) {
-                    if (result.start == 1100) {
-                        alert(result.message);
+                    if (result.state == 1100) {
                         layer.msg(result.message);
-                        location.href='';
+                        location.reload()
                     } else {
                         layer.msg(result.message);
-
                     }
                 }
             });
-
             return false;
         }
         layer.msg('请选择要兑换的积分');

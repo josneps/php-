@@ -35,7 +35,9 @@
                         <!--如果0人回答则不显示-->
                         <div>
                             <div>
-                                <img src="<?php echo $val['a_pic'] ;?>" alt="">
+                                <a href="javascript:void(0)">
+                                    <img src="<?php echo $val['a_pic'] ;?>" alt="">
+                                </a>
                                 <span>{$val.a_nickname}</span>
                             </div>
                             <if condition = "$vo.a_status eq 2">

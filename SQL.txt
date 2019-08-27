@@ -2,7 +2,7 @@
 自增id、 业主id、 业主昵称、 业主头像、问题标题、问题内容、 当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 解答人数、 发布的时间、 当前状态( 1表示未查看、 2表示未解答、 3表示已解答)、 
 
 create table user_questions(
-    q_id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    q_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     q_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '业主的mid',
     q_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
     q_pic varchar(256) DEFAULT '' COMMENT '用户头像',
@@ -23,7 +23,7 @@ create table user_questions(
 自增id、 问题的id、 设计师的id、 设计师的头像、 设计师的答案、当前记录来源(1 PC 2 安卓 3 IOS 4 其他)、 答案被查看的次数、 发布的时间、 当前状态（ 1表示未查看、 2表示未采纳、 3表示已采纳）、 满意数、 不满意数、
 
 create table designer_answer(
-    a_id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    a_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     a_questions_id int(11) NOT NULL COMMENT '问题的id',
     a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     a_nickname varchar(64) DEFAULT NULL COMMENT '个人用户昵称',
@@ -44,7 +44,7 @@ create table designer_answer(
 自增id、 答案id、 业主id、 业主ip， 创建时间
 
 create table look_number(
-    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     a_questions_id int(11) NOT NULL COMMENT '问题id',
     user_id varchar(64) DEFAULT NULL COMMENT '浏览人的id',
     user_ip varchar(15) DEFAULT NULL COMMENT '浏览人的ip',
@@ -55,7 +55,7 @@ create table look_number(
 自增id、 设计师id、 业主id、 业主问题id、 业主问题标题、 积分数量、 分类（解答、 被采纳）、 创建时间
 
 create table designer_integral(
-    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     a_questions_id int(11) DEFAULT NULL COMMENT '问题id',
     details varchar(255) DEFAULT NULL COMMENT '记录积分详情',
@@ -66,7 +66,7 @@ create table designer_integral(
 
 
 create table satisfied(
-    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     user_ip varchar(15) DEFAULT NULL COMMENT '浏览人的ip',
     a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     a_questions_id int(11) NOT NULL COMMENT '问题的id',
@@ -78,7 +78,7 @@ create table satisfied(
 
 //设计师解答个数 & 被采纳个数
 create table answer_adopt_num(
-    id int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
     a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
     answer int(6) NOT NULL DEFAULT '0' COMMENT '解答',
     adopt int(6) NOT NULL DEFAULT '0' COMMENT '被采纳',
@@ -87,6 +87,16 @@ create table answer_adopt_num(
     created_at datetime NOT NULL COMMENT '创建时间',
     updated_at datetime NOT NULL COMMENT '修改时间',
 ) comment ='设计师解答&被采纳个数'
+
+//邀请设计师回答表
+create table invitation_answer(
+    id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增id',
+    a_questions_id int(11) NOT NULL COMMENT '问题id',
+    a_mid varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '设计师的mid',
+    status tinyint(1) DEFAULT '0' COMMENT '0表示未解答， 1表示已解答',
+    created_at datetime NOT NULL COMMENT '创建时间',
+    updated_at datetime NOT NULL COMMENT '修改时间',
+) comment = '邀请设计师回答表'
 
 
 问题表：user_questions
