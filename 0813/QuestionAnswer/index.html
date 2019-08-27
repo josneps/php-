@@ -16,13 +16,24 @@
             </ul>
             <div class="main-box">
                 <ul class="nav">
-                    <li class="myactive">我回答的问题</li>
-                    <li>邀请我回答</li>
-                    <li>
-                        <if condition = "$status eq 3">
-                            <p class="rad" id="cainas"><input type="checkbox" checked value="123">被采纳</p>
+                    <if condition = "$status eq 3 || $status eq ''">
+                        <li class="myactive">我回答的问题</li>
                         <else/>
-                            <p class="rad" id="caina"><input type="checkbox" value="123">被采纳</p>
+                        <li> <a href="{:U('QuestionAnswer/index')}">我回答的问题</a></li>
+                    </if>
+                    <if condition = "$status eq 2">
+                        <li class="myactive">邀请我回答</li>
+                        <else/>
+                        <li><a href="{:U('QuestionAnswer/index')}?status=2">邀请我回答</a></li>
+                    </if>
+
+                    <li>
+                        <if condition = "$status eq 3 || $status eq ''">
+                            <if condition = "$status eq 3">
+                                <p class="rad" id="cainas"><input type="checkbox" checked value="123">被采纳</p>
+                            <else/>
+                                <p class="rad" id="caina"><input type="checkbox" value="123">被采纳</p>
+                            </if>
                         </if>
                     </li>
                 </ul>
@@ -41,11 +52,14 @@
                                 <if condition = "$val.a_status == 3">
                                     <span class="special">回答被采纳</span>
                                 </if>
+                                <if condition = "$status == 2">
+                                    <span class="">待解决</span>
+                                </if>
                             </p>
                             <p>
                                 <img src="<?php echo $val['q_pic'] ? C('PIC_URl').'/'.$val['q_pic'] : '__PUBLIC__/img/avatar.png' ;?>" alt="">
                                 {$val.q_nickname}&nbsp;提问&nbsp;&nbsp;&nbsp;&nbsp;
-                                <span>{$val.q_answer_num}</span>人回答&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.created_at}
+                                <span>{$val.q_answer_num}</span>人回答&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过&nbsp;&nbsp;&nbsp;<if condition = "$status neq 2">·&nbsp;&nbsp;&nbsp;{$val.created_at}</if>
                             </p>
                             <!--在指定我的问答不需要时间-->
                         </div>
@@ -81,19 +95,6 @@
             console.log("选中了")
             $(this).attr("checked", 'true');
         }
-    })
-    $(".nav>li").each(function (i,e) {
-
-        $(".nav>li:nth-of-type(1)").click(function () {
-            $(".rad").show()
-            $(".main>p:nth-of-type(1)>span").addClass("special").text("回答被采纳")
-            $(this).addClass("myactive").siblings().removeClass("myactive")
-        })
-        $(".nav>li:nth-of-type(2)").click(function () {
-            $(".rad").hide()
-            $(".main>p:nth-of-type(1)>span").removeClass("special").text("待解决")
-            $(this).addClass("myactive").siblings().removeClass("myactive")
-        })
     })
     $('#caina').click(function () {
         window.location.href="{:U('QuestionAnswer/index')}?status=3"

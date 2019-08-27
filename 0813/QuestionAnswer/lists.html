@@ -72,6 +72,7 @@
                     <include file="Public/nolist_tips" />
                 </if>
 
+
             </ul>
         </div>
 
@@ -82,6 +83,8 @@
         var menuname = $(elem).find('>a').text();
         if ($.trim(menuname) == '我的问答') {
             $(elem).addClass("on");
+            $(this).parents('li').addClass('on active');
+            $(this).parent('.publish_').show();
         }
     });
 </script>

@@ -19,6 +19,7 @@
                     提问者： {$details_data.q_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;发布时间：{$details_data.created_at}&nbsp;&nbsp;·&nbsp;&nbsp;{$details_data.q_look_num}人看过
                 </div>
             </div>
+            <input type="hidden" class="q_id" value="{$details_data.q_id}">
             <div class="main-text buildchoose-wrapper">
                 {$details_data.q_title_content}
                 <br>
@@ -28,41 +29,27 @@
                 <p class="expansion"><span>展开内容</span></p>
             </div>
             <div class="good-wrap"></div>
-            <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $is_show eq 0">
+            <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $is_wen">
 
-                <!--&lt;!&ndash;仅发布者可见&ndash;&gt;-->
-                <!--<div class="invite">-->
-                <!--<div class="invite-title">-->
-                <!--没有满意答案？试试向专业人士提问-->
-                <!--</div>-->
-                <!--<div class="invite-box">-->
-                <!--&lt;!&ndash;循环invite-main&ndash;&gt;-->
-                <!--<div class="invite-main">-->
-                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
-                <!--<div>-->
-                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
-                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
-                <!--<button class="invite-someone">邀请他回答</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="invite-main">-->
-                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
-                <!--<div>-->
-                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
-                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
-                <!--<button class="invite-someone">邀请他回答</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--<div class="invite-main">-->
-                <!--<img src="/Public/pc/img/GoodLooking/mr.png" alt="">-->
-                <!--<div>-->
-                <!--<p><span>陈园</span>&nbsp;·&nbsp;常州大地装潢工程集团</p>-->
-                <!--<p>回答: 360&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: 185</p>-->
-                <!--<button class="invite-someone">邀请他回答</button>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
+                <!--仅发布者可见-->
+                <div class="invite">
+                    <div class="invite-title">
+                        没有满意答案？试试向专业人士提问
+                    </div>
+                    <div class="invite-box">
+                        <foreach name="designer_data" key="key" item="val">
+                            <!--循环invite-main-->
+                            <div class="invite-main">
+                                <img src="{$val['pic']}" alt="">
+                                <div>
+                                    <p><span>{$val['nickname']}</span>&nbsp;·&nbsp;{$val['agencies_name']}</p>
+                                    <p>回答: {$val['answer']}&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: {$val['adopt']}</p>
+                                    <button class="invite-someone" mid="{$val['mid']}">邀请他回答</button>
+                                </div>
+                            </div>
+                        </foreach>
+                    </div>
+                </div>
 
             </if>
 
@@ -95,72 +82,73 @@
             </if>
 
             <!--0条的时候不可见-->
-            <!--回答全部可见-->
-            <div class="other-answers">
-                <span>{$count}</span>条其他回答
-            </div>
+            <if condition="$count neq 0">
+                <!--回答全部可见-->
+                <div class="other-answers">
+                    <span>{$count}</span>条其他回答
+                </div>
+            </if>
             <!--循环more-answers-->
-<div class="wrap-s">
-    <foreach name="data" key="key" item="val">
-        <if condition="$val['a_status'] eq 3">
-            <div class="more-answers good_">
-                <else/>
-                <div class="more-answers more-ans">
-        </if>
+            <div class="wrap-s">
+                <foreach name="data" key="key" item="val">
+                    <if condition="$val['a_status'] eq 3">
+                        <div class="more-answers good_">
+                            <else/>
+                            <div class="more-answers more-ans">
+                    </if>
 
-        <div class="more-answers-top">
-            <div>
-                <img src="<?php echo $val['a_pic'];?>"
-                     alt="">
-                <if condition="$userinfo['type'] eq 0">
-                    <span class="focus">+关注</span>
-                </if>
+                    <div class="more-answers-top">
+                        <div>
+                            <a href="/chargdesign/info/{$val.designer_no}">
+                                <img src="<?php echo $val['a_pic'];?>" alt="">
+                            </a>
+                            <if condition="$userinfo['type'] eq 0">
+                                <span class="focus">+关注</span>
+                            </if>
 
-            </div>
-            <div>
-                <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
-                <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
-                    {$val.adopt}</p>
-            </div>
-        </div>
-        <div class="more-answers-content">
-            {$val.a_answer}
-            <p class="expansion-s"><span>展开内容</span></p>
-        </div>
+                        </div>
+                        <div>
+                            <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
+                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
+                                {$val.adopt}</p>
+                        </div>
+                    </div>
+                    <div class="more-answers-content">
+                        {$val.a_answer}
+                        <p class="expansion-s"><span>展开内容</span></p>
+                    </div>
 
-        <if condition="$userinfo['type'] eq 0">
-            <!--游客可见-->
-            <div class="more-answers-foo">
-                <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
-                <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
-            </div>
-        </if>
+                    <if condition="$userinfo['type'] eq 0">
+                        <!--游客可见-->
+                        <div class="more-answers-foo">
+                            <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
+                            <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
+                        </div>
+                    </if>
 
-        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
-            <!--提问者本人可见-->
-            <div class="more-answers-footer" aid="{$val.a_id}">
-                采纳意见
-            </div>
-        </if>
+                    <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
+                        <!--提问者本人可见-->
+                        <div class="more-answers-footer" aid="{$val.a_id}">
+                            采纳意见
+                        </div>
+                    </if>
 
-        <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
-            <!--回答本问题的设计师可见-->
-            <div class="more-answers-res" a_id="{$val.a_id}">
-                修改答案
+                    <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
+                        <!--回答本问题的设计师可见-->
+                        <div class="more-answers-res" a_id="{$val.a_id}">
+                            修改答案
+                        </div>
+                    </if>
             </div>
-        </if>
-</div>
 
             </foreach>
-            <div class="loading">
-                加载中...
-            </div>
+            <!--<div class="loading">-->
+                <!--加载中...-->
+            <!--</div>-->
 
         </div>
 
-
     </div>
-
 
 </div>
 <div class="main-right">
@@ -244,9 +232,25 @@
     })
     //邀请回答
     $(".invite-someone").each(function (i, e) {
+        var _this = $(this);
         $(this).click(function () {
-            $(this).addClass("ho").attr('disabled', "true");
-            layer.msg('已将答案发送至设计师，请耐心等待解答');
+            var mid = $(this).attr('mid');
+            var a_questions_id = $('.q_id').val();
+
+            $.ajax({
+                type: "POST",
+                url: "{:U('QuestionAnswer/invitation')}",
+                data: {mid: mid, a_questions_id: a_questions_id},
+                dataType: "json",
+                success: function (result) {
+                    if (result.state == 1100) {
+                        _this.addClass("ho").attr('disabled', "true");
+                        layer.msg('已将问题发送至设计师，请耐心等待解答');
+                    } else {
+                        layer.msg(result.message);
+                    }
+                }
+            });
 
         })
     })
@@ -285,6 +289,14 @@
                                 })
                             }
                         })
+                        let num = $('.other-answers span').text();
+                        if(num - 1 == 0) {
+                            //其他回答为0条时，隐藏当前div
+                            $('.other-answers').hide();
+                        } else {
+                            //其他回答不为0时，条数减1
+                            $('.other-answers span').text(num - 1);
+                        }
                     } else {
                         alert(result.message);
                     }
@@ -500,7 +512,7 @@
                 return false;
             }
             let page = (num/5)+1;
-            let id = 51;
+            // let id = 51;
             console.log(page,"page",num,"num")
             $.ajax({
                 type: "post",
@@ -536,7 +548,6 @@
                 </div>`
                                         if(result.type == 0){
                                             str_res+=`
-                                            <!--可见-->
                                         <div class="more-answers-foo">
                                                 <span class="">${e.satisfied}</span>
                                                 <span class="">${e.no_satisfied}</span>

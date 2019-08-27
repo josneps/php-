@@ -79,7 +79,7 @@
                                 <span>{$val.a_nickname}</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span>
                             </div>
                             <!--<if condition = "$vo.a_status eq 2">-->
-                                <!--<div></div>-->
+                            <!--<div></div>-->
                             <!--</if>-->
                         </div>
 
@@ -148,6 +148,8 @@
         </div>
     </div>
 </div>
+
+<!--<include file="askdesigner/index_content" />-->
 
 <script src="/Public/pc/layer/layer.js"></script>
 <script>
@@ -289,8 +291,7 @@
                                             if(e.a_pic){
                                                 str_res+=
                                             `
-<a href="/chargdesign/info/${e.designer_no}">
-                                            <img src="${e.a_pic}"></a>`
+                                            <img src="${e.a_pic}">`
                                             }else{
                                                 str_res+=
                                                     `
