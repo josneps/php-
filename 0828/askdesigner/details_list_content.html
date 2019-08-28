@@ -1,0 +1,52 @@
+<foreach name="data" key="key" item="val">
+    <div class="more-answers more-ans ">
+
+        <div class="more-answers-top">
+            <div>
+                <a href="/chargdesign/info/{$val.designer_no}">
+                    <img src="<?php echo $val['a_pic'];?>" alt="">
+                </a>
+                <if condition="$userinfo['type'] eq 0">
+                    <span class="focus <?php if ($val['collect'] != 0) {echo ho;}?>" data-designerno="{$val.designer_no}">
+                        <?php if ($val['collect'] == 0) { ?>
+                            +关注
+                        <?php } else {?>
+                            已关注
+                        <?php } ?>
+                    </span>
+                </if>
+            </div>
+            <div>
+                <p>{$val.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span></p>
+                <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: {$val.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳:
+                    {$val.adopt}</p>
+            </div>
+        </div>
+        <div class="more-answers-content">
+            {$val.a_answer}
+            <p class="expansion-s"><span>展开内容</span></p>
+        </div>
+
+        <if condition="$userinfo['type'] eq 0">
+            <!--游客可见-->
+            <div class="more-answers-foo">
+                <span class="" status="1" id="{$val.a_id}">{$val.satisfied}</span>
+                <span class="" status="2" id="{$val.a_id}">{$val.no_satisfied}</span>
+            </div>
+        </if>
+
+        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
+            <!--提问者本人可见-->
+            <div class="more-answers-footer" aid="{$val.a_id}">
+                采纳意见
+            </div>
+        </if>
+
+        <if condition="$userinfo['mid'] eq $val['a_mid'] && $val['a_status'] neq 3 && $val['upd_num'] eq 0">
+            <!--回答本问题的设计师可见-->
+            <div class="more-answers-res" a_id="{$val.a_id}">
+                修改答案
+            </div>
+        </if>
+    </div>
+</foreach>

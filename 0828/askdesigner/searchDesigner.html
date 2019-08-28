@@ -1,0 +1,184 @@
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit|ie-stand|ie-comp">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+<title>问设计师搜索页面</title>
+<include file="Public/page_head" />
+<link href="__PUBLIC__/css/my_message_new.css" rel="stylesheet" />
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/ask_designer.css">
+
+<body class="search_designer">
+<!--<include file="Public/page_header_personal"/>-->
+<div class="search">
+    <div>
+        <input id="title" type="text" value="{$title}"><button onclick="key_search()">搜索</button>
+    </div>
+    <p>搜索结果约为 <span>{$count}</span> 条</p>
+</div>
+
+<div class="main">
+    <div class="main-left" style="width: 880px;margin-right: 34px">
+        <if condition="$count eq 0">
+            <!--占位图-->
+            <include file="Public/nolist_tips" />
+
+            <else/>
+
+            <!--循环main-box-->
+            <foreach name="list" key="key" item="val">
+                <div class="main-box">
+                    <div class="title">
+                        <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+
+                    </div>
+                    <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
+                    <if condition = "$val.look_num gt 0">
+                        <!--如果0人回答则不显示-->
+                        <div>
+                            <div>
+                                <a href="javascript:void(0)">
+                                    <img src="<?php echo $val['a_pic'] ;?>" alt="">
+                                </a>
+                                <span>{$val.a_nickname}</span>
+                            </div>
+                            <if condition = "$vo.a_status eq 2">
+                                <div></div>
+                            </if>
+                        </div>
+
+                        <div class="all_">
+                            <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.a_answer}</a>
+                            <div class="add-all"><span>...&nbsp;</span>查看全文</div>
+                        </div>
+                        <p>{$val.satisfied}满意</p>
+                        <!--如果0人回答则不显示-->
+                    </if>
+                </div>
+            </foreach>
+        </if>
+
+        <!--<div class="loading">-->
+            <!--已经到底了-->
+        <!--</div>-->
+        <div class="thd-pager thd-pager-2">
+            {$page}
+        </div>
+    </div>
+
+    <div class="main-right">
+        <div class="main-img">
+            <img src="/Public/pc/img/GoodLooking/02APP.png"/>
+            <img src="/Public/pc/img/GoodLooking/03.png"/>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/Public/pc/layer/layer.js"></script>
+<script>
+    function key_search(){
+        var title = $.trim($("#title").val());
+        if(title !== ''){
+            var url = baseUrl = "{:U('AskDesigner/index')}"+'?title='+title;
+            window.location.href = url;
+            var count = $(".all_>a")
+            count.each(function (i,e) {
+                $(".all_>a").eq(i).html(count.eq(i).text().split(keyword).join("<span style='color:#d32a2a'>"+ keyword +"</span>"))
+            })
+
+            var count_ = $(".title>a")
+            count_.each(function (i,e) {
+                $(".title>a").eq(i).html(count_.eq(i).text().split(keyword).join("<span style='color:#d32a2a'>"+ keyword +"</span>"))
+            })
+        }else{
+            layer.msg('请输入要搜索的内容！');
+        }
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            var scrollPos = $(window).scrollTop();
+            if (scrollPos >= 160) {
+                $(".nav").addClass("stick");
+                $(".main").addClass("asd");
+            } else {
+                $(".nav").removeClass("stick");
+                $(".main").removeClass("asd");
+            }
+            if (scrollPos >= 200) {
+                $(".main").addClass("asd");
+            } else {
+                $(".main").removeClass("asd");
+            }
+        });
+        //查找替换
+        var keyword = $.trim($("#keyword").val())
+        if(keyword !== ''){
+            var count = $(".all_>a")
+            count.each(function (i,e) {
+                $(".all_>a").eq(i).html(count.eq(i).text().split(keyword).join("<span style='color:#d32a2a'>"+ keyword +"</span>"))
+            })
+
+            var count_ = $(".title>a")
+            count_.each(function (i,e) {
+                $(".title>a").eq(i).html(count_.eq(i).text().split(keyword).join("<span style='color:#d32a2a'>"+ keyword +"</span>"))
+            })
+        }
+
+    });
+
+    // <!--查看全部-->
+    $(".add-all").each(function (i, e) {
+        if ($(".all_").eq(i).height() >= 90) {
+            $(".add-all").eq(i).show()
+        }
+        $(this).click(function () {
+            $(this).parent().removeClass("all_")
+            $(this).hide()
+        })
+    })
+
+    //文档高度
+    function getDocumentTop() {
+        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+        if (document.body) {
+            bodyScrollTop = document.body.scrollTop;
+        }
+        if (document.documentElement) {
+            documentScrollTop = document.documentElement.scrollTop;
+        }
+        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+        return scrollTop;
+    }
+    //可视窗口高度
+    function getWindowHeight() {
+        var windowHeight = 0;
+        if (document.compatMode == "CSS1Compat") {
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            windowHeight = document.body.clientHeight;
+        }
+        return windowHeight;
+    }
+    //滚动条滚动高度
+    function getScrollHeight() {
+        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+        if (document.body) {
+            bodyScrollHeight = document.body.scrollHeight;
+        }
+        if (document.documentElement) {
+            documentScrollHeight = document.documentElement.scrollHeight;
+        }
+        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+        return scrollHeight;
+    }
+    window.onscroll = function () {
+        if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
+            //数据加载完毕后
+            // $(".loading").show().text("已经到底了")
+        }
+    }
+
+</script>
+
+</html>

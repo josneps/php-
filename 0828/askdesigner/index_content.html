@@ -1,0 +1,94 @@
+<div class="main">
+    <div class="main-left" style="width: 880px;margin-right: 34px">
+        <if condition="$count eq 0">
+            <!--占位图-->
+            <include file="Public/nolist_tips" />
+
+            <else/>
+
+            <!--循环main-box-->
+            <foreach name="list" key="key" item="val">
+                <div class="main-box">
+                    <div class="title">
+                        <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+                    </div>
+                    <p><span>{$val.look_num}</span> 人回答 · {$val.created_at}发布</p>
+                    <if condition = "$val.look_num gt 0">
+                        <!--如果0人回答则不显示-->
+                        <div>
+                            <div>
+                                <a href="/chargdesign/info/{$val.designer_no}">
+                                    <img src="<?php echo $val['a_pic']?>" alt="">
+                                </a>
+                                <span>{$val.a_nickname}</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span>{$val.agencies_name}</span>
+                            </div>
+                            <!--<if condition = "$vo.a_status eq 2">-->
+                            <!--<div></div>-->
+                            <!--</if>-->
+                        </div>
+
+                        <div class="all_">
+                            <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.a_answer}</a>
+                            <div class="add-all"><span>...&nbsp;</span>查看全文</div>
+                        </div>
+                        <p>{$val.satisfied}满意</p>
+                        <!--如果0人回答则不显示-->
+                    </if>
+
+                </div>
+            </foreach>
+        </if>
+
+        <div class="loading">
+            加载中...
+        </div>
+
+    </div>
+
+    <div class="main-right">
+        <div class="searchbox" style="padding-bottom: 15px;">
+            <div class="search-wrap clearfix">
+                <input type="text" id="keyword" value="{$title}" placeholder="请输入关键字搜索">
+                <a href="javascript:;" class="search">
+                    <i class="icon icon-search"></i>
+                </a>
+            </div>
+        </div>
+
+        <if condition = "$type eq 1">
+            <!--设计师登录-->
+            <div class="designer">
+                <a href="{:U('QuestionAnswer/index')}"><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""></a>
+                <span>{$userinfo.nickname}</span>
+                <ul>
+                    <li>回答:{$userinfo.questions_num}</li>
+                    <li>采纳:{$userinfo.adopt_num}</li>
+                </ul>
+            </div>
+            <elseif condition = "$type eq 2"/>
+            <!--业主-->
+            <div class="owner">
+                <a href="{:U('QuestionAnswer/lists')}"><img src="<?php echo $userinfo['pic'] ? C('PIC_URl').'/'.$userinfo['pic'] : '__PUBLIC__/img/avatar.png'  ;?>" alt=""></a>
+                <span>{$nickname}</span>
+                <ul>
+                    <li>提问:{$userinfo.questions_num}</li>
+                    <li>采纳:{$userinfo.adopt_num}</li>
+                </ul>
+            </div>
+            <!--跳转到提问界面 -->
+            <a href="<?php echo U('QuestionAnswer/addQuestions');?>" class="quiz">我要提问</a>
+            <else/>
+            <!--未登录-->
+            <div class="no-login">
+                <div></div>
+                <span>点击登录</span>
+            </div>
+        </if>
+
+
+        <div class="main-img">
+            <img src="/Public/pc/img/GoodLooking/02APP.png"/>
+            <img src="/Public/pc/img/GoodLooking/03.png"/>
+        </div>
+    </div>
+</div>
