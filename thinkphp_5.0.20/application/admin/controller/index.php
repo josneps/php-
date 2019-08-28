@@ -78,26 +78,22 @@ class Index extends Controller
 
     public function datas()
     {
-        $res = Db::name('prop')->alias('pp')->join('tp_pvalue d','pp.prop_id = d.prop_id')->select();
-            // ->join('tp_pvalue as pe on pp.prop_id = pe.prop_id')->buildSql();
+        // $res = Db::name('prop')->alias('pp')->join('tp_pvalue d','pp.prop_id = d.prop_id')->select();
+        //     // ->join('tp_pvalue as pe on pp.prop_id = pe.prop_id')->buildSql();
 
-        // print_r($res);die;
+        // // print_r($res);die;
 
-        //定义一个空数组
-        $arr = array();
+        // //定义一个空数组
+        // $arr = array();
 
-        foreach ($res as $key => $val){
-            $arr[$val['prop_name']]['prop_name'] = $val['prop_name'];
-            $arr[$val['prop_name']]['prop_id'] = $val['prop_id'];
-            $arr[$val['prop_name']]['prop_value'][$val['value_id']]['value_name'] = $val['value_name'];
-            $arr[$val['prop_name']]['prop_value'][$val['value_id']]['value_id'] = $val['value_id'];
-        }
+        // foreach ($res as $key => $val){
+        //     $arr[$val['prop_name']]['prop_name'] = $val['prop_name'];
+        //     $arr[$val['prop_name']]['prop_id'] = $val['prop_id'];
+        //     $arr[$val['prop_name']]['prop_value'][$val['value_id']]['value_name'] = $val['value_name'];
+        //     $arr[$val['prop_name']]['prop_value'][$val['value_id']]['value_id'] = $val['value_id'];
+        // }
 
-        print_r($arr);
-
-
-
-
+        // print_r($arr);
 
 
         // $b = array();
@@ -111,6 +107,21 @@ class Index extends Controller
         // }
 
         // print_r($b);die;
+        // 
+        
+        //搜索的条件 
+        //模糊搜索【'%'(匹配0-多个字符),'_'(只占一个字符)】，whereOr,两表联查【左联查，右联查】，volist[name,id],foreach[name,item]【切记都不要加$】,
+        $sou = "富";
+
+        $res = Db::name('user_questions')
+            ->alias('qq')
+            // ->where('qq.q_title|qq.q_title_content','like',"%$sou%")
+            ->where("qq.q_title",'like',"%$sou%")
+            ->whereor("q_status",'1')
+            ->join('tp_designer_answer aa','qq.q_id = aa.a_questions_id','left')
+            ->select();
+        print_r($res);
+        
     }
 
 
@@ -148,7 +159,6 @@ class Index extends Controller
 
 //     $b[$val['prop_id']]['prop_name'] = $val['prop_name'];
 //     $b[$val['prop_id']]['prop_value'][]['value_id'] = $val['value_id'];
-
 
 
 }
