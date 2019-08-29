@@ -7,7 +7,7 @@
                     <img src="<?php echo $val['a_pic'];?>" alt="">
                 </a>
                 <if condition="$userinfo['type'] eq 0">
-                    <span class="focus <?php if ($val['collect'] != 0) {echo ho;}?>" data-designerno="{$val.designer_no}">
+                    <span class="focus <?php if ($val['collect'] != 0) {echo ho;}?>" data-designerno="{$val.designer_no}" mid="{$val.a_mid}">
                         <?php if ($val['collect'] == 0) { ?>
                             +关注
                         <?php } else {?>
@@ -35,7 +35,7 @@
             </div>
         </if>
 
-        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina eq 2">
+        <if condition="$userinfo['mid'] eq $details_data['q_mid'] && $caina ">
             <!--提问者本人可见-->
             <div class="more-answers-footer" aid="{$val.a_id}">
                 采纳意见
@@ -50,3 +50,7 @@
         </if>
     </div>
 </foreach>
+
+<div class="container div_bottom">
+    <div class="thd-pager thd-pager-2">{$showPage}</div>
+</div>

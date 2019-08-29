@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="/Public/pc/layui/css/layui.css">
+<script src="/Public/pc/layui/layui.js"></script>
 <link href="__PUBLIC__/css/lib/baguetteBox.css" rel="stylesheet"/>
 <script src='__PUBLIC__/js/lib/baguetteBox.js'></script>
 
-<script src="/Public/pc/layer/layer.js"></script>
 <link rel="stylesheet" href="/Public/pc/css/GoodLooking/details-problem.css">
 <body class="details-problem">
 
@@ -76,7 +77,9 @@
                         <foreach name="designer_data" key="key" item="val">
                             <!--循环invite-main-->
                             <div class="invite-main">
-                                <img src="{$val['pic']}" alt="">
+                                <a href="/chargdesign/info/{$val.designer_no}">
+                                    <img src="{$val['pic']}" alt="">
+                                </a>
                                 <div>
                                     <p><span>{$val['nickname']}</span>&nbsp;·&nbsp;{$val['agencies_name']}</p>
                                     <p>回答: {$val['answer']}&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;采纳: {$val['adopt']}</p>
@@ -125,7 +128,8 @@
                 </div>
             </if>
             <!--循环more-answers-->
-            <div class="wrap-s"></div>
+            <div class="wrap-s" id="demo">
+            </div>
         </div>
     </div>
     <div class="main-right">
@@ -170,37 +174,9 @@
 
 <script type="text/javascript">
     baguetteBox.run('.buildchoose-wrapper');
-
-    $(function () {
-        var func = {
-            load_designer_list: function() {
-                var q_id = $('.q_id').val();
-                var _this_content_item = $('.wrap-s');
-                $.ajax({
-                    type: 'post',
-                    url: '/AskDesigner/details',
-                    data : {id: q_id},
-                    beforeSend: function() {
-                        _this_content_item.html('<p class="data_load">努力加载中，请稍后</p>');
-                    },
-                    success: function(data) {
-                        if(!data) {
-                            alert_modal('', '网络异常，请检查网络后重试');
-                        } else if(data.error == 1) {
-                            alert_modal('', data.msg);
-                        } else {
-                            console.log(data);
-                            _this_content_item.html(data.content);
-                        }
-                    },
-                    error: function() {
-                        alert_modal('', '网络异常，请检查网络后重试');
-                    },
-                    dataType: 'json'
-                });
-            }
-        }
-
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
         // 关注 & 取消关注
         $('.main-box').on('click', '.focus', function () {
             var _this = $(this);
@@ -209,16 +185,174 @@
                 if(type == 1){
                     _this.addClass("ho").text("已关注")
                     layer.msg('关注成功');
+
+                    $(".focus").each(function (i,e) {
+                        if(e.attributes.mid.value==_this[0].attributes.mid.value){
+                            $(".focus").eq(i).addClass("ho").text("已关注")
+                        }
+                    })
                 }else{
                     _this.removeClass("ho").text("+关注")
                     layer.msg('取消成功');
+                    $(".focus").each(function (i,e) {
+                        if(e.attributes.mid.value==_this[0].attributes.mid.value){
+                            $(".focus").eq(i).removeClass("ho").text("+关注")
+
+                        }
+                    })
                 }
             });
 
         })
 
-        func.load_designer_list();
-    })
+    var con="";
+    layui.use('flow', function(){
+        var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
+        var flow = layui.flow;
+        flow.load({
+            elem: '#demo' //指定列表容器
+            ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+                var lis = [];
+                var q_id = $('.q_id').val();
+                var _this_content_item = $('.wrap-s');
+
+                    $.ajax({
+                        type: 'post',
+                        url: '/AskDesigner/details',
+                        data : {id: q_id,page:page},
+                        success: function(data) {
+                            if(!data) {
+                                alert_modal('', '网络异常，请检查网络后重试');
+                            } else if(data.error == 1) {
+                                alert_modal('', data.msg);
+                            } else {
+                                con += data.content;
+                                lis.push("<div>"+con+"</div>");
+                                let num = $('.other-answers span').text();
+                                if(num==""){
+                                    _this_content_item.html("");
+                                }else{
+                                    num-=5*page;
+                                    let pages = num;
+                                    _this_content_item.html(lis+"<div class='main-foo'>剩余"+pages+"个答案</div>");
+                                    //修改答案
+                                    $(".more-answers-res").each(function (i, e) {
+                                        console.log(i,e)
+                                        $(this).hover(function () {
+                                            $(this).addClass("ho")
+                                        }, function () {
+                                            $(this).removeClass("ho")
+                                        })
+                                        $(this).click(function () {
+                                            console.log(111)
+                                            var a_id = $(this).attr('a_id');
+                                            $('.modify').attr('a_id', a_id);
+                                            $(".prompt-wrap").show()
+                                        })
+                                    })
+                                    //取消修改答案
+                                    $(".cancel").click(function () {
+                                        $(".prompt-wrap").hide()
+                                    })
+                                    //确认修改答案
+                                    $(".modify").click(function () {
+                                        var a_id = $(this).attr('a_id');
+                                        $("pre").hide()
+                                        $(".prompt-wrap").hide();
+                                        $("#container").show();
+                                        $(".submit-to").show().attr('ids', a_id);
+                                        $(".receive-container").show();
+                                        $(".answer").addClass("ho").attr('disabled', "true");
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "{:U('AskDesigner/updAnswer')}",
+                                            data: {a_id: a_id},
+                                            dataType: "json",
+                                            success: function (result) {
+                                                UE.getEditor('container').setContent(result.message);
+                                            }
+                                        });
+
+                                    })
+                                    //采纳意见
+                                    $(".more-answers-footer").each(function (i, e) {
+                                        var a_id = $(this).attr('aid');
+                                        $(this).click(function () {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "{:U('QuestionAnswer/designerStatusUpdate')}",
+                                                data: {a_id: a_id},
+                                                dataType: "json",
+                                                success: function (result) {
+                                                    if (result.state == 1100) {
+                                                        $(".more-answers").eq(i).addClass("good_")
+                                                        $(".more-answers-footer").hide()
+
+                                                        $(".good_").each(function (i, e) {
+                                                            let arr = []
+                                                            arr.push(e)
+                                                            if (arr.length > 0) {
+                                                                $(".more-answers.good_").hide()
+                                                                $(".good-wrap").html($(".more-answers.good_").html()).addClass("good_").addClass("more-answers").show()
+                                                                $(".good-wrap .expansion-s").hide()
+                                                                $(".good-wrap .more-answers-content").removeClass("content-h")
+                                                                // $(".good-wrap .focus").click(function () {
+                                                                //     let tex = $(this).text()
+                                                                //     if (tex == "+关注") {
+                                                                //         $(this).addClass("ho").text("已关注")
+                                                                //         layer.msg('关注成功');
+                                                                //     }
+                                                                //     if (tex == "已关注") {
+                                                                //         $(this).removeClass("ho").text("+关注")
+                                                                //         layer.msg('取消成功');
+                                                                //     }
+                                                                // })
+                                                            }
+                                                        })
+                                                        let num = $('.other-answers span').text();
+                                                        if(num - 1 == 0) {
+                                                            //其他回答为0条时，隐藏当前div
+                                                            $('.other-answers').hide();
+                                                        } else {
+                                                            //其他回答不为0时，条数减1
+                                                            $('.other-answers span').text(num - 1);
+                                                        }
+                                                    } else {
+                                                        alert(result.message);
+                                                    }
+                                                }
+                                            });
+
+                                        })
+                                        $(this).hover(function () {
+                                            $(this).addClass("ho")
+                                            console.log(i, e)
+                                        }, function () {
+                                            $(this).removeClass("ho")
+                                        })
+                                    })
+                                    if(pages<0){
+                                        pages =0
+                                        _this_content_item.html(lis+"<div class='main-foot'>没有更多答案了</div>");
+
+                                    }
+                                }
+                            }
+                        },
+                        error: function() {
+                            alert_modal('', '网络异常，请检查网络后重试');
+                        },
+                        dataType: 'json'
+                    });
+                setTimeout(function(){
+                    let num = $('.other-answers span').text();
+                    let pages = Math.ceil(num/5);
+                    next(lis.join(''), page < pages); //假设总页数为 10
+                }, 1000);
+            }
+        });
+    });
+
 
     // <!--点击解答弹出编辑器-->
     $(".answer").click(function () {
@@ -266,101 +400,9 @@
 
         })
     })
-    //采纳意见
-    $(".more-answers-footer").each(function (i, e) {
-        var a_id = $(this).attr('aid');
-        $(this).click(function () {
-            $.ajax({
-                type: "POST",
-                url: "{:U('QuestionAnswer/designerStatusUpdate')}",
-                data: {a_id: a_id},
-                dataType: "json",
-                success: function (result) {
-                    if (result.state == 1100) {
-                        $(".more-answers").eq(i).addClass("good_")
-                        $(".more-answers-footer").hide()
 
-                        $(".good_").each(function (i, e) {
-                            let arr = []
-                            arr.push(e)
-                            if (arr.length > 0) {
-                                $(".more-answers.good_").hide()
-                                $(".good-wrap").html($(".more-answers.good_").html()).addClass("good_").addClass("more-answers").show()
-                                $(".good-wrap .expansion-s").hide()
-                                $(".good-wrap .more-answers-content").removeClass("content-h")
-                                // $(".good-wrap .focus").click(function () {
-                                //     let tex = $(this).text()
-                                //     if (tex == "+关注") {
-                                //         $(this).addClass("ho").text("已关注")
-                                //         layer.msg('关注成功');
-                                //     }
-                                //     if (tex == "已关注") {
-                                //         $(this).removeClass("ho").text("+关注")
-                                //         layer.msg('取消成功');
-                                //     }
-                                // })
-                            }
-                        })
-                        let num = $('.other-answers span').text();
-                        if(num - 1 == 0) {
-                            //其他回答为0条时，隐藏当前div
-                            $('.other-answers').hide();
-                        } else {
-                            //其他回答不为0时，条数减1
-                            $('.other-answers span').text(num - 1);
-                        }
-                    } else {
-                        alert(result.message);
-                    }
-                }
-            });
 
-        })
-        $(this).hover(function () {
-            $(this).addClass("ho")
-            console.log(i, e)
-        }, function () {
-            $(this).removeClass("ho")
-        })
-    })
 
-    //修改答案
-    $(".more-answers-res").each(function (i, e) {
-        $(this).hover(function () {
-            $(this).addClass("ho")
-        }, function () {
-            $(this).removeClass("ho")
-        })
-        $(this).click(function () {
-            var a_id = $(this).attr('a_id');
-            $('.modify').attr('a_id', a_id);
-            $(".prompt-wrap").show()
-        })
-    })
-    //取消修改答案
-    $(".cancel").click(function () {
-        $(".prompt-wrap").hide()
-    })
-    //确认修改答案
-    $(".modify").click(function () {
-        var a_id = $(this).attr('a_id');
-        $("pre").hide()
-        $(".prompt-wrap").hide();
-        $("#container").show();
-        $(".submit-to").show().attr('ids', a_id);
-        $(".receive-container").show();
-        $(".answer").addClass("ho").attr('disabled', "true");
-        $.ajax({
-            type: "POST",
-            url: "{:U('AskDesigner/updAnswer')}",
-            data: {a_id: a_id},
-            dataType: "json",
-            success: function (result) {
-                UE.getEditor('container').setContent(result.message);
-            }
-        });
-
-    })
     //满意
     $(".more-answers-foo>span:nth-of-type(1)").each(function (i, e) {
         $(this).hover(function () {
@@ -461,118 +503,4 @@
         $(".good-wrap .expansion-s").hide()
         $(".good-wrap .more-answers-content").removeClass("content-h")
     })
-    //文档高度
-    function getDocumentTop() {
-        var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
-        if (document.body) {
-            bodyScrollTop = document.body.scrollTop;
-        }
-        if (document.documentElement) {
-            documentScrollTop = document.documentElement.scrollTop;
-        }
-        scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
-        return scrollTop;
-    }
-    //可视窗口高度
-    function getWindowHeight() {
-        var windowHeight = 0;
-        if (document.compatMode == "CSS1Compat") {
-            windowHeight = document.documentElement.clientHeight;
-        } else {
-            windowHeight = document.body.clientHeight;
-        }
-        return windowHeight;
-    }
-    //滚动条滚动高度
-    function getScrollHeight() {
-        var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
-        if (document.body) {
-            bodyScrollHeight = document.body.scrollHeight;
-        }
-        if (document.documentElement) {
-            documentScrollHeight = document.documentElement.scrollHeight;
-        }
-        scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
-        return scrollHeight;
-    }
-//     window.onscroll = function () {
-//         if(getScrollHeight() == getWindowHeight() + getDocumentTop()){
-//             //数据加载完毕后
-//             let num = $(".wrap-s>.more-ans").length
-//             if(num<5){
-//                 console.log("小于5")
-//                 return false;
-//             }
-//             let page = (num/5)+1;
-//             // let id = 51;
-//             console.log(page,"page",num,"num")
-//             $.ajax({
-//                 type: "post",
-//                 url: "{:U('AskDesigner/details')}",
-//                 data: {page: page, id: id},
-//                 dataType: "json",
-//                 success: function (result) {
-//                     if(result.state == 1100) {
-//                         console.log(result)
-//                         console.log("总条数",result.count)
-//                         if(num<result.count){
-//                             console.log("加载")
-//                             var str_res = "";
-//                             $(result.message).each(function(i,e) {
-//                                 str_res += `            <div class="more-answers more-ans">
-//                 <div class="more-answers-top">
-//                     <div>`
-//                     if(e.a_pic){
-//                                     str_res+=`<img src="${e.a_pic}">`
-//
-//                                 }else{
-//                                     str_res+=`<img src="/Public/pc/img/GoodLooking/mr.png">`
-//                     }
-//                                     str_res+=`
-//                                     <span class="focus">+关注</span></div>
-//                     <div>
-//                         <p>${e.a_nickname}&nbsp;&nbsp;·&nbsp;&nbsp;<span>${e.agencies_name}</span></p>
-//                         <p>${e.created_at}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回答: ${e.answer} <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>采纳: ${e.adopt}</p>
-//                     </div>
-//                 </div>
-//                 <div class="more-answers-content">
-//                 ${e.a_answer}
-//                 </div>`
-//                                         if(result.type == 0){
-//                                             str_res+=`
-//                                         <div class="more-answers-foo">
-//                                                 <span class="">${e.satisfied}</span>
-//                                                 <span class="">${e.no_satisfied}</span>
-//                                                 </div>`
-//                                         }
-// if(e.a_mid == result.mid&&result.caina==2){
-//     str_res+=`
-// <!--提问者本人可见-->
-//                 <div class="more-answers-footer">
-//                     采纳意见
-//                 </div>`
-// }
-//
-//                                 if(e.a_mid==result.mid&&e.str_res!=3&&e.upd_num==0){
-//                                     str_res +=`
-//
-//                 <!--回答本问题的设计师可见-->
-//                 <div class="more-answers-res">
-//                     修改答案
-//                 </div>
-//             `
-//                             }
-//                                 str_res+=`</div>`
-//                             })
-//                             $('.wrap-s').append(str_res);
-//
-//                         }else{
-//                             $(".loading").css("paddingTop","0").text("已经到底了")
-//                         }
-//
-//                     }
-//                 }
-//             });
-//         }
-//     }
 </script>
