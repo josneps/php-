@@ -29,6 +29,8 @@ class QuestionAnswerController extends BaseController
         $this->answer = D('Answer');
         $this->userInfo = session('userInfo');
         $this->mid = session('mid');
+        $this->checkLogin();                        //检查是否登录
+        $this->initPowerCheckView();
     }
 
     /********************************** 设计师部分 **************************************/

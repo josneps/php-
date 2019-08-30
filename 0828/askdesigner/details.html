@@ -423,6 +423,8 @@
     $('.main-box').on('click', '.more-answers-foo>span', function () {
         var status = $(this).attr('status');
         var id = $(this).attr('id');
+        var _this = $(this)
+        var _num = $(this).text()
         if (status == 1) {
             //满意
             $.ajax({
@@ -433,7 +435,8 @@
                 success: function (result) {
                     if (result.state == 1100) {
                         layer.msg(result.message);
-                        window.location.reload();
+                        // window.location.reload();
+                        _this.text(++_num)
                     } else {
                         layer.msg(result.message);
                     }
@@ -449,7 +452,8 @@
                 success: function (result) {
                     if (result.state == 1100) {
                         layer.msg(result.message);
-                        window.location.reload();
+                        // window.location.reload();
+                        _this.text(++_num)
                     } else {
                         layer.msg(result.message);
                     }
