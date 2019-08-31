@@ -26,10 +26,7 @@
                         <notempty name="img">
                             <foreach name="img" key="key" item="vo">
                                 <div style="position: relative" id="upload-{$key}">
-                                    <foreach name="img" key="k" item="v">
-                                        <img src="{$v}" class="layui-upload-img last-pic">
-                                    </foreach>
-
+                                    <img src="{$vo}" class="layui-upload-img last-pic">
                                     <div class="del demo-delete">
                                         <img src="/Public/pc/img/GoodLooking/sc.png">
                                     </div>

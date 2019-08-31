@@ -29,6 +29,8 @@ class QuestionAnswerController extends BaseController
         $this->answer = D('Answer');
         $this->userInfo = session('userInfo');
         $this->mid = session('mid');
+        $this->checkLogin();                        //检查是否登录
+        $this->initPowerCheckView();
     }
 
     /********************************** 设计师部分 **************************************/
@@ -44,7 +46,7 @@ class QuestionAnswerController extends BaseController
     {
         //根据解答的id获取问题
         //设计师mid
-        $user_where = "a.a_mid = '".$this->userInfo['mid']."'";
+        $user_where = "a_mid = '".$this->userInfo['mid']."'";
         //接收状态
         $status = trim(I('status', '', int));
         //当前页和每页显示的个数
@@ -70,37 +72,45 @@ class QuestionAnswerController extends BaseController
         //判断是否获取被采纳的
         if($status == '') {
             //没有被采纳的
-            $answer_data = M('designer_answer as a')
-                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
-                ->where($user_where)
-                ->group("a.a_questions_id")
-                ->order("a.created_at desc")
+//            $answer_data = M('designer_answer as a')
+//                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
+//                ->where($user_where)
+//                ->group("a.a_questions_id")
+//                ->order("a.created_at desc")
+//                ->limit(($nowPage-1)*$pageSize,$pageSize)
+//                ->select();
+
+            $answer_data = M('user_questions as b')
+                ->join("(select a_questions_id,max(a_status) as a_answer_status,max(created_at) as a_answer_time from designer_answer where $user_where group by a_questions_id) as a on b.q_id=a.a_questions_id", 'right')
+                ->field('a_questions_id,a_answer_status,a_answer_time,b.q_title,b.q_mid,b.q_answer_num,b.q_look_num, b.q_pic, b.q_nickname ')
+                ->order('a_answer_time desc')
                 ->limit(($nowPage-1)*$pageSize,$pageSize)
                 ->select();
 
-            $count = M('designer_answer as a')
-                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
-                ->where($user_where)
-                ->order("a.created_at desc")
+            $count = M('user_questions as b')
+                ->join("(select a_questions_id,max(a_status) as a_answer_status,max(created_at) as a_answer_time from designer_answer where $user_where group by a_questions_id) as a on b.q_id=a.a_questions_id", 'right')
+                ->field('a_questions_id,a_answer_status,a_answer_time,b.q_title,b.q_mid,b.q_answer_num,b.q_look_num, b.q_pic, b.q_nickname ')
+                ->order('a_answer_time desc')
                 ->count();
 
         } elseif ($status == 3) {
+            $user_where .= 'AND a_status = 3';
             //已被采纳的
-            $answer_data = M('designer_answer as a')
-                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
-                ->where("a.a_mid = '".$this->userInfo['mid']."' AND a.a_status = 3")
-                ->group("a.a_questions_id")
-                ->order("a.created_at desc")
+            $answer_data = M('user_questions as b')
+                ->join("(select a_questions_id,max(a_status) as a_answer_status,max(created_at) as a_answer_time from designer_answer where $user_where group by a_questions_id) as a on b.q_id=a.a_questions_id", 'right')
+                ->field('a_questions_id,a_answer_status,a_answer_time,b.q_title,b.q_mid,b.q_answer_num,b.q_look_num, b.q_pic, b.q_nickname ')
+                ->order('a_answer_time desc')
                 ->limit(($nowPage-1)*$pageSize,$pageSize)
                 ->select();
 
-            $count = M('designer_answer as a')
-                ->join("user_questions u on a.a_questions_id = u.q_id", 'left')
-                ->where("a.a_mid = '".$this->userInfo['mid']."' AND a.a_status = 3")
-                ->order("a.created_at desc")
+            $count = M('user_questions as b')
+                ->join("(select a_questions_id,max(a_status) as a_answer_status,max(created_at) as a_answer_time from designer_answer where $user_where group by a_questions_id) as a on b.q_id=a.a_questions_id", 'right')
+                ->field('a_questions_id,a_answer_status,a_answer_time,b.q_title,b.q_mid,b.q_answer_num,b.q_look_num, b.q_pic, b.q_nickname ')
+                ->order('a_answer_time desc')
                 ->count();
 
         } else {
+            $user_where = "a.a_mid = '".$this->userInfo['mid']."'";
             $user_where .= ' AND a.status != 1';
             //邀请设计师回答信息
             $answer_data = M('invitation_answer as a')
@@ -115,7 +125,6 @@ class QuestionAnswerController extends BaseController
                 ->where($user_where)
                 ->order("a.created_at desc")
                 ->count();
-            $answer_num = $count;
         }
 
         //分页
@@ -149,7 +158,7 @@ class QuestionAnswerController extends BaseController
             Db::startTrans();
             try {
                 $questions_id = I('questions_id');
-                $content = I('content');
+                $content = $_POST['content'];
                 $ids = I('ids', '');
 
                 //判断当前回答是否有邀请
@@ -275,7 +284,6 @@ class QuestionAnswerController extends BaseController
                 Db::rollback();
                 $this->ajaxReturn(array('state' => 1102, 'message' => '解答失败'));
             }
-
 
         } else {
             $this->assign("id", $id);

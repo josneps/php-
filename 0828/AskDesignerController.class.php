@@ -60,17 +60,41 @@ class AskDesignerController extends BaseController
         $data = M('user_questions as u')->where($where)->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
 
         if($data){
-            //循环取出id存入数组
+            //循环取出问题id存入数组
             foreach ($data as $v) {
+                if($v['q_status'] == 4) {
+                    //已采纳的id
+                    $adopted_id[] = $v['q_id'];
+                } else {
+                    //未采纳的id
+                    $no_adopted_id[] = $v['q_id'];
+                }
                 $ids[] = $v['q_id'];
             }
-            //将数组分割成字符串
-            $ids = implode(",", $ids);
-            //获取解答
-            $answer_data = M('designer_answer')->where('a_questions_id in ('.$ids.')')->order('created_at desc')->select();
 
-            foreach ($answer_data as $key => $val) {
-                $mid[] = $val['a_mid'];
+            //将数组分割成字符串
+            $adopted_ids = implode(",", $adopted_id);
+            $no_adopted_ids = implode(",", $no_adopted_id);
+            $ids = implode(",", $ids);
+
+            //已采纳的解答信息
+            $adopted_data = M('designer_answer')->where('a_questions_id in ('.$adopted_ids.') ANd a_status = 3')->select();
+
+            //未采纳的解答信息
+            $no_adopted_data = M('designer_answer')->where('a_questions_id in ('.$no_adopted_ids.')')->select();
+
+            $mid = array();
+            foreach ($adopted_data as $key => $val) {
+                if(!in_array($val['a_mid'], $mid)) {
+                    $mid[] = $val['a_mid'];
+                }
+            }
+
+            $mid = array();
+            foreach ($no_adopted_data as $key => $val) {
+                if(!in_array($val['a_mid'], $mid)) {
+                    $mid[] = $val['a_mid'];
+                }
             }
 
             $mids = $this->strImplode($mid);
@@ -80,6 +104,9 @@ class AskDesignerController extends BaseController
 
             //获取设计师编号
             $designer_data = M('user_designer')->where("mid in (".$mids.")")->getField('mid, designer_no');
+
+            //获取设计师的真实姓名与状态是否要展示真实姓名
+            $designer_info = M('user_designer')->where("mid in (".$mids.")")->getField('mid, real_name, nickname, nickname_type');
 
             //统计解答人数
             $num = M('designer_answer')->field('count(a_id) as num, a_questions_id')->where('a_questions_id in ('.$ids.')')->group('a_questions_id')->order('created_at desc')->select();
@@ -95,8 +122,32 @@ class AskDesignerController extends BaseController
                     }
                 }
 
-                if ($answer_data){
-                    foreach ($answer_data as $k => $v) {
+                //已采纳的信息组合
+                if ($adopted_data){
+                    foreach ($adopted_data as $k => $v) {
+                        if($value['q_id'] == $v['a_questions_id']) {
+                            $data[$key]['a_id'] = $v['a_id'];
+                            $data[$key]['a_questions_id'] = $v['a_questions_id'];
+                            $data[$key]['a_mid'] = $v['a_mid'];
+                            $data[$key]['a_nickname'] = $v['a_nickname'];
+                            $data[$key]['a_pic'] = $v['a_pic'] ? C('PIC_URl').'/'.$v['a_pic'] : '__PUBLIC__/img/avatar.png' ;
+                            $data[$key]['a_answer'] = $v['a_answer'];
+                            $data[$key]['a_img'] = $v['a_img'];
+                            $data[$key]['a_access_device'] = $v['a_access_device'];
+                            $data[$key]['a_status'] = $v['a_status'];
+                            $data[$key]['satisfied'] = $v['satisfied'];
+                            $data[$key]['no_satisfied'] = $v['no_satisfied'];
+                            $data[$key]['designer_no'] = $designer_data[$v['a_mid']];
+                            $data[$key]['a_del'] = $v['a_del'];
+                            $data[$key]['created_at'] = $v['created_at'];
+                            $data[$key]['updated_at'] = $v['updated_at'];
+                        }
+                    }
+                }
+
+                //未采纳的信息组合
+                if ($no_adopted_data){
+                    foreach ($no_adopted_data as $k => $v) {
                         if($value['q_id'] == $v['a_questions_id']) {
                             $data[$key]['a_id'] = $v['a_id'];
                             $data[$key]['a_questions_id'] = $v['a_questions_id'];
@@ -120,6 +171,15 @@ class AskDesignerController extends BaseController
                 $data[$key]['created_at'] = $this->time_trans($value['created_at']);
                 $data[$key]['q_title'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title']);
                 $data[$key]['q_title_content'] = str_replace($title,"<font color='red'>".$title."</font>",$value['q_title_content']);
+            }
+
+            foreach ($data as $key => $val) {
+                //组合设计师的昵称
+                if($designer_info[$data[$key]['a_mid']]['nickname_type'] == 1){
+                    $data[$key]['a_nickname'] = $designer_info[$val['a_mid']]['nickname'];
+                } else {
+                    $data[$key]['a_nickname'] = $designer_info[$val['a_mid']]['real_name'];
+                }
             }
 
             $type = 3;
@@ -216,6 +276,8 @@ class AskDesignerController extends BaseController
         //设置路由:普通模式
         $this->initSearchTop(7);
 
+        //是否有过采纳
+        $caina = true;
         //接收id
         $id = trim(I('id'));
         $where = "q_id = $id";
@@ -248,14 +310,17 @@ class AskDesignerController extends BaseController
         //过滤已经邀请过的
         $mid_data = M('invitation_answer')->field('a_mid')->where("a_questions_id = $id")->select();
 
+        $ids = array();
         foreach ($mid_data as $key => $val) {
-            $ids[] = $val['a_mid'];
+            if(!in_array($val['a_mid'], $ids)) {
+                $ids[] = $val['a_mid'];
+            }
         }
 
         $mids = $this->strImplode($ids);
 
         $designer_data = M('user as u')
-            ->field('d.nickname, u.mid, u.pic, u.login_time')
+            ->field('d.nickname, u.mid, u.pic, u.login_time, d.nickname_type, d.real_name, d.designer_no')
             ->join("user_designer as d on u.mid = d.mid", 'right')
             ->where("u.type = 1 AND u.mid not in (".$mids.") AND d.type = 1 AND d.status = 2 AND d.account_type != 3")
             ->order("u.login_time desc")
@@ -263,8 +328,11 @@ class AskDesignerController extends BaseController
             ->select();
 
         //循环取出设计师mid存入数组
+        $ids = array();
         foreach ($designer_data as $v) {
-            $ids[] = $v['mid'];
+            if (!in_array($v['mid'], $ids)) {
+                $ids[] = $v['mid'];
+            }
         }
         $mids = $this->strImplode($ids);
 
@@ -276,11 +344,13 @@ class AskDesignerController extends BaseController
 
         //组合设计师数据
         foreach ($designer_data as $key => $val) {
+            $designer_data[$key]['nickname'] = $val['nickname_type'] ? $val['nickname'] : $val['real_name'];
             $designer_data[$key]['agencies_name'] = $designer[$val['mid']];
             $designer_data[$key]['pic'] = $val['pic'] ? C('PIC_URl').'/'.$val['pic'] : '__PUBLIC__/img/avatar.png' ;
             $designer_data[$key]['answer'] = $answerAdopt[$val['mid']]['answer'] ? $answerAdopt[$val['mid']]['answer'] : 0;
             $designer_data[$key]['adopt'] = $answerAdopt[$val['mid']]['adopt'] ? $answerAdopt[$val['mid']]['adopt'] : 0;
         }
+
         $this->assign("designer_data", $designer_data);
 
         /********************************** 获取解答 **************************************/
@@ -301,6 +371,8 @@ class AskDesignerController extends BaseController
 
             $answer_one['collect'] = in_array($answer_one['designer_no'], $attention_designer_nos) ? 1 : 0;
 
+            //获取设计师的真实姓名与状态是否要展示真实姓名
+            $designer_info = M('user_designer')->where("mid = '".$answer_one['a_mid']."'")->getField('mid, real_name, nickname, nickname_type');
 
             //设计师的解答 & 被采纳个数
             $answerAdopt_one = M('answer_adopt_num')->field('a_mid mid, answer, adopt')->where("a_mid = '".$answer_one['a_mid']."'")->find();
@@ -309,18 +381,37 @@ class AskDesignerController extends BaseController
             $answer_one['adopt'] = $answerAdopt_one['adopt'] ? $answerAdopt_one['adopt'] : 0;
             $answer_one['a_pic'] = $answer_one['a_pic'] = $answer_one['a_pic'] ? C('PIC_URl').'/'.$answer_one['a_pic'] : '__PUBLIC__/img/avatar.png' ;
 
+            //组合设计师的昵称
+            if($designer_info[$answer_one['a_mid']]['nickname_type'] == 1){
+                $answer_one['a_nickname'] = $designer_info[$answer_one['a_mid']]['real_name'];
+            }
+
             $this->assign('answer_one', $answer_one);
 
+            $caina = false;
         }
 
+        // 获取多条未采纳的解答数据
         if(IS_POST) {
-            // 获取多条未采纳的解答数据
+            //优先获取当前登录者的解答内容
+            if($this->userInfo['type'] == 1){
+                $data = $this->answer->field("*, case when a_mid = '".$this->userInfo['mid']."' then 0 else 1 end as flag")->where("a_questions_id = $id AND a_status != 3")->order("flag, created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            }
 
-            $data = $this->answer->where("a_questions_id = $id AND a_status != 3")->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            //判断是否有当前登录者的解答
+            if(!$data){
+                $data = $this->answer->where("a_questions_id = $id AND a_status != 3")->order("created_at desc")->limit(($nowPage-1)*$pageSize,$pageSize)->select();
+            }
+
+            $count = $this->answer->where("a_questions_id = $id AND a_status != 3")->count();
+            $this->assign('count', $count);
 
             //循环取出设计师mid存入数组
+            $ids = array();
             foreach ($data as $v) {
-                $ids[] = $v['a_mid'];
+                if(!in_array($v['a_mid'], $ids)) {
+                    $ids[] = $v['a_mid'];
+                }
             }
 
             $mids = $this->strImplode($ids);
@@ -336,6 +427,9 @@ class AskDesignerController extends BaseController
 
             //设计师的解答 & 被采纳个数
             $answerAdopt = M('answer_adopt_num')->field('a_mid mid, answer, adopt')->where("a_mid in (".$mids.")")->select();
+
+            //获取设计师的真实姓名与状态是否要展示真实姓名
+            $designer_info = M('user_designer')->where("mid in (".$mids.")")->getField('mid, real_name, nickname, nickname_type');
 
             foreach ($data as $key => $val) {
 
@@ -355,14 +449,20 @@ class AskDesignerController extends BaseController
                     }
                 }
 
+                //组合设计师的昵称
+                if($designer_info[$data[$key]['a_mid']]['nickname_type'] == 1){
+                    $data[$key]['a_nickname'] = $designer_info[$data[$key]['a_mid']]['real_name'];
+                }
+
                 $data[$key]['collect'] = in_array($data[$key]['designer_no'], $attention_designer_nos) ? 1 : 0;
                 $data[$key]['a_pic'] = $val['a_pic'] ? C('PIC_URl').'/'.$val['a_pic'] : '__PUBLIC__/img/avatar.png' ;
             }
 
             $this->assign("data", $data);
+            $this->assign("caina", $caina);
+            $this->assign("details_data", $detail_data);
+            $this->assign("userinfo", $this->userInfo);
 
-            $result['data'] = $data;
-            $result['attention_designer_nos'] = $attention_designer_nos;
             $result['content'] = $this->fetch('askdesigner/details_list_content');
             die(json_encode($result));
         }
@@ -404,11 +504,7 @@ class AskDesignerController extends BaseController
         $this->assign("details_data", $detail_data);
         $this->assign("userinfo", $this->userInfo);
 
-        if(IS_AJAX) {
-//            $this->ajaxReturn(array('state' => 1100, 'message' => $data, 'count' => $count, 'mid' => $this->userInfo['mid'], 'type' => $this->userInfo['type']));
-        } else {
-            $this->view('askdesigner/details', 2);
-        }
+        $this->view('askdesigner/details', 2);
 
     }
 

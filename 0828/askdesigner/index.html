@@ -311,6 +311,17 @@
                                 str_res += "</div>"
                             })
                             $('.main-left').append(str_res);
+                            // <!--查看全部-->
+                            $(".add-all").each(function (i, e) {
+                                console.log(i,e)
+                                if ($(".all_").eq(i).height() >=106) {
+                                    $(".add-all").eq(i).show()
+                                }
+                                $(this).click(function () {
+                                    $(this).parent().removeClass("all_")
+                                    $(this).hide()
+                                })
+                            })
                         }else{
                             $(".loading").css("paddingTop","0").text("已经到底了")
                         }
