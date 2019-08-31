@@ -26,6 +26,7 @@ class ArticleController extends Controller
 	{
 		return view('/Article/index');
 	}
+
 }
 
 

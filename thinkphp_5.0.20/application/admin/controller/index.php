@@ -42,6 +42,7 @@ class Index extends Controller
         // print_r($v);
 
 
+
         //URL获取ID
         // $t_id = $this->request->get('id');
         // // print_r($t_id);die;

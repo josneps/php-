@@ -87,6 +87,10 @@ class LoginController extends Controller
         }
     }
 
+    /**文件上传
+     * [index description]
+     * @return [type] [description]
+     */
     public function index()
     {
         //接收数据
@@ -107,6 +111,42 @@ class LoginController extends Controller
     public function err()
     {
         return view('/404');
+    }
+
+
+    /**上传七牛方法
+     * [lotUploadQiniu description]
+     * @param  [type] $files [description]
+     * @return [type]        [description]
+     */
+     public function lotUploadQiniu($files)
+    {
+        $exts = array('bmp','jpg', 'tif','tiff','gif', 'png', 'jpeg','xls','xlsx','dwg','dxf','hom','zip','txt','max','3ds','obj','fbx');
+        if (!empty($files)) {
+            //图片上传设置
+            $config = array(
+                'maxSize'    =>    30*1024*1024, //设置附件上传大小  30MB = 31457280;
+                'savePath'   =>    '',
+                'saveName'   =>    array('uniqid',''),//
+                'exts'       =>    $exts,
+                'autoSub'    =>    false,
+                'subName'    =>    '',//保存后缀,
+            );
+            $driverConfig = array (
+                'accessKey' => C('PIC_AK'),
+                'secretKey' => C('PIC_SK'),
+                'domain' => C('PIC_DOMAIN'),
+                'bucket' => C('PIC_BUCKET'),
+            );
+            $Upload = new \Think\Upload($config,'Qiniu',$driverConfig);
+            $return_img = $Upload->upload($files);
+            //判断是否有图
+            if($return_img){
+                return $return_img;
+            }else{
+                exit(json_encode(array('state'=>1200,'message'=>$Upload->getError())));
+            }
+        }
     }
 
 }
