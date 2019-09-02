@@ -38,3 +38,16 @@ Route::post('index/index','admin/Index/index');
 
 Route::get('upload','index/Recursion/upload');
 Route::post('upload','index/Recursion/upload');
+
+Route::get('index/lists','admin/Index/datas');
+Route::post('index/lists','admin/Index/datas');
+
+
+//2019-08-29
+Route::get('admin/edit','admin/Problem/edit');
+Route::post('admin/edit','admin/Problem/edit');
+
+Route::get('admin/lists','admin/Problem/lists');
+
+Route::get('admin/fileupload/uploads','admin/FileUpload/uploads');
+Route::post('admin/fileupload/uploads','admin/FileUpload/uploads');

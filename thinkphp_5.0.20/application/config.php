@@ -282,5 +282,13 @@ return [
         // 数据库表前缀
         'prefix'          => '',
     ],
+
+    'UPLOAD_Qiniu_CONFIG'                 => [
+        'secretKey' => 'yaqK-1WJr2Egc4Fc1TzGW92ROFvzm63VI2IMKHWn', //七牛服务器
+        'accessKey' => '_okjficrL8hnRQy36752gRlWp_gv17ilCGYUOV-v', //七牛用户
+        'domain'    => 'image.91thd.com', //七牛域名
+        'bucket'    => '91thd', //空间名称
+    ],
+
 ];
 
