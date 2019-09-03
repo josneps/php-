@@ -51,3 +51,5 @@ Route::get('admin/lists','admin/Problem/lists');
 
 Route::get('admin/fileupload/uploads','admin/FileUpload/uploads');
 Route::post('admin/fileupload/uploads','admin/FileUpload/uploads');
+
+Route::get('admin/export','admin/Office/export');
