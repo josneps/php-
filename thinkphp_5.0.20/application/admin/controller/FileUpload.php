@@ -20,11 +20,11 @@ class FileUpload extends Controller
 {
     public function uploads()
     {
-        $data=$this->request->only(['name', 'age', 'sex']);
+//        $data=$this->request->only(['name', 'age', 'sex']);
+//        print_r($data);
+//        die;
 
-        print_r($data);
-
-        die;
+        //获取图片的信息
         $file = $_FILES;
         //获取临时路径
         $tmp_name = $file['file']['tmp_name'];

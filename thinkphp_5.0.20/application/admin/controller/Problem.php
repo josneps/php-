@@ -45,7 +45,7 @@ class Problem extends Controller
         $a_mid = $this->strImplode($ids);
         $cn = Db::table('answer_adopt_num')->where("a_mid in($a_mid)")->select();
         print_r($cn);
-        
+
 
     }
 
@@ -74,6 +74,8 @@ class Problem extends Controller
 
         return $mids;
     }
+
+
 }
 
 

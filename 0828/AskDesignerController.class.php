@@ -24,7 +24,6 @@ class AskDesignerController extends BaseController
         $this->answer = D('Answer');
         $this->userInfo = session('userInfo');
         $this->initPowerCheckView();
-
     }
 
     /**

@@ -9,6 +9,7 @@ use think\Session;
 use think\Db;
 use app\admin\lib\common\Uploads;
 use app\admin\lib\common\Commonality;
+use app\admin\controller\Excel;
 
 
 
@@ -148,6 +149,24 @@ class LoginController extends Controller
             }
         }
     }
+
+    //Excel导出
+    public function Excels()
+    {
+
+        //设置表头：
+        $head = ['编号', '昵称', '年龄', '性别', '手机号', '状态'];
+
+        //数据中对应的字段，用于读取相应数据：
+        $keys = ['id', 'name', 'age', 'sex', 'phone', 'status'];
+
+        //从数据库获取的数据
+        $orders = DB::table('userinfo')->select();
+
+        Excel::outdata('订单表', $orders, $head, $keys);
+
+    }
+
 
 }
 
