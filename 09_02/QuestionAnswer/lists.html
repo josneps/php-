@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-management.css">
+<div class="page_content" style="padding-top: 20px">
+    <div class="container">
+        <include file="Common/side_nav_account_setting_personal"/>
+        <div class="box">
+            <ul class="header">
+                <li>我的问答</li>
+                <li>
+                    <ul class="nav">
+                        <?php if($status == 0) { ?>
+                        <li status="0" class="myactive">全部</li>
+                        <?php } else { ?>
+                        <li status="0">全部</li>
+                        <?php }?>
+                        <?php if($status == 1) { ?>
+                        <li status="1" class="myactive">待解答</li>
+                        <?php } else { ?>
+                        <li status="1">待解答</li>
+                        <?php }?>
+                        <?php if($status == 2) { ?>
+                        <li status="2" class="myactive">已解答</li>
+                        <?php } else { ?>
+                        <li status="2">已解答</li>
+                        <?php }?>
+                        <?php if($status == 3) { ?>
+                        <li status="3" class="myactive">已采纳</li>
+                        <?php } else { ?>
+                        <li status="3">已采纳</li>
+                        <?php }?>
+                        <a href="<?php echo U('QuestionAnswer/addQuestions');?>">我要提问</a>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="main-box">
+                <!--循环main-->
+                <foreach name="data" key="key" item="val">
+                    <li class="main">
+                        <div><p>{$val.q_answer_num}</p>
+                            <p>回答</p></div>
+                        <div>
+                            <a href="{:U('AskDesigner/details')}?id={$val.q_id}">{$val.q_title}</a>
+                            <p>{$val.created_at}&nbsp;&nbsp;&nbsp;&nbsp;{$val.q_look_num}人看过</p>
+                        </div>
+
+                        <if condition="$val.q_status == 1 or $val.q_status == 2">
+                            <div class="wait">
+                                待解答
+                            </div>
+                                <elseif condition="$val.q_status == 3"/>
+                            <div class="done">
+                                已解答
+                            </div>
+                                <elseif condition="$val.q_status == 4"/>
+                            <div class="adopt">
+                                已采纳
+                            </div>
+                        </if>
+
+                        <if condition="$val.q_status == 1 or $val.q_status == 2">
+                            <a href="{:U('QuestionAnswer/addQuestions')}?id={$val.q_id}">修改提问</a>
+                        </if>
+
+                    </li>
+                </foreach>
+
+                <div class="thd-pager thd-pager-2">
+                    {$page}
+                </div>
+
+                <!--占位图-->
+                <if condition = "$is_show">
+                    <include file="Public/nolist_tips" />
+                </if>
+
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(".side_nav_bar>ul>li>ul>li").each(function (i, elem) {
+        var menuname = $(elem).find('>a').text();
+        if ($.trim(menuname) == '我的问答') {
+            $(elem).addClass("on");
+            $(this).parents('li').addClass('on active');
+            $(this).parent('.publish_').show();
+        }
+    });
+</script>
+
+<script>
+    $(".nav>li").click(function () {
+        var status = $(this).attr('status');
+
+        window.location.href = "{:U('QuestionAnswer/lists')}?status=" + status;
+    });
+    // $(".nav>li").each(function (i,e) {
+    //     $(this).click(function () {
+    //         $(this).addClass("myactive").siblings().removeClass("myactive")
+    //     })
+    // })
+</script>

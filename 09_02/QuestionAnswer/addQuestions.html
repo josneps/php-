@@ -1,0 +1,211 @@
+    <link rel="stylesheet" href="/Public/pc/css/GoodLooking/owner-quiz.css">
+    <script src="/Public/pc/layui/layui.js"></script>
+    <link rel="stylesheet" href="/Public/pc/layui/css/layui.css">
+<div class="page_content"  style="padding-top: 20px">
+    <div class="container">
+        <include file="Common/side_nav_account_setting_personal"/>
+        <div class="box">
+            <div class="nav">
+                我要提问
+            </div>
+            <input type="text" id="title" value="{$questions_data.q_title}" placeholder="一句话完整的描述你的问题（最多50字）">
+            <p class="title">问题补充</p>
+            <div class="summary">
+            <textarea id="brief" class="tex" rows="5" placeholder="选填，请输入20-1000个字的问题补充" maxlength="1000"
+                      onchange="this.value=this.value.substring(0, 1000)"
+                      onkeydown="this.value=this.value.substring(0, 1000)"
+                      onkeyup="this.value=this.value.substring(0, 1000)">{$questions_data.q_title_content}</textarea>
+                <p class="num"><span class="written">0</span>/<span class="surplus">1000</span></p>
+            </div>
+            <!--上传图片-->
+            <div class="uploadImage">
+                <p class="title">添加图片</p>
+                <div class="layui-upload">
+                    <div class="layui-upload-list" id="demo2">
+                        <!-- img -->
+                        <notempty name="img">
+                            <foreach name="img" key="key" item="vo">
+                                <div style="position: relative" id="upload-{$key}">
+                                    <img src="{$vo}" class="layui-upload-img last-pic">
+                                    <div class="del demo-delete">
+                                        <img src="/Public/pc/img/GoodLooking/sc.png">
+                                    </div>
+                                </div>
+                            </foreach>
+                        </notempty>
+                    </div>
+                    <button type="button" id="test2"><img src="/Public/pc/img/GoodLooking/jiahao.png" alt=""></button>
+                </div>
+                <span class="layui-upload-ts">最多上传5张图片</span>
+            </div>
+            <input type="hidden" id="id" value="{$id}">
+
+            <!--关联小区-->
+            <div class="association">
+                <p><span>关联小区</span><span class="prompt">!</span></p>
+                <include file="Publish/select_list"/>
+                <div class="instructions">
+                    根据您写的内容关联小区，方便本小区用户及时查看内容
+                </div>
+            </div>
+            <button class="submit" onclick="submit_sun()">发布提问</button>
+        </div>
+
+    </div>
+</div>
+    <script type="text/javascript">
+        $(".side_nav_bar>ul>li>ul>li").each(function (i, elem) {
+            var menuname = $(elem).find('>a').text();
+            if ($.trim(menuname) == '我的问答') {
+                $(elem).addClass("on");
+                $(this).parents('li').addClass('on active');
+                $(this).parent('.publish_').show();
+            }
+        });
+    </script>
+
+<script>
+    // <!--关联小区提示-->
+    $(".prompt").hover(function () {
+        $(".instructions").toggle();
+        $(this).css("cursor", "pointer")
+    });
+    // <!--限制补充字数-->
+    $(function () {
+        $(".tex").keyup(function () {
+            var len = $(".tex").val().length;
+            if (len > 999) {
+                $(this).text($(this).text().substring(0, 1000));
+            }
+            $(".written").text(len);
+
+        });
+    });
+    // <!--限制标题字数-->
+    $(function () {
+        $("#title").keyup(function () {
+            var len = $(this).val().length;
+            if (len > 49) {
+                $(this).val($(this).val().substring(0, 50));
+            }
+        });
+    });
+</script>
+
+<!--上传图片-->
+<script>
+    var files;
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //多图片上传
+        var demoListView = $('#demo2')
+            , uploadListIns = upload.render({
+            elem: '#test2'
+            , accept: 'images'
+            , acceptMime: 'image/*' //只筛选图片
+            , auto: false //选择文件后不自动上传
+            // , size: 1024 * 3 //限制文件大小，单位 KB
+            , choose: function (obj) {
+                files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                //读取本地文件
+                obj.preview(function (index, file, result) {
+                    var div = $(['<div style="position: relative" id="upload-' + index + '">'
+                        , '<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img">'
+                        , '<div class="del demo-delete"><img src="/Public/pc/img/GoodLooking/sc.png"></div>'
+                        , '</div>'].join(''));
+                    //删除
+
+                    div.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        div.remove();
+                        $("#test2").show()
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+                    demoListView.append(div);
+                });
+            }
+            , done: function (res, index, upload) {
+                if (res.state == 1100) {
+                }
+
+            }
+        });
+    });
+    <!--限制上传图片张数-->
+    $("#test2").click(function () {
+        $(".layui-upload>#demo2>div").each(function (i) {
+            if (i >= 3) {
+                $("#test2").hide()
+            }
+        })
+    })
+</script>
+<!--上传图片回显删除-->
+<script>
+    $("#demo2>div").find('div').click(function () {
+        $(this).parent().remove();
+    })
+</script>
+<!--提交-->
+<script>
+    function submit_sun() {
+
+        var last_src = [];
+        $(".last-pic").each(function (i, e) {
+            last_src.push(e.src)
+        })
+        var last_src = JSON.stringify(last_src);
+
+        // 提交
+        var id = $.trim($("#id").val());
+        var title = $.trim($("#title").val());
+        if (title == '') {
+                layer.msg('问题不能为空');
+                return false;
+        }
+        //问题补充
+       let briefNum =  $("#brief").val().length
+        if(briefNum<=20&&briefNum>=1){
+            layer.msg('内容补充必须超过20个字哦');
+            return false;
+        }
+        var brief = $.trim($("#brief").val());
+
+        // 小区
+        var building_no = $.trim($("input[name='building_no']").val());
+        var form = new FormData();
+        for (let i in files) {
+            form.append("file[]", files[i]);
+        }
+        form.append("title", title);
+        form.append("building_no", building_no);
+        form.append("id", id);
+        form.append("last_src", last_src);
+        form.append("content", brief);
+        $(".publish").attr('disabled',true);
+        $.ajax({
+            type: "POST",
+            url: "{:U('QuestionAnswer/addQuestions')}",
+            contentType: false,
+            processData: false,
+            async: true,
+            data: form,
+            dataType: "json",
+            success: function (result) {
+                if (result.state == 1100) {
+                    layer.msg(result.message);
+                    location.href = "/QuestionAnswer/lists";
+                } else {
+                    toastAdvice({
+                        state: 'fail',
+                        tips: result.message
+                    });
+                }
+                $(".publish").attr('disabled',false);
+            }
+        });
+    }
+</script>
+
