@@ -52,9 +52,13 @@ Route::get('admin/lists','admin/Problem/lists');
 Route::get('admin/fileupload/uploads','admin/FileUpload/uploads');
 Route::post('admin/fileupload/uploads','admin/FileUpload/uploads');
 
-<<<<<<< HEAD
 Route::get('admin/excel','admin/LoginController/excels');//导出
 Route::post('admin/excel','admin/LoginController/excels');
-=======
+
 Route::get('admin/export','admin/Office/export');
->>>>>>> bfce0f1af17248715dd5e24f3f9ff848906ad841
+
+Route::get('admin/email','admin/LoginController/email');//邮件
+Route::post('admin/email','admin/LoginController/email');
+
+Route::get('admin/emailqq','admin/LoginController/test');//邮件
+

@@ -18,7 +18,7 @@ class Office
      * 备注：此函数缺点是，表头（对应列数）不能超过26；
      *循环不够灵活，一个单元格中不方便存放两个数据库字段的值
      */
-    public function outdata($name='测试表', $data=[], $head=[], $keys=[])
+    public static function outdata($name='测试表', $data=[], $head=[], $keys=[])
     {
         $count = count($head);  //计算表头数量
  
@@ -63,9 +63,9 @@ class Office
         $keys = ['order_sn', 'num', 'consignee', 'phone', 'detail'];      
 
         $orders = array(
-        ['123','12','张三'，'13111111111','杭州滨江'],
-        ['456','23','李四'，'13222222222','杭州西湖'],
-        ['789','34','王五'，'13444444444','杭州余杭'],
+            ['123','12','张三','13111111111','杭州滨江'],
+            ['456','23','李四','13222222222','杭州西湖'],
+            ['789','34','王五','13444444444','杭州余杭'],
         );
          
         $this->outdata('订单表', $orders, $head, $keys);

@@ -11,6 +11,9 @@ use app\admin\lib\common\Uploads;
 use app\admin\lib\common\Commonality;
 use app\admin\controller\Excel;
 
+use app\admin\controller\Email;
+use app\admin\controller\Emailqq;
+
 
 
 class LoginController extends Controller
@@ -165,6 +168,25 @@ class LoginController extends Controller
 
         Excel::outdata('订单表', $orders, $head, $keys);
 
+    }
+
+    //发送邮件
+    public function Email()
+    {
+        $email = '3120107266@qq.com';
+//        $email = '1759052772@qq.com';
+        $title = '你好，初次见面请多多关照！';
+        $content = '真的很高心认识你，咱以后好好的合作，认识你是一种缘分！！';
+        Email::email($email,$title,$content);
+    }
+
+    public function test(){
+        $bool = Emailqq::sendMail('13121998667@163.com','哈喽','我来啦我来啦');
+        if($bool){
+            echo 'ok';
+        }else{
+            echo 'no';
+        }
     }
 
 
