@@ -62,3 +62,29 @@ Route::post('admin/email','admin/LoginController/email');
 
 Route::get('admin/emailqq','admin/LoginController/test');//邮件
 
+
+//测试路由
+//Route::get('admin/test/index','admin/Test/index');
+//Route::get('admin/test/qrcode','admin/Test/create_qrcode');
+//Route::get('admin/test/excel','admin/Test/exportExcel');
+//Route::get('admin/test/email','admin/Test/sendEmail');
+//Route::get('admin/test/emailqq','admin/Test/sendEmailQq');
+//Route::get('admin/test/uploads','admin/Test/uploads');
+//Route::post('admin/test/uploads','admin/Test/uploads');
+
+
+//接口路由
+Route::post('personal/betaversion/excels','personal/Betaversion/excels'); //导出
+Route::get('personal/betaversion/excels','personal/Betaversion/excels');  //导出
+
+Route::post('personal/betaversion/emails','personal/Betaversion/emails'); //163邮件
+Route::get('personal/betaversion/emails','personal/Betaversion/emails');  //163邮件
+
+Route::post('personal/betaversion/mails','personal/Betaversion/mails'); //QQ邮件
+Route::get('personal/betaversion/mails','personal/Betaversion/mails');  //QQ邮件
+
+Route::post('personal/betaversion/uploads','personal/Betaversion/uploads'); //七牛云
+Route::get('personal/betaversion/uploads','personal/Betaversion/uploads');  //七牛云
+
+Route::post('personal/betaversion/qrcode','personal/Betaversion/qrcode'); //二维码
+Route::get('personal/betaversion/qrcode','personal/Betaversion/qrcode');  //二维码

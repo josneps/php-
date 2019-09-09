@@ -153,42 +153,6 @@ class LoginController extends Controller
         }
     }
 
-    //Excel导出
-    public function Excels()
-    {
-
-        //设置表头：
-        $head = ['编号', '昵称', '年龄', '性别', '手机号', '状态'];
-
-        //数据中对应的字段，用于读取相应数据：
-        $keys = ['id', 'name', 'age', 'sex', 'phone', 'status'];
-
-        //从数据库获取的数据
-        $orders = DB::table('userinfo')->select();
-
-        Excel::outdata('订单表', $orders, $head, $keys);
-
-    }
-
-    //发送邮件
-    public function Email()
-    {
-        $email = '3120107266@qq.com';
-//        $email = '1759052772@qq.com';
-        $title = '你好，初次见面请多多关照！';
-        $content = '真的很高心认识你，咱以后好好的合作，认识你是一种缘分！！';
-        Email::email($email,$title,$content);
-    }
-
-    public function test(){
-        $bool = Emailqq::sendMail('13121998667@163.com','哈喽','我来啦我来啦');
-        if($bool){
-            echo 'ok';
-        }else{
-            echo 'no';
-        }
-    }
-
 
 }
 
