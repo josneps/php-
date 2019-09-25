@@ -88,3 +88,12 @@ Route::get('personal/betaversion/uploads','personal/Betaversion/uploads');  //�
 
 Route::post('personal/betaversion/qrcode','personal/Betaversion/qrcode'); //二维码
 Route::get('personal/betaversion/qrcode','personal/Betaversion/qrcode');  //二维码
+
+Route::post('personal/betaversion/bat','personal/Betaversion/bat'); //类型
+Route::get('personal/betaversion/bat','personal/Betaversion/bat');  //类型
+
+Route::post('personal/notepad/index','personal/Notepad/index'); //类型
+Route::get('personal/notepad/index','personal/Notepad/index');  //类型
+
+Route::post('notepad/record/wirteNote','notepad/Record/wirteNote'); //记事本的分类
+Route::get('notepad/record/wirteNote','notepad/Record/wirteNote');  //记事本的分类

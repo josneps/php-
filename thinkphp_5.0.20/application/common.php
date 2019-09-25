@@ -37,9 +37,14 @@ function success($msg, $arr = [])
 
 
 /**
- * 失败时调用
- * [error description]
- * @return [type] [description]
+ * Notes:失败调用
+ * User: 张丽坤
+ * Date: 2019/9/17
+ * Time: 22:42
+ * @param $code 状态码
+ * @param $msg 提示语
+ * @param array $arr 数据
+ * @return \think\response\Json
  */
 function error($code, $msg, $arr = [])
 {

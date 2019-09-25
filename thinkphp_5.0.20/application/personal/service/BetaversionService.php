@@ -35,4 +35,9 @@ class BetaversionService
 
         return $resuli;
     }
+
+    public function bate()
+    {
+        $this->Betaversionmodel->beta();
+    }
 }

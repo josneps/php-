@@ -116,7 +116,27 @@ class Betaversion extends Controller
      */
     public function qrcode()
     {
+//        $a = 100*100;
+//        $b = (bool)$a;
+//        var_dump($b);die;
+
+//        $a = array(
+//            'name' => '张三',
+//            'age' => 18,
+//        );
+//        $d = json_encode($a);
+//        $f = json_decode($d,true);
+//        echo '<pre>';
+//        var_dump($d);
+//        echo '<hr/>';
+//        var_dump($f);
+//        die;
         echo create_qrcode('https://baijiahao.baidu.com/s?id=1620074125490055484&wfr=spider&for=pc');
+    }
+
+    public function bat()
+    {
+         $this->BetaversionService->bate();
     }
 
 
